@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-124357.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-083129.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-17-150358.png">
-<meta property="og:updated_time" content="2020-04-01T09:31:04.410Z">
+<meta property="og:updated_time" content="2020-04-02T13:34:57.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="互联网协议入门">
 <meta name="twitter:description" content="作者：DeppWang 互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
@@ -532,7 +532,7 @@
 </blockquote>
 <p>传输层有一种简单的协议，叫 UDP 协议，UDP 协议只是为数据简单的加上包含发送方端口和接收方端口的标头，就将 UDP 数据包扔给网络层，它不保证是否能成功的发送给接收方，它是一种不可靠的传输协议。因为简单，减少了时间开销，常用于对时间有较高要求的应用程序。</p>
 <h2 id="六、应用层（Application-Layer）"><a href="#六、应用层（Application-Layer）" class="headerlink" title="六、应用层（Application Layer）"></a>六、应用层（Application Layer）</h2><p>链路层、网络层、传输层实现了数据包能从主机应用发送到目的主机应用。正常情况下，网络上主要传输的数据是应用产生的。传输的数据各种各样，有网络请求，有电子邮件等等。数据需要由<a href="https://zh.wikipedia.org/wiki/应用层" target="_blank" rel="noopener">应用层</a>（Application Layer）封装，即规定数据的格式。</p>
-<p>规定「网络请求数据」格式的是 <a href="https://zh.wikipedia.org/wiki/超文本传输协议" target="_blank" rel="noopener">HTTP 协议</a>。可以说，HTTP 协议是应用层的一种实现。</p>
+<p>规定「HTML 数据」格式的是 <a href="https://zh.wikipedia.org/wiki/超文本传输协议" target="_blank" rel="noopener">HTTP 协议</a>。可以说，HTTP 协议是应用层的一种实现。</p>
 <h3 id="6-1-HTTP-协议"><a href="#6-1-HTTP-协议" class="headerlink" title="6.1 HTTP 协议"></a>6.1 HTTP 协议</h3><blockquote>
 <p><strong>HTTP 协议</strong>：英文全称为：H<strong>yper</strong>T<strong>ext **T</strong>ransfer <strong>P</strong>rotocol，即超文本转移（传输）协议</p>
 </blockquote>
