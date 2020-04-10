@@ -411,17 +411,18 @@
 
       
         
-          <h2 id="你真的会写单例模式吗"><a href="#你真的会写单例模式吗" class="headerlink" title="你真的会写单例模式吗"></a>你真的会写单例模式吗</h2><blockquote>
+          <blockquote>
 <p>人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点</p>
 </blockquote>
+<p><img src="/Users/yanjie/Pictures/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/singleton.jpg" alt="img"></p>
 <p>又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看。。事后，你也来一篇。</p>
 <p>单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。</p>
 <p>单例模式有各种写法，什么「双重检锁法」、什么「饿汉式」、什么「饱汉式」，总是记不住、分不清。这就对了，人的记忆力是有限的，我们应该记的是最基本的单例模式怎么写。</p>
 <p>单例模式：一个类有且只能有一个对象（实例）。单例模式的 3 个要点：</p>
 <ol>
-<li>外部不能通过 new 关键字（构造函数）的方式新建对象，所以构造函数为私有：<code>private Singleton(){}</code></li>
-<li>只能通过类方法获取对象，所以获取对象的方法为公有、且为静态：<code>public static Singleton getInstance()</code></li>
-<li>对象只能有一个，那只能作为类变量的「数据」，类变量为静态 （另一种记忆：静态方法只能使用静态变量）：<code>private static Singleton instance</code></li>
+<li>外部不能通过 new 关键字（构造函数）的方式新建实例，所以构造函数为私有：<code>private Singleton(){}</code></li>
+<li>只能通过类方法获取实例，所以获取实例的方法为公有、且为静态：<code>public static Singleton getInstance()</code></li>
+<li>实例只能有一个，那只能作为类变量的「数据」，类变量为静态 （另一种记忆：静态方法只能使用静态变量）：<code>private static Singleton instance</code></li>
 </ol>
           <!--noindex-->
           <div class="post-button text-center">
