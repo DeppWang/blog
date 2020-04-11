@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看。。事后，你也来一篇。 单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿汉">
+<meta name="description" content="作者：DeppWang、原文地址 又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿">
 <meta name="keywords" content="Singleton Pattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你真的会写单例模式吗">
 <meta property="og:url" content="https://depp.wang/2020/04/10/singleton-pattern/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看。。事后，你也来一篇。 单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿汉">
+<meta property="og:description" content="作者：DeppWang、原文地址 又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-10-143047.jpg">
-<meta property="og:updated_time" content="2020-04-10T15:01:59.919Z">
+<meta property="og:updated_time" content="2020-04-11T01:16:10.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你真的会写单例模式吗">
-<meta name="twitter:description" content="作者：DeppWang、原文地址  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看。。事后，你也来一篇。 单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿汉">
+<meta name="twitter:description" content="作者：DeppWang、原文地址 又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-10-143047.jpg">
 
 
@@ -411,11 +411,11 @@
 
       
         <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/10/singleton-pattern/">原文地址</a></p>
+<p>又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。</p>
 <blockquote>
 <p>人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点</p>
 </blockquote>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-10-143047.jpg" alt="img"></p>
-<p>又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看。。事后，你也来一篇。</p>
 <p>单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。</p>
 <p>单例模式有各种写法，什么「双重检锁法」、什么「饿汉式」、什么「饱汉式」，总是记不住、分不清。这就对了，人的记忆力是有限的，我们应该记的是最基本的单例模式怎么写。</p>
 <p>单例模式：一个类有且只能有一个对象（实例）。单例模式的 3 个要点：</p>
@@ -434,12 +434,12 @@
 <!--// final 修饰的基本数据类型，在编译期时，初始化数据放在常量池-->
 
 <p>这个写法有一个不足之处，就是如果需要通过参数设置实例，则无法做到。举个栗子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不能设置 name！</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Singleon using static initialization in Java"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here is how to access this Singleton class</span></span><br><span class="line">Singleton.getInstance(String name).show();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不能设置 name！</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Singleon using static initialization in Java"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here is how to access this Singleton class</span></span><br><span class="line">Singleton.getInstance(String name).show();</span><br></pre></td></tr></table></figure>
 
 <h2 id="二、可通过参数设置实例的写法"><a href="#二、可通过参数设置实例的写法" class="headerlink" title="二、可通过参数设置实例的写法"></a>二、可通过参数设置实例的写法</h2><p>考虑到这种情况，就在调用 getInstance() 方法时，再新建实例。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Singleton.getInstance(String name).show();</span><br></pre></td></tr></table></figure>
 
-<p>这里加了 <code>synchronized</code> 关键字，能保证只会生成一个实例，但效率不高。因为实例创建成功后，再获取实例时就不用加锁了。</p>
+<p>这里加了 <code>synchronized</code> 关键字，能保证线程安全（只会生成一个实例），但效率不高。因为实例创建成功后，再获取实例时就不用加锁了。</p>
 <p>当不加 synchronized 时，会发生什么：</p>
 <p>instance 是类的变量，类存放在方法区（元数据区），元数据区线程共享，所以类变量 instance 线程共享，类变量也是在主内存中。线程执行 getInstance() 时，在自己工作内存新建一个栈帧，将主内存的 instance 拷贝到工作内存。多个线程并发访问时，都认为 <code>instance == null</code>，就将新建多个实例，那单例模式就不是单例模式了。</p>
 <h2 id="三、改良版加锁的写法"><a href="#三、改良版加锁的写法" class="headerlink" title="三、改良版加锁的写法"></a>三、改良版加锁的写法</h2><p>实现只在创建的时候加锁，获取时不加锁。</p>
@@ -448,18 +448,18 @@
 <p><strong>为什么要判断两次：</strong></p>
 <p>多个线程将 instance 拷贝进工作内存，即多个线程读取到 instance == null，虽然每次只有一个线程进入 synchronized 方法，当进入线程成功新建了实例，synchronized 保证了可见性（在 unlock 操作前将变量写回了主内存），此时 instance 不等于 null 了，但其他线程已经执行到 synchronized 这里了，某个线程就又会进入 synchronized 方法，如果不判断一次，又会再次新建一个实例。</p>
 <p><strong>为什么要用 volatile 修饰 instance：</strong></p>
-<p>synchronized 可以实现原子性、可见性、有序性。其中实现原子性：一次只有一个线程执行同步块的代码。但计算机为了提升运行效率，会指令重排序。</p>
-<p>代码 instance = new Singleton(); 会被拆为 3 步执行。</p>
+<p>synchronized 已经可以实现原子性、可见性、有序性，为什么还要用 volatile？synchronized 实现原子性：一次只有一个线程执行同步块的代码。但计算机为了提升运行效率，会指令重排序。</p>
+<p>代码 instance = new Singleton(); 会被计算机拆为 3 步执行。</p>
 <ul>
 <li>A：分配一块内存空间</li>
 <li>B：在内存空间位置新建一个实例</li>
 <li>C：将引用指向实例，即，引用存放实例的内存空间地址</li>
 </ul>
-<p>如果 instance 都在 synchronized 里面，那么没啥问题，问题出现在 instance 在 synchronized 外边，因为此时外边一群饿狼（线程），就在等待一个 instance 这块肉不为 null。</p>
+<p>线程可能按 ACB 执行，如果 instance 都在 synchronized 里面，怎么重排序都没啥问题，问题出现在还有 instance 在 synchronized 外边，因为此时外边一群饿狼（线程），就在等待一个 instance 这块肉不为 null。</p>
 <p>模拟一下指令重排序的出错场景：多线程环境下，正好一个线程，在同步块中按 ACB 执行，执行到 AC 时（并将 instance 写回了主内存），另一个线程执行第一个判断时，认为 instance 不为空，返回 instance，但此时 instance 还没被正确初始化，所以出错。</p>
-<p>当 instance 被 volatile 修饰时，只有 ACB 执行完了之后，其他线程才能读取 instance</p>
-<p>为什么 volatile 能禁止指令重排序：它在 ACB 后添加一个 lock 指令，lock 指令之前的操作执行完成后，后面的操作才能执行</p>
-<p>你可能认为上面的解释太复杂，不好理解。对，确实比较复杂，我也搞了很久才搞明白。你可以看看这个是不是更好理解，Java 虚拟机规范的其中一条先行发生原则：对 volatile 修饰的变量，读操作，必须等写操作完成。</p>
+<p>volatile 修饰 instance 时，虚拟机在 ACB 后添加一个 <code>lock</code> 指令，lock 指令之前的操作执行完成后，后面的操作才能执行。即：只有当写操作完成之后，读操作才能开始。这也是 Java 虚拟机规范的其中一条先行发生原则：对 volatile 修饰的变量，读操作，必须等写操作完成。</p>
+<p>所以用 volatile 修饰 instance，是使用它的禁止指令重排序特性：禁止读指令重排序到写指令之前。（它禁止不了lock 指令前的指令重排序。）</p>
+<p>你可能认为上面的解释太复杂，不好理解。对，确实比较复杂，看不懂，下次问到再看吧。</p>
 <h2 id="四、其他非主流写法"><a href="#四、其他非主流写法" class="headerlink" title="四、其他非主流写法"></a>四、其他非主流写法</h2><p>枚举写法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EasySingleton&#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -467,6 +467,7 @@
 <p>静态内部类写法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>这个写法还是比较有逼格的，但稍不注意就容易出错。</p>
 <h2 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h2><p>单例模式主要为了节省内存开销，Spring 容器的 Bean 就是通过单例模式创建出来的。</p>
 <p>单例模式没写出来，那也没啥事，因为那下一个问题你也不一定能答出来 :)。</p>
 <h2 id="六、延伸阅读"><a href="#六、延伸阅读" class="headerlink" title="六、延伸阅读"></a>六、延伸阅读</h2><ul>
@@ -475,6 +476,8 @@
 <li><a href="https://javarevisited.blogspot.com/2012/07/why-enum-singleton-are-better-in-java.html" target="_blank" rel="noopener">Why Enum Singleton are better in Java</a></li>
 <li><a href="https://stackoverflow.com/questions/228164/on-design-patterns-when-should-i-use-the-singleton" target="_blank" rel="noopener">On design patterns: When should I use the singleton? </a></li>
 </ul>
+<!--![个人公众号](https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-10-150424.png)-->
+
 
       
     </div>
