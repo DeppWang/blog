@@ -1496,6 +1496,9 @@
 <li>前后端完全分离，能否用 Shiro？**</li>
 </ul>
 <p>Shiro 本质上还是借助 Cookie，前后端完全分离时，前端接口需要保存 Cookie，每次调用接口是加入 Cookie（包含过期时间、Path、HTTPOnly 等参数），这样还是比较麻烦。</p>
+<ul>
+<li>将 SessionID 作为 token？前端保留 token，存放于 Authorization</li>
+</ul>
 <hr>
 <p>目的：通过 cookie 识别用户</p>
 <p>实现：在 Session 中保存用户相关数据</p>

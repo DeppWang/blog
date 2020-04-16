@@ -100,7 +100,7 @@
 <meta property="og:description" content="作者：DeppWang、原文地址  如何获取到 Shiro session 的用户？(UserInfo) currentUser.getPrincipal(); 前后端完全分离，能否用 Shiro？**  Shiro 本质上还是借助 Cookie，前后端完全分离时，前端接口需要保存 Cookie，每次调用接口是加入 Cookie（包含过期时间、Path、HTTPOnly 等参数），这样还是比较麻烦">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135431.png">
-<meta property="og:updated_time" content="2020-04-13T15:26:28.691Z">
+<meta property="og:updated_time" content="2020-04-16T04:23:32.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 SpringBoot2 中使用 Apache Shiro 实现登录身份验证和访问权限控制">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  如何获取到 Shiro session 的用户？(UserInfo) currentUser.getPrincipal(); 前后端完全分离，能否用 Shiro？**  Shiro 本质上还是借助 Cookie，前后端完全分离时，前端接口需要保存 Cookie，每次调用接口是加入 Cookie（包含过期时间、Path、HTTPOnly 等参数），这样还是比较麻烦">
@@ -416,6 +416,9 @@
 <li>前后端完全分离，能否用 Shiro？**</li>
 </ul>
 <p>Shiro 本质上还是借助 Cookie，前后端完全分离时，前端接口需要保存 Cookie，每次调用接口是加入 Cookie（包含过期时间、Path、HTTPOnly 等参数），这样还是比较麻烦。</p>
+<ul>
+<li>将 SessionID 作为 token？前端保留 token，存放于 Authorization</li>
+</ul>
 <hr>
 <p>目的：通过 cookie 识别用户</p>
 <p>实现：在 Session 中保存用户相关数据</p>
@@ -533,7 +536,6 @@
 
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图解 HTTP 示例：</span><br><span class="line">Cookie: <span class="attribute">sid</span>=1342077140226724</span><br></pre></td></tr></table></figure>
 
-<p>理论只有服务端没有 Cookie 过期策略，浏览器没有清除 cookie，可以一直保存登录状态？</p>
 <p>密码一般在前端就需要加密，如果没有加密，表单提交需要采用 https。</p>
 <p>当访问需要访问权限的 url 时，从数据库查询当前用户的权限，最后交给 Shiro 框架去验证。在 doGetAuthorizationInfo() 中实现。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
