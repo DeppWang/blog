@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于初学">
+<meta name="description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
 <meta name="keywords" content="Spring,IoC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta property="og:url" content="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于初学">
+<meta property="og:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-17-143303.png">
@@ -106,10 +106,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-19T13:07:19.932Z">
+<meta property="og:updated_time" content="2020-04-23T16:17:58.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
-<meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于初学">
+<meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg">
 
 
@@ -416,9 +416,9 @@
       
 
       
-        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2019/04/20/realize-a-simple-spring-ioc-container">原文地址</a></p>
+        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/20/realize-a-simple-spring-ioc-container">原文地址</a></p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg" alt="source:https://fernandofranzini.wordpress.com/"></p>
-<p>我通过实现一个简易的 Spring IoC 容器，算是入门了 Spring 框架。本文是对实现过程的一个总结提炼，<strong>需要配合源码阅读</strong>，<a href="https://github.com/DeppWang/litespring" target="_blank" rel="noopener">源码地址</a>。</p>
+<p>我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，<strong>需要配合源码阅读</strong>，<a href="https://github.com/DeppWang/litespring" target="_blank" rel="noopener">源码地址</a>。</p>
 <p>结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。</p>
 <p>Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于初学者来说，光是理清他们的逻辑就很麻烦，我摒弃了那些包装，只实现了最本质的功能。代码不是很严谨，但只为了理解 Spring 思想却够了。</p>
 <p>下面正文开始。</p>
@@ -427,17 +427,28 @@
 <h2 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h2><p>在没有 Spring 框架的远古时代，我们业务逻辑长这样：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreService</span> </span>&#123;</span><br><span class="line">    AccountDao accountDao = <span class="keyword">new</span> AccountDao();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PetStoreService petStoreService = <span class="keyword">new</span> PetStoreService();</span><br></pre></td></tr></table></figure>
 
-<p>到处都是  <strong>new</strong> 关键字，需要开发人员显式的使用 new 关键字来创建<strong>业务类</strong>对象（实例）。这样有很多弊端，如，创建的对象太多，耦合性太强，等等。</p>
+<p>到处都是  <strong>new</strong> 关键字，需要开发人员显式的使用 new 关键字来创建对象（实例）。这样有很多弊端，如，创建的对象太多（多次创建多个对象），耦合性太强（必须默认 new），等等。</p>
 <p>有个叫 <a href="https://en.wikipedia.org/wiki/Rod_Johnson_(programmer)" target="_blank" rel="noopener">Rod Johnson</a> 老哥对此很不爽，就开发了一个叫 <a href="https://spring.io/" target="_blank" rel="noopener">Spring</a> 的框架，就是为了干掉 new 关键字（哈哈，我杜撰的，只是为了说明 Spring 的作用）。</p>
-<p>有了 Spring 框架，<strong>由框架来新建对象，管理对象，并处理对象之间的依赖</strong>，我们程序员再也不用 new 业务类对象了。我们来看看 Spring 框架是如何实现的吧。</p>
+<p>有了 Spring 框架，<strong>由框架来新建对象，管理对象，并处理对象之间的依赖</strong>，我们程序员再也不用 new 对象了。我们来看看 Spring 框架是如何实现的吧。</p>
 <p>注：以下 Spring 框架简写为 Spring</p>
 <p>本节源码对应：<strong>v0</strong></p>
-<h2 id="一、实现「实例化-Bean-」"><a href="#一、实现「实例化-Bean-」" class="headerlink" title="一、实现「实例化 Bean 」"></a>一、实现「实例化 Bean 」</h2><p>首先，Spring 需要实例化类，将其转换为对象。在 Spring 中，我们管（业务）类叫 Bean，所以实例化类也可以称为实例化 Bean。</p>
-<p>早期 Spring 需要借助 xml 配置文件来实现实例化 Bean，可以分为三步（配合源码 <strong>v1</strong> 阅读）：</p>
+<h2 id="一、实现「实例化-Bean-」"><a href="#一、实现「实例化-Bean-」" class="headerlink" title="一、实现「实例化 Bean 」"></a>一、实现「实例化 Bean 」</h2><p>首先，我们需要标记哪些类交给 Spring 管理，在 xml 配置文件将其标记为 <code>&lt;bean&gt;</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--petstore-v1.xml--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"org.deppwang.litespring.v1.dao.AccountDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Spring 的第一步操作就是根据 xml 的配置来实例化类，在 Spring 中，我们管类叫 Bean，所以实例化类也可以称为实例化 Bean。</p>
+<p>Spring 如何根据 xml 配置来实现实例化类？</p>
+<p>大致可以分为三步（配合源码 <strong>v1</strong> 阅读）：</p>
 <ol>
-<li>从 xml 配置文件获取 Bean 信息，如全限定名等，将其作为 BeanDefinition（Bean 定义类）的属性</li>
-<li>使用一个 Map 存放所有 BeanDefinition，此时 Spring 本质上是一个 Map，存放 BeanDefinition</li>
-<li>当获取 Bean 实例时，通过类加载器，根据全限定名，得到其类对象，通过类对象利用<strong>反射</strong>创建 Bean 实例</li>
+<li><p>从 xml 配置文件获取 Bean 信息：id、全限定名，将其作为 BeanDefinition（Bean 定义类）的属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanDefinition bd = <span class="keyword">new</span> BeanDefinition(id, beanClassName);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用一个 Map 存放所有 BeanDefinition，此时 Spring 本质上是一个 Map，存放 BeanDefinition</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="number">64</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当获取 Bean 实例时，通过类加载器，根据全限定名，得到其类对象，通过类对象利用<strong>反射</strong>创建 Bean 实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Thread.currentThread().getContextClassLoader().loadClass(bd.getBeanClassName()).newInstance();</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
 <p>关于类加载和反射，前者可以看看<a href="https://book.douban.com/subject/34907497/" target="_blank" rel="noopener">《深入理解 Java 虚拟机》</a>第 7 章，后者可以看看《廖雪峰 Java 教程》<a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945147512512" target="_blank" rel="noopener">反射</a> 部分。本文只学习 Spring，这两个知识点不做深入讨论。</p>
 <p>名词解释：</p>
@@ -445,53 +456,83 @@
 <li>全限定名：指编译后的 class 文件在 jar 包中的路径</li>
 </ul>
 <p>本节源码对应：<strong>v1</strong></p>
-<h2 id="二、实现「填充属性（依赖注入）」"><a href="#二、实现「填充属性（依赖注入）」" class="headerlink" title="二、实现「填充属性（依赖注入）」"></a>二、实现「填充属性（依赖注入）」</h2><p>实现实例化 Bean 后，此时成员变量（引用）还为 null：</p>
+<h2 id="二、实现「填充属性（依赖注入）」"><a href="#二、实现「填充属性（依赖注入）」" class="headerlink" title="二、实现「填充属性（依赖注入）」"></a>二、实现「填充属性（依赖注入）」</h2><p>不默认 new 时，实现实例化 Bean 后，此时成员变量（属性）还为 null：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-17-143303.png" alt=""></p>
 <p>此时需要通过一种方式实现，让引用指向实例，我们管这一步叫填充属性。</p>
 <p>当一个 Bean 的成员变量类型是另一个 Bean 时，我们可以说一个 Bean 依赖于另一个 Bean。所以填充属性，也可以称为依赖注入（<strong>D</strong>ependency <strong>I</strong>njection，简称 DI）。</p>
-<p>抛开 Spring 不谈，在正常情况下，我们有两种方式实现依赖注入，1、使用 Setter() 方法，2、使用构造方法。使用 Setter() 方法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAccountDao</span><span class="params">(AccountDao accountDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.accountDao = accountDao;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PetStoreService petStore = <span class="keyword">new</span> PetStoreService();</span><br><span class="line">petStore.setAccountDao(<span class="keyword">new</span> AccountDao()); <span class="comment">// 将依赖 new AccountDao() 注入 petStore</span></span><br></pre></td></tr></table></figure>
+<p>抛开 Spring 不谈，在正常情况下，我们有两种方式实现依赖注入，1、使用构造方法；2、使用 Setter() 方法。一般使用构造方法（因为依赖可能有多个）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PetStoreService</span><span class="params">(AccountDao accountDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.accountDao = accountDao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PetStoreService petStore = <span class="keyword">new</span> PetStoreService(<span class="keyword">new</span> AccountDao()); <span class="comment">// 将依赖 new AccountDao() 注入 petStore</span></span><br></pre></td></tr></table></figure>
 
-<p>其实早期 Spring 也是通过这两种方式来实现依赖注入的。下面是 Spring 通过 xml 文件 + Setter() 来实现依赖注入的步骤（配合源码 <strong>v2</strong> 阅读）：</p>
+<p>Spring 也是通过这两种方式来实现依赖注入。</p>
+<p>我们需要告诉 Spring，需要为类使用什么方式注入依赖，注入什么依赖。比如，我们想 Spring 使用构造函数的方式，注入 AccountDao 依赖。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.deppwang.litespring.v2.service.PetStoreService"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"accountDao"</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Spring 如何根据 <code>&lt;constructor-arg&gt;</code> 来实现依赖注入？</p>
+<p>大致也分为 3 步（配合源码 <strong>v2</strong> 阅读）：</p>
 <ol>
-<li>给 PetStoreService 添加 Setter() 方法，并稍微修改一下 xml 配置文件，添加 <code>&lt;property&gt;</code>，代表对应 Setter() 方法。</li>
-<li>从 xml 配置文件获取 Bean 的属性 <code>&lt;property&gt;</code>，存放到 BeanDefinition 的 propertyNames 中。</li>
-<li>通过 propertyName 获取属性实例，利用反射，通过 Setter() 方法实现填充属性（依赖注入）</li>
+<li><p>从 xml 中获取构造函数的参数实例的 id，存放到 BeanDefinition 的 constructorArguments 中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bd.getConstructorArgumentValues().add(argumentName);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过反射得到 PetStoreService 所有的构造函数，找到参数跟 constructorArguments 一致的构造函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getConstructors();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过 constructorArguments 获取到所有参数实例，再利用反射，通过构造函数实现填充属性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> constructorToUse.newInstance(argsToUse);</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-<p>基于构造函数实现依赖注入的方式跟 Setter() 方法差不多，感兴趣可以 Google 搜索查看。</p>
+<p>基于 Setter() 方法实现依赖注入的方式跟构造方法差不多，源码中有实现，请看源码。</p>
+<p>实际上，Spring 默认先尝试使用构造函数注入依赖，当没有配置 <code>&lt;constructor-arg&gt;</code> 时，使用 <code>&lt;property&gt;</code>。</p>
 <p>因为 Spring 实现了依赖注入，所以我们程序员没有了创建对象的控制权，所以也被称为控制反转（<strong>I</strong>nversion <strong>o</strong>f <strong>C</strong>ontrol，简称  IoC）。因为 Spring 使用 Map 管理 BeanDefinition，我们也可以将 Spring 称为 IoC 容器。</p>
 <p>本节源码对应：<strong>v2</strong></p>
-<h2 id="三、使用「单例模式、工厂方法模式」"><a href="#三、使用「单例模式、工厂方法模式」" class="headerlink" title="三、使用「单例模式、工厂方法模式」"></a>三、使用「单例模式、工厂方法模式」</h2><p>前面两步实现了获取 Bean 实例时创建 Bean 实例，但 Bean 实例经常使用，不能每次都新创建。其实在 Spring 中，一个业务类只对应一个 Bean 实例，这需要使用单例模式。</p>
+<h2 id="三、使用「单例模式、工厂方法模式」"><a href="#三、使用「单例模式、工厂方法模式」" class="headerlink" title="三、使用「单例模式、工厂方法模式」"></a>三、使用「单例模式、工厂方法模式」</h2><p>前面两步实现了获取 Bean 实例时创建 Bean 实例，但 Bean 实例经常使用，不能每次都新创建。其实在 Spring 中，一个 Bean 只对应一个 Bean 实例，这需要使用单例模式。</p>
 <blockquote>
 <p>单例模式：一个类有且只有一个实例</p>
 </blockquote>
 <p>Spring 使用类对象创建 Bean 实例，是如何实现单例模式的？</p>
-<!--正常单例模式通过类或者枚举来生成对象，Spring 使用类对象创建 Bean 实例，两者不太一样。-->
-
 <p>Spring 其实使用一个 Map 存放所有 Bean 实例。创建时，先看 Map 中是否有 Bean 实例，没有就创建；获取时，直接从 Map 中获取。这种方式能保证一个类只有一个 Bean 实例。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="number">64</span>);</span><br></pre></td></tr></table></figure>
 
-<p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory，后期为了实现更多的功能，新增了 ApplicationContext，两者都继承于 BeanFactory 接口。这使用了工厂方法模式。</p>
+<p>管理 Bean 实例的 singletonObjects，也是一个 IoC 容器。</p>
+<p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory（XmlBeanFactory 已经被废弃了，此处只是举例），后期为了实现更多的功能，新增了 ApplicationContext，两者都继承于 BeanFactory 接口。这使用了工厂方法模式。</p>
 <blockquote>
 <p>工厂方法模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类。</p>
 </blockquote>
 <p>我们将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。创建（IoC）容器由其子类自己实现。</p>
 <p>ApplicationContext 和 BeanFactory 的区别：ApplicationContext 初始化时就实例化所有 Bean，BeanFactory 用到时再实例化所用 Bean。</p>
 <p>本节源码对应：<strong>v3</strong></p>
-<h2 id="三、实现「注解」"><a href="#三、实现「注解」" class="headerlink" title="三、实现「注解」"></a>三、实现「注解」</h2><p>前面使用 xml 配置文件的方式，实现了实例化 Bean 和依赖注入。这种方式比较麻烦，还容易出错。Spring 从 2.5<sup><a href="https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm" target="_blank" rel="noopener">ref</a></sup> 开始可使用注解替代 xml 配置文件。比如：</p>
-<ol>
+<h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>前面说：在 Spring 中，我们管类叫 Bean。其实不完全正确，类要称为 Bean，需要满足一个条件：</p>
+<ul>
+<li>当有成员变量时，必须有对应的构造函数或者 Setter 方法</li>
+</ul>
+<p>即可以被 Spring 管理的类，称为 Bean。</p>
+<p>在业务开发中，如果每个业务类均设置构造函数，并且需要在 xml 中配置，那么就太繁琐，还容易出错。Spring 从 2.5<sup><a href="https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm" target="_blank" rel="noopener">ref</a></sup> 开始，新增了注解，可以使用注解来替代业务类的 xml 配置和构造函数。</p>
+<ul>
 <li>使用 @Component 注解代替 <code>&lt;bean&gt;</code></li>
-<li>使用 @Autowired 注解代替 <code>&lt;property&gt;</code></li>
-</ol>
-<p>@Component 用于生成 BeanDefinition，原理（配合源码 <strong>v4</strong> 阅读）：</p>
-<ul>
-<li>根据 component-scan 指定路径，找到路径下所有包含 @Component 注解的 Class 文件，作为 BeanDefinition</li>
-<li>如何判断 Class 是否有 @Component：利用字节码技术，获取 Class 文件中的元数据（注解等），判断元数据中是否有 @Componet</li>
+<li>使用 @Autowired 注解代替 <code>&lt;constructor-arg&gt;</code> + 构造函数。</li>
 </ul>
-<p>@Autowired 用于依赖注入，原理（配合源码 <strong>v4</strong> 阅读）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountDao accountDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring 如何根据注解来实现实例化 Bean 和依赖注入？或者说，这两个注解起了什么作用？</p>
+<p>1、@Component 用于生成 BeanDefinition，实现原理（配合源码 <strong>v4</strong> 阅读）：</p>
 <ul>
-<li>通过反射，查看 Field 中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</li>
+<li><p>根据 <code>&lt;context:component-scan&gt;</code> 指定路径，找到路径下所有包含 @Component 注解的 Class 文件，作为 BeanDefinition</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String basePackagesStr = ele.attributeValue(<span class="string">"base-package"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何判断 Class 是否有 @Component：利用字节码技术，获取 Class 文件中的元数据（注解等），判断元数据中是否有 @Componet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">annotationMetadata.hasAnnotation(Component.class.getName())</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
+<p>2、@Autowired 用于依赖注入，实现原理（配合源码 <strong>v4</strong> 阅读）：</p>
+<ul>
+<li><p>通过反射，查看 Field 中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">field.set(bean, getBean(field.getName()));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：使用 @Autowired 时，既没有使用构造方法，也没有使用 Setter() 方法</p>
+</li>
+</ul>
+<p>@Component + @Autowired 实现 Spring 对业务类的管理。被 @Component + @Autowired  修饰的业务类算是一种特殊的 Bean。</p>
 <p>至此，我们还是在需要通过配置文件来实现组件扫描。有没有完全不使用配置文件的方式？有！</p>
 <p>我们可以使用 @Configuration 替代配置文件，并使用 @ComponentScan 来替代配置文件的  <code>&lt;context:component-scan&gt;</code> 。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">// 将类标记为 @Configuration，代表这个类是相当于一个配置文件</span></span><br><span class="line"><span class="meta">@ComponentScan</span> <span class="comment">// ComponentScan 扫描 PetStoreConfig.class 所在路径及其所在路径所有子路径的文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreConfig</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(PetStoreConfig.class);</span><br><span class="line">        PetStoreService userService = context.getBean(PetStoreService.class);</span><br><span class="line">        userService.getAccountDao();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -504,7 +545,19 @@
 <li>Autowired：自动装配</li>
 </ul>
 <p>本节源码对应：<strong>v4</strong></p>
-<h2 id="四、Spring-Boot-原理"><a href="#四、Spring-Boot-原理" class="headerlink" title="四、Spring Boot 原理"></a>四、Spring Boot 原理</h2><p>说到了 @Configuration 和 @ComponentScan，就不得不提 Spring Boot。因为 Spring Boot 就使用了  @Configuration 和 @ComponentScan，你可以点开 @SpringBootApplication 看到。</p>
+<h2 id="五、注解-Bean"><a href="#五、注解-Bean" class="headerlink" title="五、注解 @Bean"></a>五、注解 @Bean</h2><p>只要类是一个 Bean，就可以由 Spring 管理。</p>
+<p>业务类为了减少配置，可使用 @Component + @Autowired 实现依赖注入。</p>
+<p>将其他 Bean 注入容器时，虽然可以通过 xml 实现，但仍然比较麻烦，Spring 提供了一个注解 @Bean，当一个方法标记为 @Bean 时，它的返回值将被注入容器。</p>
+<p>举个栗子：我们可以将一个线程池 Executor 实例注入容器，再 @Autowired 使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ExecutorService <span class="title">sendMessageExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">2</span>, <span class="number">2</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;&gt;(<span class="number">1024</span>), <span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br><span class="line">        <span class="keyword">return</span> executor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NowsApplication</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ExecutorService executorService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这如果用 xml 来实现，就比较麻烦了，还不直观。</p>
+<!--如果 Bean 没有构造函数或者 Setter 方法，需要引用 @Autowired-->
+
+<p>注意：@Bean 需要和 @Configuration 一起使用</p>
+<!--如果一个标记为 @Bean 的函数需要使用另一个类，那么另一个类也要注入容器？除非它本身也作为 Bean-->
+
+<h2 id="六、Spring-Boot-原理"><a href="#六、Spring-Boot-原理" class="headerlink" title="六、Spring Boot 原理"></a>六、Spring Boot 原理</h2><p>前面说到了 @Configuration 和 @ComponentScan，这就不得不提 Spring Boot，。因为 Spring Boot 就使用了  @Configuration 和 @ComponentScan，你可以点开 @SpringBootApplication 看到。</p>
 <p>我们发现，Spring Boot 启动时，并没有使用 AnnotationConfigApplicationContext 来指定启动某某 Config 类。这是因为它使用了 @EnableAutoConfiguration 注解。</p>
 <p>Spring Boot 利用了 @EnableAutoConfiguration 来自动加载标识为 @Configuration 的配置类到容器中。Spring Boot 还可以将需要自动加载的配置类放在 spring.factories 中，Spring Boot 将自动加载 spring.factories 中的配置类。spring.factories 需放置于META-INF 下。</p>
 <p>如 Spring Boot 项目启动时，autocofigure 包中将自动加载到容器的（部分）配置类如下：</p>
@@ -528,23 +581,22 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"引入 jar 包的 base-package"</span> /&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>嗯，本节没有源码</p>
-<h2 id="五、结语"><a href="#五、结语" class="headerlink" title="五、结语"></a>五、结语</h2><p>以上实现了一个简易的 Spring IoC 容器，顺便说了一下 Spring Boot 原理。Spring 还有很多重要功能，如：管理 Bean 生命周期、AOP 的实现，等等。后续有机会再做一次分享。</p>
+<h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>Spring 的原理离不开两个关键词：反射和注解。</p>
+<ul>
+<li>反射：利用反射，通过全限定名得到实例；可通过反射得到构造函数；可通过反射实现构造函数依赖注入；可通过反射实现 @Autowired 依赖注入</li>
+<li>注解：使用注解可大大提升代码可阅读性，降低复杂度。注解本质上是作为一个标识，获取注解时需要使用字节码技术。</li>
+</ul>
+<p>现在我们一般很少使用 xml 来设置 bean，但了解了 xml 可以更好的理解 Spring 注解的原理。</p>
 <p>来个注解小结：</p>
 <ul>
-<li>Spring 只实例化标识为 @Component 的组件（即业务类对象）</li>
-<li>@Component 作为组件标识</li>
-<li>@Autowired 用于判断是否需要依赖注入</li>
+<li>@Component 作为组件标识，代表需要 Spring 管理</li>
+<li>@Autowired 用于判断是否需要依赖注入，代替构造函数</li>
 <li>@ComponentScan 指定组件扫描路径，不指定即为当前路径</li>
-<li>@Configuration 代表配置类，作为入口</li>
-<li>@EnableAutoConfiguration 实现加载配置类</li>
+<li>@Configuration 代表配置类，作为 Spring 寻找需要被管理 Bean 的入口</li>
+<li>@Bean 实现将任意 Bean 注入容器</li>
+<li>@EnableAutoConfiguration 实现自动加载配置类到容器</li>
 </ul>
-<p>有的童鞋可能还会有这样的疑问：</p>
-<blockquote>
-<p>jdk jar 包、工具 jar 包的类是否需要注入容器？</p>
-</blockquote>
-<ul>
-<li>回答是不需要，因为容器只管理业务类，注入容器的类都有 @Component 注解。</li>
-</ul>
+<p>以上实现了一个简易的 Spring IoC 容器，顺便说了一下 Spring Boot 原理。Spring 还有很多重要功能，如：处理对象之间的依赖、管理 Bean 生命周期、AOP 的实现，等等。后续有机会再做一次分享。</p>
 <p>全文完。</p>
 
       
@@ -798,7 +850,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#零、前言"><span class="nav-number">1.</span> <span class="nav-text">零、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实现「实例化-Bean-」"><span class="nav-number">2.</span> <span class="nav-text">一、实现「实例化 Bean 」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实现「填充属性（依赖注入）」"><span class="nav-number">3.</span> <span class="nav-text">二、实现「填充属性（依赖注入）」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用「单例模式、工厂方法模式」"><span class="nav-number">4.</span> <span class="nav-text">三、使用「单例模式、工厂方法模式」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、实现「注解」"><span class="nav-number">5.</span> <span class="nav-text">三、实现「注解」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Spring-Boot-原理"><span class="nav-number">6.</span> <span class="nav-text">四、Spring Boot 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、结语"><span class="nav-number">7.</span> <span class="nav-text">五、结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#零、前言"><span class="nav-number">1.</span> <span class="nav-text">零、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实现「实例化-Bean-」"><span class="nav-number">2.</span> <span class="nav-text">一、实现「实例化 Bean 」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实现「填充属性（依赖注入）」"><span class="nav-number">3.</span> <span class="nav-text">二、实现「填充属性（依赖注入）」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用「单例模式、工厂方法模式」"><span class="nav-number">4.</span> <span class="nav-text">三、使用「单例模式、工厂方法模式」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、实现「注解」"><span class="nav-number">5.</span> <span class="nav-text">四、实现「注解」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、注解-Bean"><span class="nav-number">6.</span> <span class="nav-text">五、注解 @Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Spring-Boot-原理"><span class="nav-number">7.</span> <span class="nav-text">六、Spring Boot 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、结语"><span class="nav-number">8.</span> <span class="nav-text">七、结语</span></a></li></ol></div>
             
 
           </div>
