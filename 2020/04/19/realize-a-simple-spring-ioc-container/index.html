@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-23T16:18:38.943Z">
+<meta property="og:updated_time" content="2020-04-24T10:02:13.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
@@ -493,12 +493,18 @@
 <p>Spring 其实使用一个 Map 存放所有 Bean 实例。创建时，先看 Map 中是否有 Bean 实例，没有就创建；获取时，直接从 Map 中获取。这种方式能保证一个类只有一个 Bean 实例。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="number">64</span>);</span><br></pre></td></tr></table></figure>
 
-<p>管理 Bean 实例的 singletonObjects，也是一个 IoC 容器。</p>
-<p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory（XmlBeanFactory 已经被废弃了，此处只是举例），后期为了实现更多的功能，新增了 ApplicationContext，两者都继承于 BeanFactory 接口。这使用了工厂方法模式。</p>
+<p>因为存放 Bean 实例也是 Map，这是除 beanDefinitionMap 外，Spring 称为 IoC 容器的另一个原因。</p>
+<p>我们将创建对象的控制权交给 Spring（BeanIocContainer.java），我们可以认为 BeanIocContainer.java 是一个创建对象的工厂（专门生产对象），也可以称为简单工厂。它实现了创建对象和使用对象分离。</p>
+<p>Spring 为了使用不同的方式均可实现实例化 Bean，不能只是简单工厂，需要使用工厂方法模式。</p>
 <blockquote>
-<p>工厂方法模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类。</p>
+<p>工厂方法模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类。来源：Head First 设计模式</p>
 </blockquote>
-<p>我们将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。创建（IoC）容器由其子类自己实现。</p>
+<p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory，后期为了实现更多的功能，新增了 ApplicationContext，两者都继承于 BeanFactory 接口。</p>
+<p>我们可以把工厂方法模式理解为简单工厂的升级版，可通过子类实现多种方式创建对象，是一种创建对象的「多态」。</p>
+<!--Spring 比较特别，它没有明确一个指定创建对象一个接口（工厂方法），而是使用的，-->
+
+<p>这里创建对象的工厂方法是<strong>构造方法</strong>。</p>
+<p>我们将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。不同的子类对应不同什么方式实例化 Bean。</p>
 <p>ApplicationContext 和 BeanFactory 的区别：ApplicationContext 初始化时就实例化所有 Bean，BeanFactory 用到时再实例化所用 Bean。</p>
 <p>本节源码对应：<strong>v3</strong></p>
 <h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>前面说：在 Spring 中，我们管类叫 Bean。其实不完全正确，类要称为 Bean，需要满足一个条件：</p>
@@ -555,9 +561,10 @@
 <!--如果 Bean 没有构造函数或者 Setter 方法，需要引用 @Autowired-->
 
 <p>注意：@Bean 需要和 @Configuration 一起使用</p>
+<p>本节源码对应：<strong>v5</strong></p>
 <!--如果一个标记为 @Bean 的函数需要使用另一个类，那么另一个类也要注入容器？除非它本身也作为 Bean-->
 
-<h2 id="六、Spring-Boot-原理"><a href="#六、Spring-Boot-原理" class="headerlink" title="六、Spring Boot 原理"></a>六、Spring Boot 原理</h2><p>前面说到了 @Configuration 和 @ComponentScan，这就不得不提 Spring Boot，。因为 Spring Boot 就使用了  @Configuration 和 @ComponentScan，你可以点开 @SpringBootApplication 看到。</p>
+<h2 id="六、Spring-Boot-原理"><a href="#六、Spring-Boot-原理" class="headerlink" title="六、Spring Boot 原理"></a>六、Spring Boot 原理</h2><p>前面说到了 @Configuration 和 @ComponentScan，这就不得不提 Spring Boot。因为 Spring Boot 就使用了  @Configuration 和 @ComponentScan，你可以点开 @SpringBootApplication 看到。</p>
 <p>我们发现，Spring Boot 启动时，并没有使用 AnnotationConfigApplicationContext 来指定启动某某 Config 类。这是因为它使用了 @EnableAutoConfiguration 注解。</p>
 <p>Spring Boot 利用了 @EnableAutoConfiguration 来自动加载标识为 @Configuration 的配置类到容器中。Spring Boot 还可以将需要自动加载的配置类放在 spring.factories 中，Spring Boot 将自动加载 spring.factories 中的配置类。spring.factories 需放置于META-INF 下。</p>
 <p>如 Spring Boot 项目启动时，autocofigure 包中将自动加载到容器的（部分）配置类如下：</p>
