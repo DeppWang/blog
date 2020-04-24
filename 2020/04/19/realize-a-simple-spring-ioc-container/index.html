@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-24T10:02:13.997Z">
+<meta property="og:updated_time" content="2020-04-24T10:05:22.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
@@ -501,10 +501,10 @@
 </blockquote>
 <p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory，后期为了实现更多的功能，新增了 ApplicationContext，两者都继承于 BeanFactory 接口。</p>
 <p>我们可以把工厂方法模式理解为简单工厂的升级版，可通过子类实现多种方式创建对象，是一种创建对象的「多态」。</p>
-<!--Spring 比较特别，它没有明确一个指定创建对象一个接口（工厂方法），而是使用的，-->
+<p>Spring 比较特别，它没有明确一个指定创建对象的工厂方法，而是使用<strong>构造方法</strong>作为工厂方法。</p>
+<!--这里创建对象的工厂方法是**构造方法**。-->
 
-<p>这里创建对象的工厂方法是<strong>构造方法</strong>。</p>
-<p>我们将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。不同的子类对应不同什么方式实例化 Bean。</p>
+<p>实现：将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。实现不同的子类对应不同什么的方式实例化 Bean。</p>
 <p>ApplicationContext 和 BeanFactory 的区别：ApplicationContext 初始化时就实例化所有 Bean，BeanFactory 用到时再实例化所用 Bean。</p>
 <p>本节源码对应：<strong>v3</strong></p>
 <h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>前面说：在 Spring 中，我们管类叫 Bean。其实不完全正确，类要称为 Bean，需要满足一个条件：</p>
