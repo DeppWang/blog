@@ -100,7 +100,7 @@
 <meta property="og:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader(">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
-<meta property="og:updated_time" content="2020-04-29T15:50:52.897Z">
+<meta property="og:updated_time" content="2020-04-29T16:01:45.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 中的反射与反射的原理">
 <meta name="twitter:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader(">
@@ -416,7 +416,7 @@
 
 <h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1、创建-Bean-实例时的反射"><a href="#1、创建-Bean-实例时的反射" class="headerlink" title="1、创建 Bean 实例时的反射"></a>1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
 
-<p><strong>反射</strong>体现在 <code>clz.newInstance();</code> 中，相关代码可分为两部分：</p>
+<p>反射体现在 <code>clz.newInstance();</code> 中，相关代码可分为两部分：</p>
 <a id="more"></a>
 
 <p>1、利用反射获取当前类的所有构造函数对象</p>
@@ -424,7 +424,7 @@
 
 <ul>
 <li>反射可以认为是 native 方法 getDeclaredConstructors0()</li>
-<li>相当于「利用 getDeclaredConstructors0() 获取当前类的所有构造函数对象」</li>
+<li>相当于「利用 getDeclaredConstructors0() 」获取当前类的所有构造函数对象</li>
 </ul>
 <p>2、利用反射通过构造函数对象生成实例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sun.reflect.NativeConstructorAccessorImpl.java</span></span><br><span class="line"><span class="keyword">return</span> newInstance0(<span class="keyword">this</span>.c, var1);</span><br><span class="line"><span class="comment">// 利用反射通过构造函数对象生成实例。真正生成实例的 native 方法</span></span><br><span class="line"><span class="comment">// var0 是构造函数类 tmpConstructor；var1 代表构造函数的参数，此时为 null</span></span><br><span class="line"><span class="comment">// 根据 var0 找到 class 文件的构造方法，使用构造方法生成实例？</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> Object <span class="title">newInstance0</span><span class="params">(Constructor&lt;?&gt; var0, Object[] var1)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -533,13 +533,12 @@
 </ul>
 <h2 id=""><a href="#" class="headerlink" title=""></a><!--七、其他概念--></h2><!--初始化 initialize、实例化 instantiate 的区别-->
 
-<ul>
-<li><!--类被初始化：初始化针对变量，将 class 文件加载进虚拟机时，初始化成员变量，默认为 null--></li>
-<li><!--类被实例化：运行 new 指令时，实例化类为对象--></li>
-<li><!--https://www.quora.com/What-is-difference-between-Instantiate-and-Initialize-in-programming-->
+<!--类被初始化：初始化针对变量，将 class 文件加载进虚拟机时，初始化成员变量，默认为 null-->
 
-</li>
-</ul>
+<!--类被实例化：运行 new 指令时，实例化类为对象-->
+
+<!--https://www.quora.com/What-is-difference-between-Instantiate-and-Initialize-in-programming-->
+
 <!--运行期类型鉴定 (RTTI)-->
       
     </div>
