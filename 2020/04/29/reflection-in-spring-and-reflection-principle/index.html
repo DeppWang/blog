@@ -91,18 +91,20 @@
 
 
 
-<meta name="description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader()">
+<meta name="description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader(">
 <meta name="keywords" content="反射,Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 中的反射与反射的原理">
 <meta property="og:url" content="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader()">
+<meta property="og:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-29T15:37:55.846Z">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
+<meta property="og:updated_time" content="2020-04-29T15:50:52.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 中的反射与反射的原理">
-<meta name="twitter:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader()">
+<meta name="twitter:description" content="在 造轮子：实现一个简易的 Spring IoC 容器 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1、创建 Bean 实例时的反射1234// 通过类加载器，根据全限定名，得到其类对象Class&amp;lt;?&amp;gt; clz = Thread.currentThread().getContextClassLoader(">
+<meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
 
 
 
@@ -408,12 +410,15 @@
       
 
       
-        <p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
+        <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg" alt="img"></p>
+<p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
 <!--Spring 如何使用反射-->
 
 <h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1、创建-Bean-实例时的反射"><a href="#1、创建-Bean-实例时的反射" class="headerlink" title="1、创建 Bean 实例时的反射"></a>1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
 
 <p><strong>反射</strong>体现在 <code>clz.newInstance();</code> 中，相关代码可分为两部分：</p>
+<a id="more"></a>
+
 <p>1、利用反射获取当前类的所有构造函数对象</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.lang.Class.java</span></span><br><span class="line"><span class="comment">// native 方法，从 jvm 中获取构造函数对象。从 jvm 的 class 文件中获取构造函数，再转换为 Constructor 对象？</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> Constructor&lt;T&gt;[] getDeclaredConstructors0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line"><span class="comment">// 通过反射，得到当前类所有的构造函数对象（包括私有和公有），此时 publicOnly 为 false</span></span><br><span class="line">Constructor&lt;T&gt;[] res = getDeclaredConstructors0(publicOnly);</span><br><span class="line"><span class="comment">// 通过默认构造函数对象生成实例，此时构造函数参数为 null</span></span><br><span class="line"><span class="keyword">return</span> tmpConstructor.newInstance((Object[])<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
 
