@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-26T05:32:23.956Z">
+<meta property="og:updated_time" content="2020-04-29T15:37:55.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
@@ -479,8 +479,8 @@
 <li><p>从 xml 中获取构造函数的参数实例的 id，存放到 BeanDefinition 的 constructorArguments 中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bd.getConstructorArgumentValues().add(argumentName);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通过反射得到 PetStoreService 所有的构造函数，找到参数跟 constructorArguments 一致的构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getConstructors();</span><br></pre></td></tr></table></figure>
+<li><p>通过反射得到 PetStoreService 所有自定义的构造函数，找到参数跟 constructorArguments 一致的构造函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field[] fields = bean.getClass().getDeclaredFields();</span><br><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getConstructors();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>通过 constructorArguments 获取到所有参数实例，再利用反射，通过构造函数实现填充属性。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> constructorToUse.newInstance(argsToUse);</span><br></pre></td></tr></table></figure>
@@ -534,14 +534,14 @@
 <li><p>根据 <code>&lt;context:component-scan&gt;</code> 指定路径，找到路径下所有包含 @Component 注解的 Class 文件，作为 BeanDefinition</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String basePackagesStr = ele.attributeValue(<span class="string">"base-package"</span>);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>如何判断 Class 是否有 @Component：利用字节码技术，获取 Class 文件中的元数据（注解等），判断元数据中是否有 @Componet</p>
+<li><p>如何判断 Class 是否有 @Component：利用字节码技术，获取 Class 文件中的元数据（注解），判断元数据中是否有 @Componet</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">annotationMetadata.hasAnnotation(Component.class.getName())</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <p>2、@Autowired 用于依赖注入，实现原理（配合源码 <strong>v4</strong> 阅读）：</p>
 <ul>
-<li><p>通过反射，查看 Field 中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</p>
+<li><p>通过反射，得到所有的 Field，查看 Field 中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">field.set(bean, getBean(field.getName()));</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>注意：使用 @Autowired 时，既没有使用构造方法，也没有使用 Setter() 方法</p>
@@ -688,6 +688,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/04/29/reflection-in-spring-and-reflection-principle/" rel="prev" title="Spring 中的反射与反射的原理">
+                Spring 中的反射与反射的原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -769,7 +773,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -791,7 +795,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

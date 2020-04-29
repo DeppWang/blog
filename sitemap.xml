@@ -2,7 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/googlec27ee4754ff2e800.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/about/index.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/categories/index.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/tags/index.html</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/tools/index.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/01/11/java-operator/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/06/02/java-primitive-types-and-warpper/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/01/07/js-how-to-use-the-Date-object-addition-and-subtraction-dates/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/07/13/jvm-runtime-data-area/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/09/18/linux-note/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/09/a-tutorial-that-installation-centos7-and-use-xshell6-links/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/01/03/which-recommended-items-bought-in-2019/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
   </url>
   
   <url>
@@ -22,7 +106,15 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/2018/09/17/idea-ssr-wunderlist-wox/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2019/05/17/use-qiniu-jdk-batch-modify-videos-format/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/</loc>
   </url>
   
   <url>
@@ -126,27 +218,15 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/</loc>
+    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2018/09/17/idea-ssr-wunderlist-wox/</loc>
+    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/googlec27ee4754ff2e800.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/about/index.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/categories/index.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/tags/index.html</loc>
+    <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
   </url>
   
   <url>
@@ -162,11 +242,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/</loc>
+    <loc>https://depp.wang/2019/09/09/how-long-is-the-shortest-time/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/09/09/how-long-is-the-shortest-time/</loc>
+    <loc>https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/</loc>
   </url>
   
   <url>
@@ -187,82 +267,6 @@
   
   <url>
     <loc>https://depp.wang/2017/06/14/hexo-statistical/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/01/11/java-operator/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/06/02/java-primitive-types-and-warpper/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/01/07/js-how-to-use-the-Date-object-addition-and-subtraction-dates/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/07/13/jvm-runtime-data-area/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/09/18/linux-note/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/09/a-tutorial-that-installation-centos7-and-use-xshell6-links/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/01/03/which-recommended-items-bought-in-2019/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
   </url>
   
 </urlset>

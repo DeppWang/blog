@@ -301,6 +301,287 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DeppWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/deppwang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DeppWang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/29/reflection-in-spring-and-reflection-principle/" itemprop="url">Spring 中的反射与反射的原理</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T08:09:37+00:00">
+                2020-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/29/reflection-in-spring-and-reflection-principle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/29/reflection-in-spring-and-reflection-principle/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/29/reflection-in-spring-and-reflection-principle/" class="leancloud_visitors" data-flag-title="Spring 中的反射与反射的原理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
+<!--Spring 如何使用反射-->
+
+<h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1、创建-Bean-实例时的反射"><a href="#1、创建-Bean-实例时的反射" class="headerlink" title="1、创建 Bean 实例时的反射"></a>1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
+
+<p><strong>反射</strong>体现在 <code>clz.newInstance();</code> 中，相关代码可分为两部分：</p>
+<p>1、利用反射获取当前类的所有构造函数对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.lang.Class.java</span></span><br><span class="line"><span class="comment">// native 方法，从 jvm 中获取构造函数对象。从 jvm 的 class 文件中获取构造函数，再转换为 Constructor 对象？</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> Constructor&lt;T&gt;[] getDeclaredConstructors0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line"><span class="comment">// 通过反射，得到当前类所有的构造函数对象（包括私有和公有），此时 publicOnly 为 false</span></span><br><span class="line">Constructor&lt;T&gt;[] res = getDeclaredConstructors0(publicOnly);</span><br><span class="line"><span class="comment">// 通过默认构造函数对象生成实例，此时构造函数参数为 null</span></span><br><span class="line"><span class="keyword">return</span> tmpConstructor.newInstance((Object[])<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 getDeclaredConstructors0()</li>
+<li>相当于「利用 getDeclaredConstructors0() 获取当前类的所有构造函数对象」</li>
+</ul>
+<p>2、利用反射通过构造函数对象生成实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sun.reflect.NativeConstructorAccessorImpl.java</span></span><br><span class="line"><span class="keyword">return</span> newInstance0(<span class="keyword">this</span>.c, var1);</span><br><span class="line"><span class="comment">// 利用反射通过构造函数对象生成实例。真正生成实例的 native 方法</span></span><br><span class="line"><span class="comment">// var0 是构造函数类 tmpConstructor；var1 代表构造函数的参数，此时为 null</span></span><br><span class="line"><span class="comment">// 根据 var0 找到 class 文件的构造方法，使用构造方法生成实例？</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> Object <span class="title">newInstance0</span><span class="params">(Constructor&lt;?&gt; var0, Object[] var1)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 newInstance0()</li>
+</ul>
+<h3 id="2、构造函数依赖注入时的反射"><a href="#2、构造函数依赖注入时的反射" class="headerlink" title="2、构造函数依赖注入时的反射"></a>2、构造函数依赖注入时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过反射获取当前类的所有构造方法（包括私有和公有）</span></span><br><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getDeclaredConstructors();</span><br><span class="line"><span class="comment">// 设置构造函数参数实例</span></span><br><span class="line">Object[] argsToUse = <span class="keyword">new</span> Object[parameterTypes.length];</span><br><span class="line">argsToUse[i] = getBean(beanNames.get(i));</span><br><span class="line"><span class="comment">// 使用带有参数的构造函数对象实现实例化 Bean。此时使用反射跟上面差不多，只是多了参数</span></span><br><span class="line"><span class="keyword">return</span> constructorToUse.newInstance(argsToUse);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、Setter-方法依赖注入时的反射"><a href="#3、Setter-方法依赖注入时的反射" class="headerlink" title="3、Setter() 方法依赖注入时的反射"></a>3、Setter() 方法依赖注入时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过反射获取当前类所有方法（包括私有和公有）</span></span><br><span class="line">Method[] methods = bean.getClass().getDeclaredMethods();</span><br><span class="line"><span class="comment">// 获得方法参数实例</span></span><br><span class="line">Object propertyBean = getBean(propertyName);</span><br><span class="line"><span class="comment">// 通过反射执行调用 setter() 方法。invoke：调用方法，propertyBean 作为方法的参数</span></span><br><span class="line">method.invoke(bean, propertyBean);</span><br></pre></td></tr></table></figure>
+
+<p>bean.getClass().getDeclaredMethods(); 核心代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.lang.Class.java</span></span><br><span class="line"><span class="comment">// native 方法，获取 jvm 中的方法。获取 jvm 中的 class 文件的方法表，转换为 Method？</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> Method[]      getDeclaredMethods0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line"><span class="comment">// 调用 native 方法，publicOnly 为 false</span></span><br><span class="line">getDeclaredMethods0(publicOnly);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 getDeclaredMethods0</li>
+</ul>
+<p>method.invoke(bean, propertyBean); 核心代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sun.reflect.NativeMethodAccessorImpl.java</span></span><br><span class="line"><span class="comment">// var1: bean; var2: propertyBean</span></span><br><span class="line"><span class="keyword">return</span> invoke0(<span class="keyword">this</span>.method, var1, var2);</span><br><span class="line"><span class="comment">// 根据 var0 找到 class 文件的 setter() 方法，执行 setter() 方法？</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> Object <span class="title">invoke0</span><span class="params">(Method var0, Object var1, Object[] var2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 invoke0()</li>
+</ul>
+<h3 id="4、-Autowired-依赖注入时的反射"><a href="#4、-Autowired-依赖注入时的反射" class="headerlink" title="4、@Autowired 依赖注入时的反射"></a>4、@Autowired 依赖注入时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过反射得到当前类所有的属性</span></span><br><span class="line">Field[] fields = bean.getClass().getDeclaredFields();</span><br><span class="line"><span class="comment">// 判断属性是否有 @Autowired 注解</span></span><br><span class="line">Annotation ann = field.getAnnotation(Autowired.class);</span><br><span class="line"><span class="comment">// 设置属性可连接，相当于将非 public（private、default、protect）更改为 public</span></span><br><span class="line">field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 通过反射设置属性的值</span></span><br><span class="line">field.set(bean, getBean(field.getName()));</span><br></pre></td></tr></table></figure>
+
+<p>bean.getClass().getDeclaredFields(); 核心代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.lang.Class.java</span></span><br><span class="line"><span class="comment">// native 方法，从 jvm 中获取属性对象。从 jvm 中获取 class 文件的常量池，转换为 Field？；publicOnly 为 true 时只获取公有 Field</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> Field[]       getDeclaredFields0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line"><span class="comment">// 调用 native 方法，publicOnly 为 false</span></span><br><span class="line">getDeclaredFields0(publicOnly);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 getDeclaredFields0</li>
+</ul>
+<p>field.set(bean, getBean(field.getName())); 核心代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sun.reflect.UnsafeObjectFieldAccessorImpl.java</span></span><br><span class="line"><span class="comment">// var1 为 bean, var2 为参数实例</span></span><br><span class="line"><span class="comment">// 将值 var2 放置在目标地址 var1 的指定偏移量处 fieldOffset</span></span><br><span class="line">unsafe.putObject(var1, <span class="keyword">this</span>.fieldOffset, var2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// sun.misc.Unsafe.java</span></span><br><span class="line"><span class="comment">// 使用 native 方法直接修改堆中对象的数据</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">putObject</span><span class="params">(Object var1, <span class="keyword">long</span> var2, Object var4)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反射可以认为是 native 方法 putObject()</li>
+</ul>
+<h2 id="二、类对象"><a href="#二、类对象" class="headerlink" title="二、类对象"></a>二、类对象</h2><p>class 文件由 java 文件编译而来，class 文件包含常量池（属性）、方法表（coder，方法），方法表中包含构造函数？。</p>
+<p>当类加载器将 class 文件加载进虚拟机元数据区（方法区，jdk1.7）时，虚拟机（在元数据中？）创建一个与之对应的类对象。</p>
+<p>将 class 文件由存放在磁盘的静态结构转换为存放在内存的运行时结构。</p>
+<p>一个类对应一个类对象。所有对象共用一个类对象。</p>
+<p><strong>类对象作为访问存放在 jvm 的 class 文件的入口</strong></p>
+<p>类对象为 Class 实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Class</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">native</span> Field[]       getDeclaredFields0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">native</span> Method[]      getDeclaredMethods0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">native</span> Constructor&lt;T&gt;[] getDeclaredConstructors0(<span class="keyword">boolean</span> publicOnly);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ReflectionData 缓存对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionData</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">volatile</span> Field[] declaredFields;</span><br><span class="line">        <span class="keyword">volatile</span> Field[] publicFields;</span><br><span class="line">        <span class="keyword">volatile</span> Method[] declaredMethods;</span><br><span class="line">        <span class="keyword">volatile</span> Method[] publicMethods;</span><br><span class="line">        <span class="keyword">volatile</span> Constructor&lt;T&gt;[] declaredConstructors;</span><br><span class="line">        <span class="keyword">volatile</span> Constructor&lt;T&gt;[] publicConstructors;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="得到类对象的方式"><a href="#得到类对象的方式" class="headerlink" title="得到类对象的方式"></a>得到类对象的方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、通过对象</span></span><br><span class="line">Class cls = object.getClass();</span><br><span class="line"><span class="comment">// Object.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2、通过类加载器，全限定名</span></span><br><span class="line">Class cls = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3、通过 Class，全限定名，本质上也是通过类加载器</span></span><br><span class="line">Class cls = Class.forName(beanClassName);</span><br><span class="line"><span class="comment">// Class.java</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> Class&lt;?&gt; forName0(String name, <span class="keyword">boolean</span> initialize,</span><br><span class="line">                                            ClassLoader loader,</span><br><span class="line">                                            Class&lt;?&gt; caller)</span><br><span class="line"><span class="comment">// 4、直接用类名</span></span><br><span class="line">Class cls = String.class;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、ReflectionData"><a href="#三、ReflectionData" class="headerlink" title="三、ReflectionData"></a>三、ReflectionData</h2><h3 id="Feild"><a href="#Feild" class="headerlink" title="Feild"></a>Feild</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Field[] fields = cls.getFields(); <span class="comment">// 获取所有公共的属性（包括父类）</span></span><br><span class="line">Field[] fields = cls.getDeclaredFields(); <span class="comment">// 获取当前类的所有属性（不包括父类）</span></span><br><span class="line">Field field = cls.getDeclaredField(<span class="string">"name"</span>); <span class="comment">// 指定获取当前类某个属性</span></span><br><span class="line">field.set(storeService, <span class="string">"test2"</span>); <span class="comment">// 设置值</span></span><br><span class="line">field.get(storeService); <span class="comment">// 获取值</span></span><br></pre></td></tr></table></figure>
+
+<p>field.get() 核心代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取属性对应的值</span></span><br><span class="line"><span class="keyword">return</span> unsafe.getObject(var1, <span class="keyword">this</span>.fieldOffset);</span><br><span class="line"></span><br><span class="line"><span class="comment">// native 方法，从堆中获取对象指定位置的对象</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> Object <span class="title">getObject</span><span class="params">(Object var1, <span class="keyword">long</span> var2)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method[] methods = cls.getMethods(); <span class="comment">// 获取所有公共的方法（包括父类）</span></span><br><span class="line">Method[] methods = cls.getDeclaredMethods(); <span class="comment">// 获取当前类的所有方法（不包括父类）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;?&gt;[] candidates = cls.getConstructors(); <span class="comment">// 获取所有公共的构造函数（包括父类）</span></span><br><span class="line">Constructor&lt;?&gt;[] candidates = cls.getDeclaredConstructors(); <span class="comment">// 获取当前类的所有构造函数（不包括父类）</span></span><br></pre></td></tr></table></figure>
+
+<p>默认包含一个无参公有构造方法，当存在自定义构造方法时，就没有默认构造方法</p>
+<h2 id="四、native-方法"><a href="#四、native-方法" class="headerlink" title="四、native 方法"></a>四、native 方法</h2><p>Java 1.1 新增「Java本地接口」(Java Native Interface，JNI)，JNI 是一种包容极广的编程接口，允许我们从 Java 应用程序里调用 native 方法，native 方法由其它语言（C 、C++ 或汇编语言等）编写。native 方法用于实现 Java 无法处理的功能。</p>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>A Simple Java Native Interface (JNI) example in Java</p>
+<ul>
+<li>env：<strong>jdk8、macOS 10.15</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">intMethod</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 启动时载入 libMain.dylib</span></span><br><span class="line">        System.loadLibrary(<span class="string">"Main"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Main().intMethod(<span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.c:</span></span><br><span class="line"><span class="comment">// 将 Main.h 引入</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"Main.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于继承 "Main.h" 的 Java_Main_intMethod</span></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_Main_intMethod</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    JNIEnv *env, jobject obj, jint i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i * i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Compile and run:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 同时生成 Main.class 和 Main.h</span></span><br><span class="line">javac Main.java -h .</span><br><span class="line"><span class="comment">// 根据 Main.c 生成 libMain.dylib</span></span><br><span class="line">gcc -dynamiclib -O3 \</span><br><span class="line">    -I/usr/include \</span><br><span class="line">    -I$JAVA_HOME/include \</span><br><span class="line">    -I$JAVA_HOME/include/darwin \</span><br><span class="line">    Main.c -o libMain.dylib</span><br><span class="line"><span class="comment">// 指定 library 的路径为当前路径</span></span><br><span class="line">java -cp . -Djava.library.path=$(pwd) Main</span><br></pre></td></tr></table></figure>
+
+<p>Output:</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Main.h .h 作为头文件*/</span></span><br><span class="line"><span class="comment">/* DO NOT EDIT THIS FILE - it is machine generated */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line"><span class="comment">/* Header for class Main */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _Included_Main</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _Included_Main</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Class:     Main</span></span><br><span class="line"><span class="comment"> * Method:    intMethod</span></span><br><span class="line"><span class="comment"> * Signature: (I)I</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">JNIEXPORT jint JNICALL Java_Main_intMethod</span><br><span class="line">  (JNIEnv *, jobject, jint);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">javac Main.java -h .</span><br><span class="line"><span class="comment">// 可拆分为两个命令</span></span><br><span class="line">javac Main.java</span><br><span class="line">javah -jni Main</span><br></pre></td></tr></table></figure>
+
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>运行 Main.class 时，将 libMain.dylib 载入虚拟机，JVM 调用 libMain.dylib 的 Java_Main_intMethod，传入参数，libMain.dylib 由系统直接运行，返回结果。</p>
+<ul>
+<li>*env 用于将 java 类型数据与本地（此处为 C 语言）类型数据之间的转换</li>
+<li>jint 还是 Java 数据类型，基本数据类型可以映射，不用显示转换</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*C code*/</span></span><br><span class="line">JNIEXPORT <span class="keyword">void</span> JNICALL Java_ClassName_MethodName</span><br><span class="line">  (JNIEnv *env, jobject obj, jstring javaString)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*Get the native string from javaString*/</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *nativeString = (*env)-&gt;GetStringUTFChars(env, javaString, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*Do something with the nativeString*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*DON'T FORGET THIS LINE!!!*/</span></span><br><span class="line">    (*env)-&gt;ReleaseStringUTFChars(env, javaString, nativeString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Unsafe-类"><a href="#Unsafe-类" class="headerlink" title="Unsafe 类"></a>Unsafe 类</h3><ul>
+<li>存放 native 方法的类？</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://medium.com/@bschlining/a-simple-java-native-interface-jni-example-in-java-and-scala-68fdafe76f5f" target="_blank" rel="noopener">A Simple Java Native Interface (JNI) example in Java and Scala</a></li>
+<li><a href="https://www.codejava.net/java-core/the-java-language/native-keyword#" target="_blank" rel="noopener">Java native keyword example</a></li>
+<li><a href="https://www.protechtraining.com/blog/post/java-native-interface-jni-example-65" target="_blank" rel="noopener">Java Native Interface: JNI Example</a></li>
+<li><a href="https://depp.wang/Java-Books/docs/Java编程思想.pdf">Java 编程思想 - 附录<strong>A</strong> 使用非<strong>JAVA</strong>代码</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/Java本地接口" target="_blank" rel="noopener">Java本地接口 - WiKi</a></li>
+</ul>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>反射是 native 方法，即 API，通过反射 API，可以运行时通过构造函数创建对象，以及<strong>获取和修改</strong>对象的属性、方法。</p>
+<p>通过 native 方法操作反射对象，像镜子一样，将反应到对象上。</p>
+<p>Java 是静态语言，先编译，后运行。正常也是运行时创建对象。</p>
+<p>你试着回答一下：「什么是反射？为什么需要反射？反射是如何实现的？」</p>
+<h2 id="六、延伸阅读"><a href="#六、延伸阅读" class="headerlink" title="六、延伸阅读"></a>六、延伸阅读</h2><ul>
+<li><a href="https://www.cnblogs.com/techspace/p/6931397.html" target="_blank" rel="noopener">JAVA 反射原理</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945147512512" target="_blank" rel="noopener">廖雪峰 Java 教程 - 反射</a></li>
+<li><a href="https://www.geeksforgeeks.org/reflection-in-java/" target="_blank" rel="noopener">Reflection in Java</a></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/package-summary.html" target="_blank" rel="noopener">oracle reflect docs</a></li>
+<li><a href="https://stackoverflow.com/questions/37628/what-is-reflection-and-why-is-it-useful" target="_blank" rel="noopener">What is reflection and why is it useful?</a></li>
+<li><a href="https://dzone.com/articles/understanding-sunmiscunsafe" target="_blank" rel="noopener">Understanding sun.misc.Unsafe</a></li>
+<li><a href="https://www.baeldung.com/java-unsafe" target="_blank" rel="noopener">Guide to sun.misc.Unsafe</a></li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a><!--七、其他概念--></h2><!--初始化 initialize、实例化 instantiate 的区别-->
+
+<ul>
+<li><!--类被初始化：初始化针对变量，将 class 文件加载进虚拟机时，初始化成员变量，默认为 null--></li>
+<li><!--类被实例化：运行 new 指令时，实例化类为对象--></li>
+<li><!--https://www.quora.com/What-is-difference-between-Instantiate-and-Initialize-in-programming-->
+
+</li>
+</ul>
+<!--运行期类型鉴定 (RTTI)-->
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1781,169 +2062,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2019/11/10/translate-alfred-workflows-help/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DeppWang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/deppwang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DeppWang's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/10/translate-alfred-workflows-help/" itemprop="url"><译> Alfred 官网 的 Workflows 帮助</译></a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-10T14:25:08+00:00">
-                2019-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software-Website/" itemprop="url" rel="index">
-                    <span itemprop="name">Software & Website</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/10/translate-alfred-workflows-help/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/10/translate-alfred-workflows-help/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/11/10/translate-alfred-workflows-help/" class="leancloud_visitors" data-flag-title="<译> Alfred 官网 的 Workflows 帮助">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>翻译 Alfred 官网 的 <a href="https://www.alfredapp.com/help/workflows/" target="_blank" rel="noopener">Workflows 帮助</a></p>
-</blockquote>
-<p>使用工作流（workflows）扩展 Alfred 并以自己的方式完成工作，通过工作流替代重复性操作或基于鼠标的操作，你将提高你的工作效率。</p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135613.jpg" alt="To-Do List Example Workflow"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/10/translate-alfred-workflows-help/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1991,7 +2109,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2013,7 +2131,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
