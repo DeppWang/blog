@@ -411,13 +411,17 @@
 
       
         
-          <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg" alt="img"></p>
-<p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
+          <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">原文地址</a></p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg" alt="image source: https://coderius.biz.ua/blog/article/vvedenie-v-php-reflection-api"></p>
+<p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
 <!--Spring 如何使用反射-->
 
-<h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1、创建-Bean-实例时的反射"><a href="#1、创建-Bean-实例时的反射" class="headerlink" title="1、创建 Bean 实例时的反射"></a>1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
+<p>反射如何在 Spring 中起作用，</p>
+<p>Java 反射就是 native 方法？</p>
+<h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><p>这部分内容跟 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a>  有关，建议顺便阅读一下。</p>
+<h3 id="1-1、创建-Bean-实例时的反射"><a href="#1-1、创建-Bean-实例时的反射" class="headerlink" title="1.1、创建 Bean 实例时的反射"></a>1.1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
 
-<p>反射体现在 <code>clz.newInstance();</code> 中，相关代码可分为两部分：</p>
+<p>反射体现在 <code>clz.newInstance();</code> 中，核心代码可分为两部分：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/04/29/reflection-in-spring-and-reflection-principle/#more" rel="contents">
@@ -576,7 +580,7 @@
 
       
         
-          <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/20/realize-a-simple-spring-ioc-container">原文地址</a></p>
+          <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container">原文地址</a></p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg" alt="source:https://fernandofranzini.wordpress.com/"></p>
 <p>我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，<strong>需要配合源码阅读</strong>，<a href="https://github.com/DeppWang/litespring" target="_blank" rel="noopener">源码地址</a>。</p>
 <p>结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。</p>

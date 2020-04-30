@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-29T16:01:45.114Z">
+<meta property="og:updated_time" content="2020-04-30T13:39:52.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
@@ -416,7 +416,7 @@
       
 
       
-        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/20/realize-a-simple-spring-ioc-container">原文地址</a></p>
+        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container">原文地址</a></p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg" alt="source:https://fernandofranzini.wordpress.com/"></p>
 <p>我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，<strong>需要配合源码阅读</strong>，<a href="https://github.com/DeppWang/litespring" target="_blank" rel="noopener">源码地址</a>。</p>
 <p>结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。</p>
@@ -450,7 +450,7 @@
 
 </li>
 </ol>
-<p>关于类加载和反射，前者可以看看<a href="https://book.douban.com/subject/34907497/" target="_blank" rel="noopener">《深入理解 Java 虚拟机》</a>第 7 章，后者可以看看《廖雪峰 Java 教程》<a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1255945147512512" target="_blank" rel="noopener">反射</a> 部分。本文只学习 Spring，这两个知识点不做深入讨论。</p>
+<p>关于类加载和反射，前者可以看看<a href="https://book.douban.com/subject/34907497/" target="_blank" rel="noopener">《深入理解 Java 虚拟机》</a>第 7 章，后者可以看看 <a href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">Spring 中的反射与反射的原理</a>。本文只学习 Spring，这两个知识点不做深入讨论。</p>
 <p>名词解释：</p>
 <ul>
 <li>全限定名：指编译后的 class 文件在 jar 包中的路径</li>
@@ -479,10 +479,14 @@
 <li><p>从 xml 中获取构造函数的参数实例的 id，存放到 BeanDefinition 的 constructorArguments 中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bd.getConstructorArgumentValues().add(argumentName);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通过反射得到 PetStoreService 所有自定义的构造函数，找到参数跟 constructorArguments 一致的构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field[] fields = bean.getClass().getDeclaredFields();</span><br><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getConstructors();</span><br></pre></td></tr></table></figure>
+<li><p>通过反射得到 PetStoreService 所有的构造函数（Constructor 对象），找到参数跟 constructorArguments 一致的 Constructor 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;?&gt;[] candidates = beanClass.getDeclaredConstructors();</span><br></pre></td></tr></table></figure>
+
+
 </li>
-<li><p>通过 constructorArguments 获取到所有参数实例，再利用反射，通过构造函数实现填充属性。</p>
+</ol>
+<ol start="3">
+<li><p>通过 constructorArguments 获取到所有参数实例，再利用反射，通过 Constructor 对象实现填充属性。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> constructorToUse.newInstance(argsToUse);</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -507,7 +511,7 @@
 </blockquote>
 <p>简单的理解就是：将创建对象的方法抽象，作为一个工厂方法。</p>
 <p>这里的「让子类决定实例化哪一个类」，也可以看成让子类决定如何实现实例化类。</p>
-<p>我们可以把工厂方法模式理解为简单工厂的升级版，可通过子类实现多种方式创建对象，是一种创建对象的「多态」。</p>
+<p>我们可以把工厂方法模式理解为简单工厂的升级版，可通过子类实现多种方式创建对象，是一种简单工厂的「多态」。</p>
 <p>早期 Spring 使用 Bean 的策略是用到时再实例化所用 Bean，杰出代表是 XmlBeanFactory。后期为了实现更多的功能，新增了 ApplicationContext，初始化时就实例化所有 Bean，两者都继承于 BeanFactory 接口。</p>
 <!--两者的区别：ApplicationContext 初始化时就实例化所有 Bean，BeanFactory 用到时再实例化所用 Bean。-->
 
@@ -516,12 +520,7 @@
 <p>实现：将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。实现不同的子类对应不同什么的方式实例化 Bean。</p>
 <p>Spring 使用 *<em>getBean() *</em>作为工厂方法。getBean() 包含创建对象的方法。</p>
 <p>本节源码对应：<strong>v3</strong></p>
-<h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>前面说：在 Spring 中，我们管类叫 Bean。其实不完全正确，类要称为 Bean，需要满足一个条件：</p>
-<ul>
-<li>当有成员变量时，必须有对应的构造函数或者 Setter() 方法</li>
-</ul>
-<p>即可以被 Spring 管理的类，称为 Bean。</p>
-<p>在业务开发中，如果每个业务类均设置构造函数，并且需要在 xml 中配置，那么就太繁琐，还容易出错。Spring 从 2.5<sup><a href="https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm" target="_blank" rel="noopener">ref</a></sup> 开始，新增了注解，可以使用注解来替代业务类的 xml 配置和构造函数。</p>
+<h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>在业务开发中，如果每个业务类均设置构造函数，并且需要在 xml 中配置，那么就太繁琐，还容易出错。Spring 从 2.5<sup><a href="https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm" target="_blank" rel="noopener">ref</a></sup> 开始，新增了注解，可以使用注解来替代业务类的 xml 配置和构造函数。</p>
 <ul>
 <li>使用 @Component 注解代替 <code>&lt;bean&gt;</code></li>
 <li>使用 @Autowired 注解代替 <code>&lt;constructor-arg&gt;</code> + 构造函数。</li>
@@ -541,8 +540,8 @@
 </ul>
 <p>2、@Autowired 用于依赖注入，实现原理（配合源码 <strong>v4</strong> 阅读）：</p>
 <ul>
-<li><p>通过反射，得到所有的 Field，查看 Field 中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">field.set(bean, getBean(field.getName()));</span><br></pre></td></tr></table></figure>
+<li><p>通过反射，得到所有的属性（Field 对象），查看 Field 对象中是否有 @Autowired 类型的注解，有，则使用反射实现依赖注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field[] fields = bean.getClass().getDeclaredFields();</span><br><span class="line">field.set(bean, getBean(field.getName()));</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>注意：使用 @Autowired 时，既没有使用构造方法，也没有使用 Setter() 方法</p>
 </li>
@@ -554,6 +553,11 @@
 
 <p>使用注解其实跟使用 xml 配置文件一样，目的是将配置类作为入口，实现扫描组件，将其加载进 IoC 容器中的功能。</p>
 <p>AnnotationConfigApplicationContext 是专为针对配置类的启动类。其实现机制，可以 Google 查阅。</p>
+<p>前面说：在 Spring 中，我们管类叫 Bean。其实不完全正确，类要称为 Bean，需要满足一个条件：</p>
+<ul>
+<li>当有成员变量时，要么有 @Autowired 注解，要么有对应的构造函数或者 Setter() 方法</li>
+</ul>
+<p>即可以被 Spring 管理的类，称为 Bean。</p>
 <p>名词解释：</p>
 <ul>
 <li>Component：组件</li>
@@ -599,7 +603,7 @@
 <p>嗯，本节没有源码</p>
 <h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>Spring 的原理离不开两个关键词：反射和注解。</p>
 <ul>
-<li>反射：利用反射，通过全限定名得到实例；可通过反射得到构造函数；可通过反射实现构造函数依赖注入；可通过反射实现 @Autowired 依赖注入</li>
+<li>反射：在创建 Bean 实例和依赖注入是都需要使用反射。</li>
 <li>注解：使用注解可大大提升代码可阅读性，降低复杂度。注解本质上是作为一个标识，获取注解时需要使用字节码技术。</li>
 </ul>
 <p>现在我们一般很少使用 xml 来设置 bean，但了解了 xml 可以更好的理解 Spring 注解的原理。</p>
