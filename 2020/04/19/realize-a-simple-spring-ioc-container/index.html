@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-04-30T13:39:52.781Z">
+<meta property="og:updated_time" content="2020-05-05T12:22:06.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
@@ -439,22 +439,18 @@
 <p>Spring 如何根据 xml 配置来实现实例化类？</p>
 <p>大致可以分为三步（配合源码 <strong>v1</strong> 阅读）：</p>
 <ol>
-<li><p>从 xml 配置文件获取 Bean 信息：id、全限定名，将其作为 BeanDefinition（Bean 定义类）的属性</p>
+<li><p>从 xml 配置文件获取 Bean 信息：id、beanClassName（路径），将其作为 BeanDefinition（Bean 定义类）的属性</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BeanDefinition bd = <span class="keyword">new</span> BeanDefinition(id, beanClassName);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用一个 Map 存放所有 BeanDefinition，此时 Spring 本质上是一个 Map，存放 BeanDefinition</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="number">64</span>);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>当获取 Bean 实例时，通过类加载器，根据全限定名，得到其类对象，通过类对象利用<strong>反射</strong>创建 Bean 实例</p>
+<li><p>当获取 Bean 实例时，通过类加载器，根据路径，得到其类对象，通过类对象利用<strong>反射</strong>创建 Bean 实例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> Thread.currentThread().getContextClassLoader().loadClass(bd.getBeanClassName()).newInstance();</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <p>关于类加载和反射，前者可以看看<a href="https://book.douban.com/subject/34907497/" target="_blank" rel="noopener">《深入理解 Java 虚拟机》</a>第 7 章，后者可以看看 <a href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">Spring 中的反射与反射的原理</a>。本文只学习 Spring，这两个知识点不做深入讨论。</p>
-<p>名词解释：</p>
-<ul>
-<li>全限定名：指编译后的 class 文件在 jar 包中的路径</li>
-</ul>
 <p>本节源码对应：<strong>v1</strong></p>
 <h2 id="二、实现「填充属性（依赖注入）」"><a href="#二、实现「填充属性（依赖注入）」" class="headerlink" title="二、实现「填充属性（依赖注入）」"></a>二、实现「填充属性（依赖注入）」</h2><!--使用 Spring 时，我们希望只需要声明一下就能使用-->
 
@@ -464,6 +460,10 @@
 
 <p>当不默认 new 时，实现实例化 Bean 后，此时成员变量（属性）还为 null：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-17-143303.png" alt=""></p>
+<!--当一个 Bean 的成员变量类型是另一个 Bean 时，我们可以说一个 Bean 依赖于另一个 Bean。当不默认 new 时，就需要使用依赖注入（**D**ependency **I**njection，简称 DI）的方式设置依赖。依赖注入让属性不为 null，所以也可以称为填充属性。-->
+
+<!--Spring 通过依赖注入的方式实现填充属性。-->
+
 <p>此时需要通过一种方式实现让属性不为 null，我们管这一步叫填充属性。</p>
 <p>当一个 Bean 的成员变量类型是另一个 Bean 时，我们可以说一个 Bean 依赖于另一个 Bean。所以填充属性，也可以称为依赖注入（<strong>D</strong>ependency <strong>I</strong>njection，简称 DI）。</p>
 <p>抛开 Spring 不谈，在正常情况下，我们有两种方式实现依赖注入，1、使用构造方法；2、使用 Setter() 方法。一般使用构造方法（因为依赖可能有多个）：</p>
@@ -692,7 +692,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/29/reflection-in-spring-and-reflection-principle/" rel="prev" title="Spring 中的反射与反射的原理">
+              <a href="/2020/05/05/reflection-in-spring-and-reflection-principle/" rel="prev" title="Spring 中的反射与反射的原理">
                 Spring 中的反射与反射的原理 <i class="fa fa-chevron-right"></i>
               </a>
             

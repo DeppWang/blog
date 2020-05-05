@@ -301,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/05/05/reflection-in-spring-and-reflection-principle/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DeppWang">
@@ -320,7 +320,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/29/reflection-in-spring-and-reflection-principle/" itemprop="url">Spring 中的反射与反射的原理</a></h2>
+                <a class="post-title-link" href="/2020/05/05/reflection-in-spring-and-reflection-principle/" itemprop="url">Spring 中的反射与反射的原理</a></h2>
         
 
         <div class="post-meta">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T08:09:37+00:00">
-                2020-04-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T08:09:37+00:00">
+                2020-05-05
               </time>
             
 
@@ -373,8 +373,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/29/reflection-in-spring-and-reflection-principle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/29/reflection-in-spring-and-reflection-principle/" itemprop="commentCount"></span>
+                <a href="/2020/05/05/reflection-in-spring-and-reflection-principle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/05/reflection-in-spring-and-reflection-principle/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,7 +382,7 @@
 
           
           
-             <span id="/2020/04/29/reflection-in-spring-and-reflection-principle/" class="leancloud_visitors" data-flag-title="Spring 中的反射与反射的原理">
+             <span id="/2020/05/05/reflection-in-spring-and-reflection-principle/" class="leancloud_visitors" data-flag-title="Spring 中的反射与反射的原理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,20 +411,15 @@
 
       
         
-          <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/29/reflection-in-spring-and-reflection-principle/">原文地址</a></p>
+          <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/05/05/reflection-in-spring-and-reflection-principle/">原文地址</a></p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg" alt="image source: https://coderius.biz.ua/blog/article/vvedenie-v-php-reflection-api"></p>
-<p>在 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a> 一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来分析一下 Spring 中的反射以及反射的原理。</p>
-<!--Spring 如何使用反射-->
-
-<p>反射如何在 Spring 中起作用，</p>
-<p>Java 反射就是 native 方法？</p>
-<h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><p>这部分内容跟 <a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a>  有关，建议顺便阅读一下。</p>
-<h3 id="1-1、创建-Bean-实例时的反射"><a href="#1-1、创建-Bean-实例时的反射" class="headerlink" title="1.1、创建 Bean 实例时的反射"></a>1.1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据全限定名，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
+<p>在<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a>一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。</p>
+<h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1-1、创建-Bean-实例时的反射"><a href="#1-1、创建-Bean-实例时的反射" class="headerlink" title="1.1、创建 Bean 实例时的反射"></a>1.1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据 class 路径，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
 
 <p>反射体现在 <code>clz.newInstance();</code> 中，核心代码可分为两部分：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/29/reflection-in-spring-and-reflection-principle/#more" rel="contents">
+            <a class="btn" href="/2020/05/05/reflection-in-spring-and-reflection-principle/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1741,14 +1736,14 @@
 
       
         
-          <h2 id="3-种移位运算符"><a href="#3-种移位运算符" class="headerlink" title="3 种移位运算符"></a>3 种移位运算符</h2><ul>
-<li><code>&lt;&lt;</code>  : 左移运算符，<code>num &lt;&lt; 1</code>，num 转换为二进制，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。<code>num &lt;&lt; 1</code> 相当于 num 乘以 2。最左位是符号位，0 为正数，1 为负数。移位后可能出现正数变负数的情况。</li>
-<li><code>&gt;&gt;</code> : 右移运算符，<code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0。<code>num &gt;&gt; 1</code> 相当于 num 除以 2（num 为偶数时）。<ul>
-<li>int 类型 4 字节，移位 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</li>
-</ul>
-</li>
-<li><code>&gt;&gt;&gt;</code> : 无符号右移运算符，丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐</li>
-</ul>
+          <h2 id="一、移位运算符"><a href="#一、移位运算符" class="headerlink" title="一、移位运算符"></a>一、移位运算符</h2><h3 id="lt-lt-左移运算符"><a href="#lt-lt-左移运算符" class="headerlink" title="&lt;&lt;  : 左移运算符"></a><code>&lt;&lt;</code>  : 左移运算符</h3><p><code>num &lt;&lt; 1</code>，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。</p>
+<p>以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，<code>10000000000000000000000000000000</code> ~ <code>01111111111111111111111111111111</code>，最左位是符号位，当小于 2^31 - 1 时，最左边都是 0，所以 0 代表为正数，1 代表为负数。</p>
+<p>当 num 为正数，且没有达到最大值时，即左边的 0 够多时，<code>num &lt;&lt; 1</code> 相当于二进制每一位转十进制时在原来基础上再乘以 2，相当于 num 乘以 2。达到最大值后，正数可能变负数。</p>
+<h3 id="gt-gt-右移运算符"><a href="#gt-gt-右移运算符" class="headerlink" title="&gt;&gt; : 右移运算符"></a><code>&gt;&gt;</code> : 右移运算符</h3><p><code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0，如果为负数，补 1。</p>
+<p>当 num 为正数时，<code>num &gt;&gt; 1</code> 相当于 num 除以 2 取整（/）。</p>
+<p>int 类型 4 字节，正数右移 31 位变为 0，右移 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</p>
+<h3 id="gt-gt-gt-无符号右移运算符"><a href="#gt-gt-gt-无符号右移运算符" class="headerlink" title="&gt;&gt;&gt; : 无符号右移运算符"></a><code>&gt;&gt;&gt;</code> : 无符号右移运算符</h3><p>丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐。</p>
+<p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/11/java-operator/#more" rel="contents">

@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="3 种移位运算符 &amp;lt;&amp;lt;  : 左移运算符，num &amp;lt;&amp;lt; 1，num 转换为二进制，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。num &amp;lt;&amp;lt; 1 相当于 num 乘以 2。最左位是符号位，0 为正数，1 为负数。移位后可能出现正数变负数的情况。 &amp;gt;&amp;gt; : 右移运算符，num &amp;gt;&amp;gt; 1，num 转换为二进制，丢弃最右边指定位">
+<meta name="description" content="一、移位运算符&amp;lt;&amp;lt;  : 左移运算符num &amp;lt;&amp;lt; 1，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。 以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，10000000000000000000000000000000 ~ 01111111111111111111111111111111，最左位">
 <meta name="keywords" content="运算符 Operator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 的几种运算符">
 <meta property="og:url" content="https://depp.wang/2020/01/11/java-operator/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="3 种移位运算符 &amp;lt;&amp;lt;  : 左移运算符，num &amp;lt;&amp;lt; 1，num 转换为二进制，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。num &amp;lt;&amp;lt; 1 相当于 num 乘以 2。最左位是符号位，0 为正数，1 为负数。移位后可能出现正数变负数的情况。 &amp;gt;&amp;gt; : 右移运算符，num &amp;gt;&amp;gt; 1，num 转换为二进制，丢弃最右边指定位">
+<meta property="og:description" content="一、移位运算符&amp;lt;&amp;lt;  : 左移运算符num &amp;lt;&amp;lt; 1，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。 以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，10000000000000000000000000000000 ~ 01111111111111111111111111111111，最左位">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
-<meta property="og:image" content="https://i.loli.net/2019/09/29/uh9QMjPAS2mCaKV.png">
-<meta property="og:image" content="https://i.loli.net/2019/09/29/nRvDGa2xfoejL59.png">
-<meta property="og:updated_time" content="2020-04-30T13:39:52.777Z">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png">
+<meta property="og:updated_time" content="2020-05-05T12:22:06.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 的几种运算符">
-<meta name="twitter:description" content="3 种移位运算符 &amp;lt;&amp;lt;  : 左移运算符，num &amp;lt;&amp;lt; 1，num 转换为二进制，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。num &amp;lt;&amp;lt; 1 相当于 num 乘以 2。最左位是符号位，0 为正数，1 为负数。移位后可能出现正数变负数的情况。 &amp;gt;&amp;gt; : 右移运算符，num &amp;gt;&amp;gt; 1，num 转换为二进制，丢弃最右边指定位">
+<meta name="twitter:description" content="一、移位运算符&amp;lt;&amp;lt;  : 左移运算符num &amp;lt;&amp;lt; 1，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。 以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，10000000000000000000000000000000 ~ 01111111111111111111111111111111，最左位">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 
 
@@ -412,36 +412,48 @@
       
 
       
-        <h2 id="3-种移位运算符"><a href="#3-种移位运算符" class="headerlink" title="3 种移位运算符"></a>3 种移位运算符</h2><ul>
-<li><code>&lt;&lt;</code>  : 左移运算符，<code>num &lt;&lt; 1</code>，num 转换为二进制，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。<code>num &lt;&lt; 1</code> 相当于 num 乘以 2。最左位是符号位，0 为正数，1 为负数。移位后可能出现正数变负数的情况。</li>
-<li><code>&gt;&gt;</code> : 右移运算符，<code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0。<code>num &gt;&gt; 1</code> 相当于 num 除以 2（num 为偶数时）。<ul>
-<li>int 类型 4 字节，移位 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</li>
-</ul>
-</li>
-<li><code>&gt;&gt;&gt;</code> : 无符号右移运算符，丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐</li>
-</ul>
+        <h2 id="一、移位运算符"><a href="#一、移位运算符" class="headerlink" title="一、移位运算符"></a>一、移位运算符</h2><h3 id="lt-lt-左移运算符"><a href="#lt-lt-左移运算符" class="headerlink" title="&lt;&lt;  : 左移运算符"></a><code>&lt;&lt;</code>  : 左移运算符</h3><p><code>num &lt;&lt; 1</code>，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。</p>
+<p>以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，<code>10000000000000000000000000000000</code> ~ <code>01111111111111111111111111111111</code>，最左位是符号位，当小于 2^31 - 1 时，最左边都是 0，所以 0 代表为正数，1 代表为负数。</p>
+<p>当 num 为正数，且没有达到最大值时，即左边的 0 够多时，<code>num &lt;&lt; 1</code> 相当于二进制每一位转十进制时在原来基础上再乘以 2，相当于 num 乘以 2。达到最大值后，正数可能变负数。</p>
+<h3 id="gt-gt-右移运算符"><a href="#gt-gt-右移运算符" class="headerlink" title="&gt;&gt; : 右移运算符"></a><code>&gt;&gt;</code> : 右移运算符</h3><p><code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0，如果为负数，补 1。</p>
+<p>当 num 为正数时，<code>num &gt;&gt; 1</code> 相当于 num 除以 2 取整（/）。</p>
+<p>int 类型 4 字节，正数右移 31 位变为 0，右移 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</p>
+<h3 id="gt-gt-gt-无符号右移运算符"><a href="#gt-gt-gt-无符号右移运算符" class="headerlink" title="&gt;&gt;&gt; : 无符号右移运算符"></a><code>&gt;&gt;&gt;</code> : 无符号右移运算符</h3><p>丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐。</p>
+<p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
 <a id="more"></a>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intValue = <span class="number">733183670</span>;</span><br><span class="line">    <span class="keyword">int</span> intValue2 = -<span class="number">733183670</span>;</span><br><span class="line">    System.out.println(intValue + <span class="string">" 左移 1 位："</span> + (intValue &lt;&lt; <span class="number">1</span>)); <span class="comment">// 1466367340</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 左移 1 位："</span> + (intValue2 &lt;&lt; <span class="number">1</span>)); <span class="comment">// -1466367340</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 右移 8 位："</span> + (intValue &gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998 (733183670/256)</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 右移 8 位："</span> + (intValue2 &gt;&gt; <span class="number">8</span>)); <span class="comment">// -2863999</span></span><br><span class="line">    <span class="comment">// 无符号右移，将数据变小，且最终为正数</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 无符号右移 8 位："</span> + (intValue &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 无符号右移 8 位："</span> + (intValue2 &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 13913217</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>733183670 &lt;&lt; 1，左移 1 位：</p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png" alt="image.png"></p>
-<p>-733183670 &gt;&gt; 8，右移 8 位“</p>
-<p><img src="https://i.loli.net/2019/09/29/uh9QMjPAS2mCaKV.png" alt=""></p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png" alt="图片来自知乎"></p>
+<p>-733183670 &gt;&gt; 8，右移 8 位：</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png" alt=""></p>
 <p>-733183670 &gt;&gt;&gt; 8，无符号右移 8 位：</p>
-<p><img src="https://i.loli.net/2019/09/29/nRvDGa2xfoejL59.png" alt=""></p>
-<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><ul>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png" alt=""></p>
+<h2 id="二、位运算符"><a href="#二、位运算符" class="headerlink" title="二、位运算符"></a>二、位运算符</h2><ul>
 <li>先转换为二进制后再运算</li>
 <li><code>&amp;</code> 按位与：<code>1&amp;1==1</code> / <code>1&amp;0==0</code> / <code>0&amp;0==0</code>，都为 1，则为 1，否则为 0</li>
 <li><code>|</code> 按位或：<code>1|1==1</code> / <code>1|0==1</code> / <code>0|0==0</code>，有一个为 1，则为 1，否则 为 0</li>
 <li><code>~</code> 按位非：<code>~1==0</code> / <code>~0==1</code>, 单位为 bit，整数类型的话：<code>~1==-2</code> –&gt;<code>~0b00000000000000000000000000000001==0b11111111111111111111111111111110</code></li>
 <li><code>^</code>: 异或运算符  <code>1^1==0</code> / <code>1^0==1</code> / <code>0^0==0</code>，相同为 0，不同为 、1</li>
 </ul>
-<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><ul>
+<h2 id="三、逻辑运算符"><a href="#三、逻辑运算符" class="headerlink" title="三、逻辑运算符"></a>三、逻辑运算符</h2><ul>
 <li><code>&amp;&amp;</code> 逻辑与：当左边表达式为 false 时，不再计算，直接为 false。规则跟 <code>&amp;</code> 一致</li>
 <li><code>||</code> 逻辑或：当左边表达式为 true 时，不再计算，直接为 true。规则跟 <code>|</code> 一致</li>
 </ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<h2 id="四、Java-int-二进制表示正负"><a href="#四、Java-int-二进制表示正负" class="headerlink" title="四、Java int 二进制表示正负"></a>四、Java int 二进制表示正负</h2><ul>
+<li>0 :             00000000000000000000000000000000 <code>32个0</code></li>
+<li>2^32-1     01111111111111111111111111111111 <code>0+31个1</code></li>
+<li>-2^31 :     10000000000000000000000000000000 <code>1+31个0</code></li>
+<li>-2^31+1 : 10000000000000000000000000000001 <code>1+30个0+1</code></li>
+<li>-1 :            11111111111111111111111111111111 <code>32个1</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = Integer.toBinaryString(<span class="number">0x80000000</span>); <span class="comment">// -2^31</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>1111 = 15 = <code>1*2^3 + 1*2^2 + 1*2^1 + 1*2^0</code>，0001 为 1，等于 2^0</li>
+</ul>
+<h2 id="五、延伸阅读"><a href="#五、延伸阅读" class="headerlink" title="五、延伸阅读"></a>五、延伸阅读</h2><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/30108890" target="_blank" rel="noopener">Java中的移位运算符</a></li>
 <li><a href="https://www.jianshu.com/p/8cf5af30f245" target="_blank" rel="noopener">Java &amp;、&amp;&amp;、|、||、^、&lt;&lt;、&gt;&gt;、~、&gt;&gt;&gt;等运算符</a></li>
 </ul>
@@ -699,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-种移位运算符"><span class="nav-number">1.</span> <span class="nav-text">3 种移位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算符"><span class="nav-number">2.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、移位运算符"><span class="nav-number">1.</span> <span class="nav-text">一、移位运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-lt-左移运算符"><span class="nav-number">1.1.</span> <span class="nav-text">&lt;&lt;  : 左移运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-gt-右移运算符"><span class="nav-number">1.2.</span> <span class="nav-text">&gt;&gt; : 右移运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-gt-gt-无符号右移运算符"><span class="nav-number">1.3.</span> <span class="nav-text">&gt;&gt;&gt; : 无符号右移运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、位运算符"><span class="nav-number">2.</span> <span class="nav-text">二、位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、逻辑运算符"><span class="nav-number">3.</span> <span class="nav-text">三、逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Java-int-二进制表示正负"><span class="nav-number">4.</span> <span class="nav-text">四、Java int 二进制表示正负</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、延伸阅读"><span class="nav-number">5.</span> <span class="nav-text">五、延伸阅读</span></a></li></ol></div>
             
 
           </div>
