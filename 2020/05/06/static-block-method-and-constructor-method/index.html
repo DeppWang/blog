@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Java Foundation,">
+  <meta name="keywords" content="Java 基础,">
 
 
 
@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="前言关于静态块函数、构造函数的执行顺序总是容易混淆。通过实际的代码验证一下： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;super static block&quot;);    &amp;#125;    StaticSuper() &amp;#12">
-<meta name="keywords" content="Java Foundation">
+<meta name="description" content="一、前言常常有关于静态块函数、构造函数执行顺序的面试题，如果死记硬背，往往容易混淆。需要从虚拟角度来理解，当真正理解后，其实很简单。 一个面试题栗子，请输出下面代码的运行结果： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;sup">
+<meta name="keywords" content="Java 基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Static 初始化函数、构造函数的执行顺序">
-<meta property="og:url" content="https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/index.html">
+<meta property="og:title" content="从虚拟机角度理解，为什么静态块函数先于构造函数执行">
+<meta property="og:url" content="https://depp.wang/2020/05/06/static-block-method-and-constructor-method/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="前言关于静态块函数、构造函数的执行顺序总是容易混淆。通过实际的代码验证一下： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;super static block&quot;);    &amp;#125;    StaticSuper() &amp;#12">
+<meta property="og:description" content="一、前言常常有关于静态块函数、构造函数执行顺序的面试题，如果死记硬背，往往容易混淆。需要从虚拟角度来理解，当真正理解后，其实很简单。 一个面试题栗子，请输出下面代码的运行结果： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;sup">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-06T10:13:28.401Z">
+<meta property="og:updated_time" content="2020-05-06T15:53:06.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Static 初始化函数、构造函数的执行顺序">
-<meta name="twitter:description" content="前言关于静态块函数、构造函数的执行顺序总是容易混淆。通过实际的代码验证一下： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;super static block&quot;);    &amp;#125;    StaticSuper() &amp;#12">
+<meta name="twitter:title" content="从虚拟机角度理解，为什么静态块函数先于构造函数执行">
+<meta name="twitter:description" content="一、前言常常有关于静态块函数、构造函数执行顺序的面试题，如果死记硬背，往往容易混淆。需要从虚拟角度来理解，当真正理解后，其实很简单。 一个面试题栗子，请输出下面代码的运行结果： 123456789101112131415161718192021222324class StaticSuper &amp;#123;    static &amp;#123;        System.out.println(&quot;sup">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/">
+  <link rel="canonical" href="https://depp.wang/2020/05/06/static-block-method-and-constructor-method/">
 
 
 
 
 
-  <title>Static 初始化函数、构造函数的执行顺序 | DeppWang's Blog</title>
+  <title>从虚拟机角度理解，为什么静态块函数先于构造函数执行 | DeppWang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -301,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/05/06/static-block-method-and-constructor-method/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DeppWang">
@@ -318,7 +318,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Static 初始化函数、构造函数的执行顺序</h2>
+          <h2 class="post-title" itemprop="name headline">从虚拟机角度理解，为什么静态块函数先于构造函数执行</h2>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T15:02:25+00:00">
-                2017-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T15:02:25+00:00">
+                2020-05-06
               </time>
             
 
@@ -371,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/05/Static-Initializer-and-Constructor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/05/Static-Initializer-and-Constructor/" itemprop="commentCount"></span>
+                <a href="/2020/05/06/static-block-method-and-constructor-method/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/06/static-block-method-and-constructor-method/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2017/07/05/Static-Initializer-and-Constructor/" class="leancloud_visitors" data-flag-title="Static 初始化函数、构造函数的执行顺序">
+             <span id="/2020/05/06/static-block-method-and-constructor-method/" class="leancloud_visitors" data-flag-title="从虚拟机角度理解，为什么静态块函数先于构造函数执行">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,32 +408,48 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>关于静态块函数、构造函数的执行顺序总是容易混淆。通过实际的代码验证一下：</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>常常有关于静态块函数、构造函数执行顺序的面试题，如果死记硬背，往往容易混淆。需要从虚拟角度来理解，当真正理解后，其实很简单。</p>
+<p>一个面试题栗子，请输出下面代码的运行结果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"super static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticSuper() &#123;</span><br><span class="line">        System.out.println(<span class="string">"super constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> <span class="keyword">extends</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticTest() &#123;</span><br><span class="line">        System.out.println(<span class="string">"constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"in main"</span>);</span><br><span class="line">        StaticTest s = <span class="keyword">new</span> StaticTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>输出：</p>
-<a id="more"></a>
+<p>执行结果如下：</p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">super <span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">in</span> main</span><br><span class="line">super <span class="function"><span class="keyword">constructor</span></span></span><br><span class="line"><span class="function"><span class="title">constructor</span></span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>静态块函数也叫静态初始化函数（static initializer）是一段在加载类时会执行的程序代码，它会在其他程序可以使用该类之前就执行。</p>
-</blockquote>
-<blockquote>
-<p>构造函数的作用是用于给对象进行初始化。不建立对象，构造函数时不会执行。</p>
-</blockquote>
-<p>运行过程如下：</p>
-<ul>
-<li>当运行 StaticTest.main()(这是一个 static 方法) 后，装载器就会寻找已经编译的 StaticTest.class 文件。在装载的过程中，装载器注意到它有一个基类（StaticSuper.class），于是它再装载基类。不管创不创建基类对象，这个过程总会发生。如果基类还有基类，那么第二个基类也会被装载，依此类推。</li>
-<li>所有基类装载完成后，先执行根基类的 static 初始化函数，然后是下一个派生类的 static 初始化函数，依此类推。这个顺序非常重要，因为派生类的 “static 初始化函数” 有可能要依赖基类成员的正确初始化。所以依次输出 <code>super static block</code>,<code>static  block</code></li>
-<li>当所有必要的类都已经装载结束，开始执行 main() 方法体，先输出 <code>in main</code>，再用 new StaticSuperTest() 创建对象。</li>
-<li>类 StaticTest 存在父类 StaticSuper，先调用 StaticSuper 的构造函数，输出 <code>super constructor</code>，最后调用 StaticSuperTest 的构造函数输出 <code>constructor</code>。</li>
-<li>可以使用 super 显式来指定调用哪个构造函数。基类的构造过程以及构造顺序，同派生类的相同。</li>
-</ul>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>静态函数常用于</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://www.cnblogs.com/Qian123/p/5713440.html" target="_blank" rel="noopener">Java 提高篇 —— 静态代码块、构造代码块、构造函数以及 Java 类初始化顺序</a></li>
-</ul>
+<a id="more"></a>
 
+<h2 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h2><p>当执行 StaticTest.main() 时，类加载器加载 StaticTest.class 文件到虚拟机，新建一个与之对应的 Class 对象，如果有类变量，为类变量设置初始值。</p>
+<p>执行 StaticTest.main()，其实是执行 invokestatic 指令，Java 虚拟机规范规定，执行 invokestatic 指令时，需要先初始化类，初始化类时，执行类构造器 <code>&lt;clinit&gt;()</code> 方法， <code>&lt;clinit&gt;()</code> 方法为类变量赋值以及执行静态代码块，虚拟机保证执行 <code>&lt;clinit&gt;()</code> 方法前先执行父类 <code>&lt;clinit&gt;()</code> 方法。</p>
+<p>执行完 <code>&lt;clinit&gt;()</code> 方法后执行 main() 方法</p>
+<p>执行 new 指令时，实例化生成对象，并为实例变量设置初始值（如果没有初始值），再调用实例构造方法  <code>&lt;init&gt;()</code>  为实例变量赋值。</p>
+<h2 id="三、加入构造代码块"><a href="#三、加入构造代码块" class="headerlink" title="三、加入构造代码块"></a>三、加入构造代码块</h2><p>有时候，为了加大难度，里面还会加上构造代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"super static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"super constructor block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticSuper() &#123;</span><br><span class="line">        System.out.println(<span class="string">"super constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> <span class="keyword">extends</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"constructor block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticTest() &#123;</span><br><span class="line">        System.out.println(<span class="string">"constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"in main"</span>);</span><br><span class="line">        StaticTest s = <span class="keyword">new</span> StaticTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造代码块可以看成一个公共构造函数，使用任何构造函数前都需要先执行构造代码块。所以执行结果为：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">super <span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">in</span> main</span><br><span class="line">super <span class="function"><span class="keyword">constructor</span> <span class="title">block</span></span></span><br><span class="line"><span class="function"><span class="title">super</span> <span class="title">constructor</span></span></span><br><span class="line"><span class="function"><span class="title">constructor</span> <span class="title">block</span></span></span><br><span class="line"><span class="function"><span class="title">constructor</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、应用"><a href="#四、应用" class="headerlink" title="四、应用"></a>四、应用</h2><p>静态代码块属于类构造函数的范畴，所以常用于设置静态变量。如，Integer 里面的 IntegerCache。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Integer</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">static</span> &#123;</span><br><span class="line">            <span class="comment">// high value may be configured by property</span></span><br><span class="line">            <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">            ...</span><br><span class="line">            high = h;</span><br><span class="line"></span><br><span class="line">            cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> j = low;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">                cache[k] = <span class="keyword">new</span> Integer(j++);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">            <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>1、我们将静态代码块看成类构造方法，类构造方法可能先于实例构造方法执行。</p>
+<p>2、构造代码块可以看成公共构造函数，先于构造函数执行</p>
+<p>这方面的内容可以<a href="https://weread.qq.com/web/reader/cf1320d071a1a78ecf19254k283328802332838023a7529" target="_blank" rel="noopener">《深入理解 Java 虚拟机》（第 3 版）- 7.3 类加载的过程</a>，会比看博文理解得更深刻。</p>
+<!--当运行 StaticTest.main() 后，类加载器就会寻找已经编译的 StaticTest.class 文件，将其加载到虚拟机中，-->
+
+<blockquote>
+<!--静态块函数也叫静态初始化函数（static initializer）是一段在加载类时会执行的程序代码，它会在其他程序可以使用该类之前就执行。-->
+</blockquote>
+<blockquote>
+<!--构造函数的作用是用于给对象进行初始化。不建立对象，构造函数时不会执行。-->
+</blockquote>
+<!--运行过程如下：-->
+<!--当运行 StaticTest.main()(这是一个 static 方法) 后，类装载器就会寻找已经编译的 StaticTest.class 文件。在装载的过程中，装载器注意到它有一个基类（StaticSuper.class），于是它再装载基类。不管创不创建基类对象，这个过程总会发生。如果基类还有基类，那么第二个基类也会被装载，依此类推。-->
+<!--所有基类装载完成后，先执行根基类的 static 初始化函数，然后是下一个派生类的 static 初始化函数，依此类推。这个顺序非常重要，因为派生类的 “static 初始化函数” 有可能要依赖基类成员的正确初始化。所以依次输出 `super static block`,`static  block`-->
+<!--当所有必要的类都已经装载结束，开始执行 main() 方法体，先输出 `in main`，再用 new StaticSuperTest() 创建对象。-->
+<!--类 StaticTest 存在父类 StaticSuper，先调用 StaticSuper 的构造函数，输出 `super constructor`，最后调用 StaticSuperTest 的构造函数输出 `constructor`。-->
+<!--可以使用 super 显式来指定调用哪个构造函数。基类的构造过程以及构造顺序，同派生类的相同。-->
+
+<!--五、延伸阅读-->
+<!--[Java 提高篇 ---- 静态代码块、构造代码块、构造函数以及 Java 类初始化顺序](http://www.cnblogs.com/Qian123/p/5713440.html)-->
       
     </div>
 
@@ -466,7 +482,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/" title="Static 初始化函数、构造函数的执行顺序">https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/</a>
+      <a href="https://depp.wang/2020/05/06/static-block-method-and-constructor-method/" title="从虚拟机角度理解，为什么静态块函数先于构造函数执行">https://depp.wang/2020/05/06/static-block-method-and-constructor-method/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -482,7 +498,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-Foundation/" rel="tag"># Java Foundation</a>
+            <a href="/tags/Java-基础/" rel="tag"># Java 基础</a>
           
         </div>
       
@@ -495,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/05/Eliminate-Expired-Object-References/" rel="next" title="Effective Java（二）：如何消除过期的对象引用">
-                <i class="fa fa-chevron-left"></i> Effective Java（二）：如何消除过期的对象引用
+              <a href="/2020/05/06/find-the-k-th-smallest-odd-number-in-the-array-arr/" rel="next" title="一道算法题：查找数组 arr 中第 k 小的奇数">
+                <i class="fa fa-chevron-left"></i> 一道算法题：查找数组 arr 中第 k 小的奇数
               </a>
             
           </div>
@@ -504,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/09/granderMother/" rel="prev" title="我奶奶人很胖，但心很美">
-                我奶奶人很胖，但心很美 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -687,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、分析"><span class="nav-number">2.</span> <span class="nav-text">二、分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、加入构造代码块"><span class="nav-number">3.</span> <span class="nav-text">三、加入构造代码块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、应用"><span class="nav-number">4.</span> <span class="nav-text">四、应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
             
 
           </div>
@@ -854,9 +866,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://depp.wang/2017/07/05/Static-Initializer-and-Constructor/';
-          this.page.identifier = '2017/07/05/Static-Initializer-and-Constructor/';
-          this.page.title = 'Static 初始化函数、构造函数的执行顺序';
+          this.page.url = 'https://depp.wang/2020/05/06/static-block-method-and-constructor-method/';
+          this.page.identifier = '2020/05/06/static-block-method-and-constructor-method/';
+          this.page.title = '从虚拟机角度理解，为什么静态块函数先于构造函数执行';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://deppwang-1.disqus.com/embed.js';

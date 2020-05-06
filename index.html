@@ -301,6 +301,170 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/05/06/static-block-method-and-constructor-method/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DeppWang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/deppwang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DeppWang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/06/static-block-method-and-constructor-method/" itemprop="url">从虚拟机角度理解，为什么静态块函数先于构造函数执行</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T15:02:25+00:00">
+                2020-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/06/static-block-method-and-constructor-method/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/06/static-block-method-and-constructor-method/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/05/06/static-block-method-and-constructor-method/" class="leancloud_visitors" data-flag-title="从虚拟机角度理解，为什么静态块函数先于构造函数执行">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>常常有关于静态块函数、构造函数执行顺序的面试题，如果死记硬背，往往容易混淆。需要从虚拟角度来理解，当真正理解后，其实很简单。</p>
+<p>一个面试题栗子，请输出下面代码的运行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"super static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticSuper() &#123;</span><br><span class="line">        System.out.println(<span class="string">"super constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span> <span class="keyword">extends</span> <span class="title">StaticSuper</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"static block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    StaticTest() &#123;</span><br><span class="line">        System.out.println(<span class="string">"constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"in main"</span>);</span><br><span class="line">        StaticTest s = <span class="keyword">new</span> StaticTest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果如下：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">super <span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">block</span></span><br><span class="line"><span class="keyword">in</span> main</span><br><span class="line">super <span class="function"><span class="keyword">constructor</span></span></span><br><span class="line"><span class="function"><span class="title">constructor</span></span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/05/06/static-block-method-and-constructor-method/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/05/06/find-the-k-th-smallest-odd-number-in-the-array-arr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1744,172 +1908,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/01/11/java-operator/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DeppWang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/deppwang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DeppWang's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/11/java-operator/" itemprop="url">Java 的几种运算符</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-11T17:58:35+00:00">
-                2020-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/01/11/java-operator/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/11/java-operator/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/01/11/java-operator/" class="leancloud_visitors" data-flag-title="Java 的几种运算符">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、移位运算符"><a href="#一、移位运算符" class="headerlink" title="一、移位运算符"></a>一、移位运算符</h2><h3 id="lt-lt-左移运算符"><a href="#lt-lt-左移运算符" class="headerlink" title="&lt;&lt;  : 左移运算符"></a><code>&lt;&lt;</code>  : 左移运算符</h3><p><code>num &lt;&lt; 1</code>，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。</p>
-<p>以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，<code>10000000000000000000000000000000</code> ~ <code>01111111111111111111111111111111</code>，最左位是符号位，当小于 2^31 - 1 时，最左边都是 0，所以 0 代表为正数，1 代表为负数。</p>
-<p>当 num 为正数，且没有达到最大值时，即左边的 0 够多时，<code>num &lt;&lt; 1</code> 相当于二进制每一位转十进制时在原来基础上再乘以 2，相当于 num 乘以 2。达到最大值后，正数可能变负数。</p>
-<h3 id="gt-gt-右移运算符"><a href="#gt-gt-右移运算符" class="headerlink" title="&gt;&gt; : 右移运算符"></a><code>&gt;&gt;</code> : 右移运算符</h3><p><code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0，如果为负数，补 1。</p>
-<p>当 num 为正数时，<code>num &gt;&gt; 1</code> 相当于 num 除以 2 取整（/）。</p>
-<p>int 类型 4 字节，正数右移 31 位变为 0，右移 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</p>
-<h3 id="gt-gt-gt-无符号右移运算符"><a href="#gt-gt-gt-无符号右移运算符" class="headerlink" title="&gt;&gt;&gt; : 无符号右移运算符"></a><code>&gt;&gt;&gt;</code> : 无符号右移运算符</h3><p>丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐。</p>
-<p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/11/java-operator/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
