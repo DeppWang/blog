@@ -1977,18 +1977,6 @@
       
         
           <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2019/01/26/springboot2-apache-shiro">原文地址</a></p>
-<ul>
-<li>如何获取到 Shiro session 的用户？(UserInfo) currentUser.getPrincipal();</li>
-<li>前后端完全分离，能否用 Shiro？**</li>
-</ul>
-<p>Shiro 本质上还是借助 Cookie，前后端完全分离时，前端接口需要保存 Cookie，每次调用接口是加入 Cookie（包含过期时间、Path、HTTPOnly 等参数），这样还是比较麻烦。</p>
-<ul>
-<li>将 SessionID 作为 token？前端保留 token，存放于 Authorization</li>
-</ul>
-<hr>
-<p>目的：通过 cookie 识别用户</p>
-<p>实现：在 Session 中保存用户相关数据</p>
-<p>升级：将用户数据不保存在 Session 中，而保存在 Redis 中，实现集群</p>
 <h2 id="一、Shiro-登陆架构"><a href="#一、Shiro-登陆架构" class="headerlink" title="一、Shiro 登陆架构"></a>一、Shiro 登陆架构</h2><p>下面是 Shiro 的用户登陆架构图，我们根据箭头来看一下流程。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135431.png" alt="image.png"></p>
 <h3 id="1、Token：使用用户的登录信息创建令牌"><a href="#1、Token：使用用户的登录信息创建令牌" class="headerlink" title="1、Token：使用用户的登录信息创建令牌"></a>1、Token：使用用户的登录信息创建令牌</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(username, password, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>

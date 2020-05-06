@@ -101,7 +101,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-05-123303.png">
-<meta property="og:updated_time" content="2020-05-06T08:13:00.888Z">
+<meta property="og:updated_time" content="2020-05-06T10:13:28.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 中的反射与反射的原理">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1.1、创建 Bean 实例时的反射1234// 通过类加载器，根据 class 路径，得到其类对象Class&amp;lt;?&amp;gt; clz = Thre">
@@ -450,7 +450,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sun.reflect.UnsafeObjectFieldAccessorImpl.java</span></span><br><span class="line"><span class="comment">// 调用 native 方法，将目标对象 var1 指定偏移量 fieldOffset 处的字段值设置（修改）为 var2。var1 为 bean, var2 为参数实例</span></span><br><span class="line">unsafe.putObject(var1, <span class="keyword">this</span>.fieldOffset, var2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// sun.misc.Unsafe.java</span></span><br><span class="line"><span class="comment">// native 方法，直接修改堆中对象字段的数据</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">putObject</span><span class="params">(Object var1, <span class="keyword">long</span> var2, Object var4)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="二、class-文件与类对象"><a href="#二、class-文件与类对象" class="headerlink" title="二、class 文件与类对象"></a>二、class 文件与类对象</h2><p>class 文件由 java 文件编译而来，class 文件包含字段表、方法表、<code>&lt;init&gt;</code> 方法（构造方法）等。</p>
-<p>当类加载器将 class 文件加载进虚拟机元数据区（方法区，jdk1.7）时，虚拟机创建一个与之对应的类对象（Class 实例）。并将 class 文件由存放在磁盘的静态结构转换为存放在内存的运行时结构。</p>
+<p>当类加载器将 class 文件加载进虚拟机元数据区（jdk1.7 为 方法区）时，虚拟机在元数据中创建一个与之对应的类对象（Class 实例）。并将 class 文件由存放在磁盘的静态结构转换为存放在内存的运行时结构。</p>
 <!--（在元数据中？）-->
 
 <p>我们可以认为一个类（class 文件）对应一个类对象，当前类的所有对象共用一个类对象。<strong>类对象作为访问存放在 jvm 的 class 文件的入口。</strong></p>
@@ -523,7 +523,7 @@
 <li>运行构造方法，native() 方法实现</li>
 </ul>
 <p>我们可以得出结论，<strong>反射由 native 方法实现</strong>。</p>
-<p>我们说通过反射实现一个功能，我们也可以说</p>
+<p>我们说通过反射实现一个功能，我们也可以说：</p>
 <ul>
 <li>通过反射方法实现</li>
 <li>通过反射 API 实现</li>
@@ -544,16 +544,6 @@
 <li><a href="https://dzone.com/articles/understanding-sunmiscunsafe" target="_blank" rel="noopener">Understanding sun.misc.Unsafe</a></li>
 <li><a href="https://www.baeldung.com/java-unsafe" target="_blank" rel="noopener">Guide to sun.misc.Unsafe</a></li>
 </ul>
-<!--七、其他概念-->
-
-<!--初始化 initialize、实例化 instantiate 的区别-->
-
-<!--类被初始化：初始化针对变量，将 class 文件加载进虚拟机时，初始化成员变量，默认为 null-->
-
-<!--类被实例化：运行 new 指令时，实例化类为对象-->
-
-<!--https://www.quora.com/What-is-difference-between-Instantiate-and-Initialize-in-programming-->
-
 <!--运行期类型鉴定 (RTTI)-->
 
 <!--全限定名：指编译后的 class 文件在 jar 包中的路径，package 路径的 . 转换为 /-->
