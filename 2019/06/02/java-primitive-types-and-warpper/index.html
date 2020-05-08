@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Java 基本数据类型,">
+  <meta name="keywords" content="基本数据类型,">
 
 
 
@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 2^7 - 1 -2^7 -128~127   char 字符型 Character 2byte \uffff(2^1">
-<meta name="keywords" content="Java 基本数据类型">
+<meta name="description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
+<meta name="keywords" content="基本数据类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析 Java 基本数据类型与封装类">
 <meta property="og:url" content="https://depp.wang/2019/06/02/java-primitive-types-and-warpper/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 2^7 - 1 -2^7 -128~127   char 字符型 Character 2byte \uffff(2^1">
+<meta property="og:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135146.png">
-<meta property="og:updated_time" content="2020-05-06T15:53:06.068Z">
+<meta property="og:updated_time" content="2020-05-08T14:49:29.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析 Java 基本数据类型与封装类">
-<meta name="twitter:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 2^7 - 1 -2^7 -128~127   char 字符型 Character 2byte \uffff(2^1">
+<meta name="twitter:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135146.png">
 
 
@@ -433,8 +433,8 @@
 <td>字节型</td>
 <td><a href="https://github.com/DeppWang/JDK/blob/master/jdk-12/src/java.base/java/lang/Integer.java" target="_blank" rel="noopener">Byte</a></td>
 <td>1byte</td>
-<td>2^7 - 1</td>
-<td>-2^7</td>
+<td>127</td>
+<td>-128</td>
 <td>-128~127</td>
 </tr>
 <tr>
@@ -442,8 +442,8 @@
 <td>字符型</td>
 <td><a href="https://github.com/DeppWang/JDK/blob/master/jdk-12/src/java.base/java/lang/Character.java" target="_blank" rel="noopener">Character</a></td>
 <td>2byte</td>
-<td><code>\uffff</code>(2^16 - 1)</td>
-<td><code>\u0000</code>(0)</td>
+<td>65,535</td>
+<td>0</td>
 <td>0~127</td>
 </tr>
 <tr>
@@ -506,20 +506,33 @@
 <ul>
 <li><p>byte：1byte 为 8bits，常用于将 Object 转换为 byte[] 数组，用于字节流 ByteArrayInputStream 的输入</p>
 </li>
-<li><p>char：Java 最初设计 <code>char</code> 和 <code>Character</code> 能保存所有的 <a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a> 字符，所以设计为 2 个字节。但现在 Unicode 包含的字符越来越多，已经收录超过 13 万个字符了（截止版本 <a href="http://www.unicode.org/versions/Unicode12.0.0/" target="_blank" rel="noopener">12.0.0</a>）。char 可以存放中文字符。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Character c = <span class="string">' 颜 '</span>;</span><br><span class="line">System.out.println(c.BYTES); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<li><p>char：2 个字节，可表示 65,536 个字符。最初设计能保存所有的 <a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a> 字符，但现在 Unicode 包含的字符越来越多，已经收录超过 13 万个字符了（截止版本 <a href="http://www.unicode.org/versions/Unicode12.0.0/" target="_blank" rel="noopener">12.0.0</a>）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Character c = <span class="string">'颜'</span>;</span><br><span class="line">System.out.println(c.BYTES); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+
 </li>
+</ul>
+<p>  <a href="https://www.oracle.com/technical-resources/articles/javase/supplementary.html" target="_blank" rel="noopener">https://www.oracle.com/technical-resources/articles/javase/supplementary.html</a></p>
+<ul>
 <li><p>boolean：<a href="https://docs.oracle.com/javase/specs/jvms/se12/html/" target="_blank" rel="noopener">Java 虚拟机规范</a> 没有明确规定 <a href="https://docs.oracle.com/javase/specs/jvms/se12/html/jvms-2.html#jvms-2.3.4" target="_blank" rel="noopener">boolean</a> 的字节数，可能为 1 个字节，也可能为 4 个字节。</p>
 <blockquote>
 <p>Java 编程语言中对布尔值进行操作的表达式被编译为使用 Java 虚拟机 int 数据类型的值。<br>在 Oracle 的 Java 虚拟机实现中，Java 编程语言中的布尔数组被编码为 Java 虚拟机字节数组，每个布尔元素使用 8 位。</p>
 </blockquote>
+</li>
+<li><p>float 对应 </p>
 </li>
 <li><p>Byte 和 Boolean 类型缓存了全部值，缓存值存放在数组中。</p>
 </li>
 <li><p>封装类被 final 修饰，<strong>基本数据类型也算是 final 修饰</strong>。</p>
 </li>
 </ul>
-<h2 id="基本数据类型与封装类的联系"><a href="#基本数据类型与封装类的联系" class="headerlink" title="基本数据类型与封装类的联系"></a>基本数据类型与封装类的联系</h2><p>JDK5.0 开始提供自动封箱功能，<strong>基本数据类型可以自动封装成封装类</strong>。<br>比如集合 List，往里添加对象 Object，JDK5.0 以前需要将数字封装成封装类型对象，再存到 List 中。</p>
+<p>int 转 2 进制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">560067</span>;</span><br><span class="line">String byteStr = Integer.toBinaryString(i);</span><br><span class="line">System.out.println(byteStr); <span class="comment">// 10001000101111000011</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="基本数据类型与封装类的联系"><a href="#基本数据类型与封装类的联系" class="headerlink" title="基本数据类型与封装类的联系"></a>基本数据类型与封装类的联系</h2><p>使用集合时，其泛型必须为对象。</p>
+<p>JDK5.0 开始提供自动封箱功能，<strong>基本数据类型可以自动封装成封装类</strong>。<br>比如集合 List，往里添加对象 Object，JDK5.0 以前需要将数字封装成封装类型对象，再存到 List 中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
 
 <p>在 JDK5.0 以后可以自动封箱，简写成：</p>
@@ -538,8 +551,8 @@
 <h2 id="基本数据类型与其封装类的区别"><a href="#基本数据类型与其封装类的区别" class="headerlink" title="基本数据类型与其封装类的区别"></a>基本数据类型与其封装类的区别</h2><h3 id="1、默认值不同"><a href="#1、默认值不同" class="headerlink" title="1、默认值不同"></a>1、默认值不同</h3><p>int 是基本类型，直接存放数值；Integer 是类，产生对象时用一个引用指向这个对象。<br> <strong>基本类型跟封装类型的默认值是不一样的</strong>。如 int i，i 的预设为 0；Integer j，j 的预设为 null，因为封装类产生的是对象，对象默认值为 null。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">float</span> f = <span class="number">0f</span>;</span><br><span class="line"><span class="keyword">double</span> d = <span class="number">0</span>d;</span><br><span class="line">System.out.println(i);<span class="comment">//0</span></span><br><span class="line">System.out.println(f);<span class="comment">//0.0</span></span><br><span class="line">System.out.println(d);<span class="comment">//0.0</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2、存储位置不同"><a href="#2、存储位置不同" class="headerlink" title="2、存储位置不同"></a>2、存储位置不同</h3><p> <strong>基本类型在内存中是存储在 Java 虚拟机栈中，封装类的引用（值的地址）存储在 Java 虚拟机栈中，而实际的对象（值）是存在堆中</strong>。</p>
-<h3 id="3、作用不同"><a href="#3、作用不同" class="headerlink" title="3、作用不同"></a>3、作用不同</h3><p><strong>基本数据类型的好处就是速度快（在栈上分配内存效率高，且不涉及到对象的构造和回收），封装类的目的主要是更好的处理数据之间的转换（利用其方法和属性）。</strong></p>
+<h3 id="2、存储位置不同"><a href="#2、存储位置不同" class="headerlink" title="2、存储位置不同"></a>2、存储位置不同</h3><p> 基本类型在内存中是存储在 Java 虚拟机栈中，封装类的引用（值的地址）存储在 Java 虚拟机栈中，而实际的对象（值）是存在堆中。</p>
+<h3 id="3、作用不同"><a href="#3、作用不同" class="headerlink" title="3、作用不同"></a>3、作用不同</h3><p>基本数据类型的好处就是速度快（在栈上分配内存效率高，且不涉及到对象的构造和回收），封装类的目的主要是更好的处理数据之间的转换（利用其方法和属性）。</p>
 <h2 id="常用小技巧"><a href="#常用小技巧" class="headerlink" title="常用小技巧"></a>常用小技巧</h2><ul>
 <li>利用 intValue() 方法取整：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Float a = <span class="number">5.2f</span>;</span><br><span class="line">System.out.println(a.intValue());</span><br></pre></td></tr></table></figure>
 
@@ -612,7 +625,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java-基本数据类型/" rel="tag"># Java 基本数据类型</a>
+            <a href="/tags/基本数据类型/" rel="tag"># 基本数据类型</a>
           
         </div>
       

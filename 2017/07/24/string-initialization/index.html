@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象话的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。 我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码： 123pu">
+<meta name="description" content="String 的两种实例化方式隐式实例化：直接赋值1234567public class Demo &amp;#123;    public static void main(String[] args) &amp;#123;        String s = &quot;hello&quot;;        String s2 = &quot;hello&quot;;        System.out.println(s == s2);">
 <meta name="keywords" content="String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String 的两种实例化方式">
 <meta property="og:url" content="https://depp.wang/2017/07/24/string-initialization/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象话的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。 我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码： 123pu">
+<meta property="og:description" content="String 的两种实例化方式隐式实例化：直接赋值1234567public class Demo &amp;#123;    public static void main(String[] args) &amp;#123;        String s = &quot;hello&quot;;        String s2 = &quot;hello&quot;;        System.out.println(s == s2);">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135655.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135658.png">
-<meta property="og:updated_time" content="2020-05-06T15:53:06.072Z">
+<meta property="og:updated_time" content="2020-05-08T14:49:29.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String 的两种实例化方式">
-<meta name="twitter:description" content="关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象话的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。 我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码： 123pu">
+<meta name="twitter:description" content="String 的两种实例化方式隐式实例化：直接赋值1234567public class Demo &amp;#123;    public static void main(String[] args) &amp;#123;        String s = &quot;hello&quot;;        String s2 = &quot;hello&quot;;        System.out.println(s == s2);">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png">
 
 
@@ -412,57 +412,93 @@
       
 
       
-        <p>关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象话的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。</p>
-<p>我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="String-的两种实例化方式"><a href="#String-的两种实例化方式" class="headerlink" title="String 的两种实例化方式"></a>String 的两种实例化方式</h2><h3 id="隐式实例化：直接赋值"><a href="#隐式实例化：直接赋值" class="headerlink" title="隐式实例化：直接赋值"></a>隐式实例化：直接赋值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(s == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>我们可以看出 String 是 final 类型，不能被继承。它继承了 3 个接口，Serializable（可序列化的）、Comparable（可比较的）、CharSequence（字符序列）。</p>
-<ul>
-<li>继承 Serializable 接口，可以被 JVM 序列化成文件。</li>
-<li>继承 Comparable 接口，主要实现它的 compareTo(T o) 方法，此方法用来比较两个字符串的长度，返回一个 int 值。</li>
-<li>继承 CharSequence 接口，实现的方法常用的有 length()、toString() 等。</li>
-</ul>
-<p>Java 是单继承、多实现语言：即可以一个类只能被一个类继承，一个类可以实现多个接口。</p>
-<p><strong>注意：</strong></p>
-<ol>
-<li>本文多次出现的<strong>字符串</strong>是指字符串常量，为表达意思更加贴切，遂有的地方使用字符串代替字符串常量。</li>
-<li>本文多次出现的<strong>引用</strong>指对象引用（实例引用），引用和基本数据类型均为变量，在 JVM 中存于 Java 虚拟机栈中，更确切的说是局部变量表中，如果你想要深入了解请看 [《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》](<a href="https://depp.wang/Java-Books/%">https://depp.wang/Java-Books/%</a> E6% B7% B1% E5%85% A5% E7%90%86% E8% A7% A3Java% E8%99%9A% E6%8B%9F% E6%9C% BA% EF% BC%9AJVM% E9% AB%98% E7% BA% A7% E7%89% B9% E6%80% A7% E4% B8%8E% E6%9C%80% E4% BD% B3% E5% AE%9E% E8% B7% B5% EF% BC%88% E7% AC% AC2% E7%89%88% EF% BC%89.pdf) 或者 [这篇博文](<a href="https://depp.wang/2017/07/13/JVM-Runtime-Data-Area/#Java%">https://depp.wang/2017/07/13/JVM-Runtime-Data-Area/#Java%</a> E8%99%9A% E6%8B%9F% E6%9C% BA% E6% A0%88% EF% BC%88Java-Virtual-Machine-Stacks% EF% BC%89)。</li>
-<li>本文多次使用大意为 “返回引用” 的语句，可以理解为返回引用所指向的对象。</li>
-</ol>
-<a id="more"></a>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h2><p>想要了解 String 的实例化，要先了解字符串常量池。<strong>字符串常量池存放于 Java 文件编译生成的 Class 文件中，Class 文件存放于方法区</strong>（[《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》](<a href="https://depp.wang/Java-Books/%">https://depp.wang/Java-Books/%</a> E6% B7% B1% E5%85% A5% E7%90%86% E8% A7% A3Java% E8%99%9A% E6%8B%9F% E6%9C% BA% EF% BC%9AJVM% E9% AB%98% E7% BA% A7% E7%89% B9% E6%80% A7% E4% B8%8E% E6%9C%80% E4% BD% B3% E5% AE%9E% E8% B7% B5% EF% BC%88% E7% AC% AC2% E7%89%88% EF% BC%89.pdf) 第 65 页）。</p>
-<p>JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。如果字符串已经在字符串常量池存在，就不再新建，而是将新的引用指向它，可以理解为多个引用共享一个字符串。因为 String 为 final 类型，它不可改变的特点，保证其在字符串常量池的唯一性（已经存在的不新建，新建的肯定不同），这也是字符串常量池能设计出来的原因。</p>
-<h2 id="隐式实例化：直接赋值"><a href="#隐式实例化：直接赋值" class="headerlink" title="隐式实例化：直接赋值"></a>隐式实例化：直接赋值</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Demo &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="keyword">String</span> s = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">String</span> s2 = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.<span class="built_in">println</span>(s == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上直接赋值，是我们常用的实例化方式。我们将采用直接赋值方式生成的字符串也称为<strong>匿名对象</strong>，当然，匿名对象也是对象。符号 “==” 判断两个引用是否指向同一个对象（字符串），通过输出结果为 true 可知，对于引用 s2 来说，没有重新新建一个字符串，而是将引用 s2 指向字符串 “hello”，</p>
-<p>从 JVM 角度来看，JVM 在编译 Java 文件生成 Class 文件时，将字符串 “hello” 添加到字符串常量池中，在虚拟机栈（局部变量表）中给 s、s2 分配一块内存，均指向字符串 “hello”。如下图，<strong>我们可以将引用理解为存放它 “指向” 的对象（字符串）的内存地址</strong>，假设字符串 “hello” 的地址为 0x1001。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png" alt="image"></p>
-<p>那如果隐式实例化如下，引用与字符串是什么关系呢？</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">String s</span> = <span class="string">"hello"</span>;</span><br><span class="line"><span class="attribute">s</span> = <span class="string">"world"</span>;</span><br></pre></td></tr></table></figure>
+<p>String 一般使用直接赋值的方式创建字符串。此时字符串是一个<strong>匿名对象</strong>，存放于位于堆的字符串常量池（String Table）中。匿名对象也是对象，就如同对象创建后，对象本身不可以改变，字符串也有不可变的特性，每次都将创建新的字符串。因为不可变，所以字符串可以称为字符串常量。</p>
+<p>JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        String s = <span class="string">"world"</span>;</span><br><span class="line">        System.out.println(s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>因为 String 是 final 类型，即一个字符串（String 对象）创建后就不能被修改。所以 “world” 是一个新的字符串。引用 s 指向字符串 “world”，字符串常量池中的字符串 “hello” 由于没有了引用，会被回收。（本文是基于 jdk1.8 研究，字符串常量池已经移出永久代。字符串可以被回收）如下图所示：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hello</span></span><br><span class="line"><span class="attribute">world</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135655.png" alt="image"></p>
-<h2 id="显式实例化：使用构造函数"><a href="#显式实例化：使用构造函数" class="headerlink" title="显式实例化：使用构造函数"></a>显式实例化：使用构造函数</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Demo &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="keyword">String</span> s = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">String</span> s2 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="keyword">String</span> s3 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(s==s2);</span><br><span class="line">        System.out.<span class="built_in">println</span>(s==s3);</span><br><span class="line">        System.out.<span class="built_in">println</span>(s2==s3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="显式实例化：使用构造函数"><a href="#显式实例化：使用构造函数" class="headerlink" title="显式实例化：使用构造函数"></a>显式实例化：使用构造函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String s3 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.println(s==s2);</span><br><span class="line">        System.out.println(s==s3);</span><br><span class="line">        System.out.println(s2==s3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>从输出三个 false 可以看出，三个对象均不相同，我们知道使用 new 关键字创建的实例存放于 Java 堆中。假设堆中存放的两个 String 对象的内存地址分别为 0x1002 和 0x1003。如前面所讲，引用 s 所 “指向” 的字符串存放于字符串常量池。从 JVM 分析，有如下图示:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>String 是一个类，可以使用构造函数创建字符串。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135658.png" alt="image"></p>
-<p>显式实例化常用于将字符数组转换为字符串，使用方式如下：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String string = <span class="string">"hello"</span>;</span><br><span class="line">char[]<span class="built_in"> array </span>= string.toCharArray();</span><br><span class="line">return<span class="built_in"> new </span>String(array);</span><br></pre></td></tr></table></figure>
+<h3 id="intern-方法"><a href="#intern-方法" class="headerlink" title="intern() 方法"></a>intern() 方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String s3 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.println(s2 == s2.intern());</span><br><span class="line">        System.out.println(s == s3.intern());</span><br><span class="line">        System.out.println(s2.intern() == s3.intern());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="intern-方法"><a href="#intern-方法" class="headerlink" title="intern() 方法"></a>intern() 方法</h2><p>你是不是觉得，两种实例化方式产生的 “相等（equals())” 对象总感觉能联系起来，你的直觉是对的。它们之间的联系纽带在于 intern() 方法。intern() 方法是 String 类的方法，一个 Native 方法。一个存放在堆中的 String 对象调用此方法，JVM 会在字符串常量池中去比较是否有 “等于（==）” 此 String 对象的字符串，如果有，返回池中代表这个字符串的 String 对象，没有则将此 String 对象包含的字符串放入字符串常量池中，再返回此 String 对象的引用 (书中 78 页）。如果执行以下代码，会输出 false/true/true。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Demo &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        <span class="keyword">String</span> s = <span class="string">"hello"</span>;</span><br><span class="line">        <span class="keyword">String</span> s2 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">        <span class="keyword">String</span> s3 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.<span class="built_in">println</span>(s2 == s2.intern());</span><br><span class="line">        System.out.<span class="built_in">println</span>(s == s3.intern());</span><br><span class="line">        System.out.<span class="built_in">println</span>(s2.intern() == s3.intern());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<p>来分析一下结果：</p>
-<p>第一个输出 false，我们将引用 s、s2、s3 所指向 String 对象分别称为对象 1（字符串 “hello”）、对象 2 和对象 3，根据我上面所写的定义，s2.intern() 将返回字符串常量池中的对象 1，池中的对象 1 和堆中的对象 2 不是同一个对象，我们知道，符号 “==” 判断两个引用是否指向同一个对象，所以返回 false。  </p>
-<p>如果此时池中没有对象 1，即对象 2 包含的字符串 “hello” 是首次出现的。代码如下：</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String <span class="built_in">s2</span> = new String(<span class="string">"hello"</span>)<span class="comment">;</span></span><br><span class="line">System.out.println(<span class="built_in">s2</span> == <span class="built_in">s2</span>.intern())<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>intern() 方法，复制字符串对象到字符串常量池，返回字符串（引用）。native() 方法</p>
+<p>具体来说：JVM 会在字符串常量池中去比较是否有「等于（equals）」 此 String 对象的字符串，如果有，返回字符串引用，没有则将此 String 对象包含的字符串放入字符串常量池中，再返回引用</p>
+<p>String 被 final 修饰。</p>
+<ul>
+<li>final 修饰类，类不能被继承</li>
+<li>修饰方法，方法不能被重写</li>
+<li>修饰字段，字段不能指向其他对象</li>
+</ul>
+<p>字符串常量池和运行时常量池的关系</p>
+<ul>
+<li>没有关系，运行时常量池存放运行 Class 文件的常量池表。</li>
+</ul>
+<h2 id="String-常用方法"><a href="#String-常用方法" class="headerlink" title="String 常用方法"></a>String 常用方法</h2><p>转换为字符数组：toCharArray()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String string = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">char</span>[] array = string.toCharArray();</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> String(array);</span><br></pre></td></tr></table></figure>
 
-<p>s2.intern() 方法将会把对象 2 的引用（我理解为字符串 “hello”）放入字符串常量池中，并返回此引用，所以结果为 true。</p>
-<p>第二个和第三个输出 true。此时对象 1（字符串 “hello”）存在字符串常量池中，s2.intern() 和 s3.intern() 均返回对象 1，所以两个 true。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>根据 [《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》](<a href="https://depp.wang/Java-Books/%">https://depp.wang/Java-Books/%</a> E6% B7% B1% E5%85% A5% E7%90%86% E8% A7% A3Java% E8%99%9A% E6%8B%9F% E6%9C% BA% EF% BC%9AJVM% E9% AB%98% E7% BA% A7% E7%89% B9% E6%80% A7% E4% B8%8E% E6%9C%80% E4% BD% B3% E5% AE%9E% E8% B7% B5% EF% BC%88% E7% AC% AC2% E7%89%88% EF% BC%89.pdf) 书本上的理解，字符串常量池中的存放直接赋值的字符串（匿名对象）。待我自己安装后一套 JDK，实际操作后，再来看看理解是否有误。只有代码不会撒谎！任何观点或定义必须用代码才能解释清楚。</p>
-<h2 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h2><ul>
-<li>[《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》](<a href="https://depp.wang/Java-Books/%">https://depp.wang/Java-Books/%</a> E6% B7% B1% E5%85% A5% E7%90%86% E8% A7% A3Java% E8%99%9A% E6%8B%9F% E6%9C% BA% EF% BC%9AJVM% E9% AB%98% E7% BA% A7% E7%89% B9% E6%80% A7% E4% B8%8E% E6%9C%80% E4% BD% B3% E5% AE%9E% E8% B7% B5% EF% BC%88% E7% AC% AC2% E7%89%88% EF% BC%89.pdf)</li>
+<p>获取指定字符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String string = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">char</span> c = string.charAt(<span class="number">0</span>) <span class="comment">// 'h'</span></span><br></pre></td></tr></table></figure>
+
+<!--关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象化的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。-->
+
+<!--我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码：-->
+
+
+
+<!--我们可以看出 String 是 final 类型，不能被继承。它继承了 3 个接口，Serializable（可序列化的）、Comparable（可比较的）、CharSequence（字符序列）。-->
+
+<!--继承 Serializable 接口，可以被 JVM 序列化成文件。-->
+
+<!--继承 Comparable 接口，主要实现它的 compareTo(T o) 方法，此方法用来比较两个字符串的长度，返回一个 int 值。-->
+
+<!--继承 CharSequence 接口，实现的方法常用的有 length()、toString() 等。-->
+
+<!--Java 是单继承、多实现语言：即可以一个类只能被一个类继承，一个类可以实现多个接口。-->
+
+
+
+<!--JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。如果字符串已经在字符串常量池存在，就不再新建，而是将新的引用指向它，可以理解为多个引用共享一个字符串。-->
+
+
+
+<!--以上直接赋值，是我们常用的实例化方式。我们将采用直接赋值方式生成的字符串也称为**匿名对象**，当然，匿名对象也是对象。符号 "==" 判断两个引用是否指向同一个对象（字符串），通过输出结果为 true 可知，对于引用 s2 来说，没有重新新建一个字符串，而是将引用 s2 指向字符串 "hello"，-->
+
+
+<!--从 JVM 角度来看，JVM 在编译 Java 文件生成 Class 文件时，将字符串 "hello" 添加到字符串常量池中，在虚拟机栈（局部变量表）中给 s、s2 分配一块内存，均指向字符串 "hello"。如下图，**我们可以将引用理解为存放它 “指向” 的对象（字符串）的内存地址**，假设字符串 "hello" 的地址为 0x1001。-->
+
+<!--那如果隐式实例化如下，引用与字符串是什么关系呢？-->
+
+<!--因为 String 是 final 类型，即一个字符串（String 对象）创建后就不能被修改。所以 "world" 是一个新的字符串。引用 s 指向字符串 "world"，字符串常量池中的字符串 "hello" 由于没有了引用，会被回收。（本文是基于 jdk1.8 研究，字符串常量池已经移出永久代。字符串可以被回收）如下图所示：-->
+
+
+
+<!--从输出三个 false 可以看出，三个对象均不相同，我们知道使用 new 关键字创建的实例存放于 Java 堆中。假设堆中存放的两个 String 对象的内存地址分别为 0x1002 和 0x1003。如前面所讲，引用 s 所 “指向” 的字符串存放于字符串常量池。从 JVM 分析，有如下图示:-->
+
+
+
+<!--显式实例化常用于将字符数组转换为字符串，使用方式如下：-->
+
+
+
+<!--你是不是觉得，两种实例化方式产生的 “相等（equals())” 对象总感觉能联系起来，你的直觉是对的。它们之间的联系纽带在于 intern() 方法。intern() 方法是 String 类的方法，一个 Native 方法。一个存放在堆中的 String 对象调用此方法，JVM 会在字符串常量池中去比较是否有 “等于（==）” 此 String 对象的字符串，如果有，返回池中代表这个字符串的 String 对象，没有则将此 String 对象包含的字符串放入字符串常量池中，再返回此 String 对象的引用 (书中 78 页）。如果执行以下代码，会输出 false/true/true。-->
+
+
+
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ul>
+<li><a href="https://depp.wang/Java-Books/docs/深入理解Java虚拟机：JVM高级特性与最佳实践（第2版）.pdf">《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》</a></li>
 </ul>
 
       
@@ -718,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常量池"><span class="nav-number">1.</span> <span class="nav-text">字符串常量池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式实例化：直接赋值"><span class="nav-number">2.</span> <span class="nav-text">隐式实例化：直接赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显式实例化：使用构造函数"><span class="nav-number">3.</span> <span class="nav-text">显式实例化：使用构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#intern-方法"><span class="nav-number">4.</span> <span class="nav-text">intern() 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考书籍"><span class="nav-number">6.</span> <span class="nav-text">参考书籍</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#String-的两种实例化方式"><span class="nav-number">1.</span> <span class="nav-text">String 的两种实例化方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式实例化：直接赋值"><span class="nav-number">1.1.</span> <span class="nav-text">隐式实例化：直接赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显式实例化：使用构造函数"><span class="nav-number">1.2.</span> <span class="nav-text">显式实例化：使用构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intern-方法"><span class="nav-number">1.3.</span> <span class="nav-text">intern() 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-常用方法"><span class="nav-number">2.</span> <span class="nav-text">String 常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">3.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
