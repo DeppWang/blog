@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
+<meta name="description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte \uffff 65,535">
 <meta name="keywords" content="基本数据类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析 Java 基本数据类型与封装类">
 <meta property="og:url" content="https://depp.wang/2019/06/02/java-primitive-types-and-warpper/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
+<meta property="og:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte \uffff 65,535">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135146.png">
-<meta property="og:updated_time" content="2020-05-08T14:49:29.819Z">
+<meta property="og:updated_time" content="2020-05-09T15:27:56.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析 Java 基本数据类型与封装类">
-<meta name="twitter:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte 65,535 0 0~127">
+<meta name="twitter:description" content="Java 有两种有效的数据类型：  基本 (Primitive) 数据类型（也称为原始数据类型） 引用数据类型：封装类 (Warpper) 的引用  8 种基本数据类型：    基本类型 名称 封装类 字节数 最大值 最小值 缓存范围    byte 字节型 Byte 1byte 127 -128 -128~127   char 字符型 Character 2byte \uffff 65,535">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135146.png">
 
 
@@ -442,7 +442,7 @@
 <td>字符型</td>
 <td><a href="https://github.com/DeppWang/JDK/blob/master/jdk-12/src/java.base/java/lang/Character.java" target="_blank" rel="noopener">Character</a></td>
 <td>2byte</td>
-<td>65,535</td>
+<td><code>\uffff</code> 65,535</td>
 <td>0</td>
 <td>0~127</td>
 </tr>
@@ -504,21 +504,28 @@
 <a id="more"></a>
 
 <ul>
-<li><p>byte：1byte 为 8bits，常用于将 Object 转换为 byte[] 数组，用于字节流 ByteArrayInputStream 的输入</p>
-</li>
-<li><p>char：2 个字节，可表示 65,536 个字符。最初设计能保存所有的 <a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a> 字符，但现在 Unicode 包含的字符越来越多，已经收录超过 13 万个字符了（截止版本 <a href="http://www.unicode.org/versions/Unicode12.0.0/" target="_blank" rel="noopener">12.0.0</a>）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Character c = <span class="string">'颜'</span>;</span><br><span class="line">System.out.println(c.BYTES); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>byte：1byte 为 8bits，常用于将 Object 转换为 byte[] 数组，用于字节流 ByteArrayInputStream 的输</li>
 </ul>
-<p>  <a href="https://www.oracle.com/technical-resources/articles/javase/supplementary.html" target="_blank" rel="noopener">https://www.oracle.com/technical-resources/articles/javase/supplementary.html</a></p>
+<p>char：2 个字节，可表示 65,536 个字符。最初设计能保存所有的 <a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a> 字符，但现在 Unicode 包含的字符越来越多，已经收录超过 13 万个字符了（截止版本 <a href="http://www.unicode.org/versions/Unicode12.0.0/" target="_blank" rel="noopener">12.0.0</a>）。</p>
+<p><code>\uffff</code> 一个 16 进制可以表示 4 位。4 * 4 可表示 16 位，2 个字节。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Character c = <span class="string">'颜'</span>;</span><br><span class="line">System.out.println(c.BYTES); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">𦡦 U+26866, &amp;#157798;</span><br></pre></td></tr></table></figure>
+
+<p>超过 2 个字节的处理方式，<a href="https://www.oracle.com/technical-resources/articles/javase/supplementary.html" target="_blank" rel="noopener">https://www.oracle.com/technical-resources/articles/javase/supplementary.html</a></p>
 <ul>
 <li><p>boolean：<a href="https://docs.oracle.com/javase/specs/jvms/se12/html/" target="_blank" rel="noopener">Java 虚拟机规范</a> 没有明确规定 <a href="https://docs.oracle.com/javase/specs/jvms/se12/html/jvms-2.html#jvms-2.3.4" target="_blank" rel="noopener">boolean</a> 的字节数，可能为 1 个字节，也可能为 4 个字节。</p>
 <blockquote>
 <p>Java 编程语言中对布尔值进行操作的表达式被编译为使用 Java 虚拟机 int 数据类型的值。<br>在 Oracle 的 Java 虚拟机实现中，Java 编程语言中的布尔数组被编码为 Java 虚拟机字节数组，每个布尔元素使用 8 位。</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+
+
 </li>
+</ul>
+<ul>
 <li><p>float 对应 </p>
 </li>
 <li><p>Byte 和 Boolean 类型缓存了全部值，缓存值存放在数组中。</p>
