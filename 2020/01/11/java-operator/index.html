@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png">
-<meta property="og:updated_time" content="2020-05-11T15:09:54.899Z">
+<meta property="og:updated_time" content="2020-05-11T15:26:11.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 的几种运算符">
 <meta name="twitter:description" content="一、原码、反码、补码int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位 8 用二进制表示：           00000000000000000000000000001000 -8 用二进制表示：          10000000000000000000000000001000 8 + -8 =                            1000000000">
@@ -419,6 +419,8 @@
 <p>-8 的反码：                    11111111111111111111111111110111</p>
 <p>-8 的补码（反码加 1）：11111111111111111111111111111000</p>
 <p>8 的补码+-8 的补码 ：   100000000000000000000000000000000 = 0，溢出 1 位</p>
+<a id="more"></a>
+
 <p>为了方便运算，Java 整数二进制默认使用补码表示，正数和 0 的补码不变，负数的补码为反码加 1</p>
 <ul>
 <li>0 :             00000000000000000000000000000000 <code>32个0</code></li>
@@ -440,8 +442,6 @@
 <p>int 类型 4 字节，正数右移 31 位变为 0，右移 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</p>
 <h3 id="gt-gt-gt-无符号右移运算符"><a href="#gt-gt-gt-无符号右移运算符" class="headerlink" title="&gt;&gt;&gt; : 无符号右移运算符"></a><code>&gt;&gt;&gt;</code> : 无符号右移运算符</h3><p>丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐。</p>
 <p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
-<a id="more"></a>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intValue = <span class="number">733183670</span>;</span><br><span class="line">    <span class="keyword">int</span> intValue2 = -<span class="number">733183670</span>;</span><br><span class="line">    System.out.println(intValue + <span class="string">" 左移 1 位："</span> + (intValue &lt;&lt; <span class="number">1</span>)); <span class="comment">// 1466367340</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 左移 1 位："</span> + (intValue2 &lt;&lt; <span class="number">1</span>)); <span class="comment">// -1466367340</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 右移 8 位："</span> + (intValue &gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998 (733183670/256)</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 右移 8 位："</span> + (intValue2 &gt;&gt; <span class="number">8</span>)); <span class="comment">// -2863999</span></span><br><span class="line">    <span class="comment">// 无符号右移，将数据变小，且最终为正数</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 无符号右移 8 位："</span> + (intValue &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 无符号右移 8 位："</span> + (intValue2 &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 13913217</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>733183670 &lt;&lt; 1，左移 1 位：</p>

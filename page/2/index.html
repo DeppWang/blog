@@ -418,27 +418,6 @@
 <p>-8 的反码：                    11111111111111111111111111110111</p>
 <p>-8 的补码（反码加 1）：11111111111111111111111111111000</p>
 <p>8 的补码+-8 的补码 ：   100000000000000000000000000000000 = 0，溢出 1 位</p>
-<p>为了方便运算，Java 整数二进制默认使用补码表示，正数和 0 的补码不变，负数的补码为反码加 1</p>
-<ul>
-<li>0 :             00000000000000000000000000000000 <code>32个0</code></li>
-<li>2^32-1     01111111111111111111111111111111 <code>0+31个1</code></li>
-<li>-2^31 :     10000000000000000000000000000000 <code>1+31个0</code></li>
-<li>-2^31+1 : 10000000000000000000000000000001 <code>1+30个0+1</code></li>
-<li>-1 :            11111111111111111111111111111111 <code>32个1</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = Integer.toBinaryString(<span class="number">0x80000000</span>); <span class="comment">// 0x80000000: -2^31</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>1111 = 15 = <code>1*2^3 + 1*2^2 + 1*2^1 + 1*2^0</code>，0001 为 1，等于 2^0</li>
-</ul>
-<h2 id="二、移位运算符"><a href="#二、移位运算符" class="headerlink" title="二、移位运算符"></a>二、移位运算符</h2><h3 id="lt-lt-左移运算符"><a href="#lt-lt-左移运算符" class="headerlink" title="&lt;&lt;  : 左移运算符"></a><code>&lt;&lt;</code>  : 左移运算符</h3><p><code>num &lt;&lt; 1</code>，num 转换为二进制，长度固定，丢弃最左边指定位数，1 位，整体向左移动 1 位，后面补 0。</p>
-<p>以 int 类型为例，4 个字节，32 位，表示 -2^31 ~ 2^31 - 1，<code>10000000000000000000000000000000</code> ~ <code>01111111111111111111111111111111</code>，最左位是符号位，当小于 2^31 - 1 时，最左边都是 0，所以 0 代表为正数，1 代表为负数。</p>
-<p>当 num 为正数，且没有达到最大值时，即左边的 0 够多时，<code>num &lt;&lt; 1</code> 相当于二进制每一位转十进制时在原来基础上再乘以 2，相当于 num 乘以 2。达到最大值后，正数可能变负数。</p>
-<h3 id="gt-gt-右移运算符"><a href="#gt-gt-右移运算符" class="headerlink" title="&gt;&gt; : 右移运算符"></a><code>&gt;&gt;</code> : 右移运算符</h3><p><code>num &gt;&gt; 1</code>，num 转换为二进制，丢弃最右边指定位数，1 位，整体向右移动 1 位，后面补符号位，如果 num 为正数，补 0，如果为负数，补 1。</p>
-<p>当 num 为正数时，<code>num &gt;&gt; 1</code> 相当于 num 除以 2 取整（/）。</p>
-<p>int 类型 4 字节，正数右移 31 位变为 0，右移 32  位相当于不移位，当大于 32 位时，先求余，再移位。long 类型 64 位取余。</p>
-<h3 id="gt-gt-gt-无符号右移运算符"><a href="#gt-gt-gt-无符号右移运算符" class="headerlink" title="&gt;&gt;&gt; : 无符号右移运算符"></a><code>&gt;&gt;&gt;</code> : 无符号右移运算符</h3><p>丢弃最右边指定位数，整体右移指定位，忽略符号位，后面空位都以 0 补齐。</p>
-<p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/11/java-operator/#more" rel="contents">
@@ -1801,7 +1780,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2019/09/08/what-is-otosclerosis/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2019/09/08/how-to-lawsuit/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DeppWang">
@@ -1820,7 +1799,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/08/what-is-otosclerosis/" itemprop="url">什么是耳硬化症？</a></h2>
+                <a class="post-title-link" href="/2019/09/08/how-to-lawsuit/" itemprop="url">如何打官司？</a></h2>
         
 
         <div class="post-meta">
@@ -1873,8 +1852,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/08/what-is-otosclerosis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/08/what-is-otosclerosis/" itemprop="commentCount"></span>
+                <a href="/2019/09/08/how-to-lawsuit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/08/how-to-lawsuit/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1882,7 +1861,7 @@
 
           
           
-             <span id="/2019/09/08/what-is-otosclerosis/" class="leancloud_visitors" data-flag-title="什么是耳硬化症？">
+             <span id="/2019/09/08/how-to-lawsuit/" class="leancloud_visitors" data-flag-title="如何打官司？">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1911,16 +1890,10 @@
 
       
         
-          <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135611.png" alt="image"></p>
-<blockquote>
-<p>本文翻译于 <a href="https://www.webmd.com/sabrina-felson" target="_blank" rel="noopener">Sabrina Felson, MD</a> 的 <a href="https://www.webmd.com/cold-and-flu/ear-infection/otosclerosis-facts#1" target="_blank" rel="noopener">What Is Otosclerosis?</a></p>
-</blockquote>
-<p>耳硬化症是一种可能会导致听力丧失的罕见疾病。它是你 <a href="https://baike.baidu.com/item/%E4%B8%AD%E8%80%B3" target="_blank" rel="noopener">中耳</a> 里面一小块儿叫做镫骨的骨头发生硬化导致的。大多数时候，当镫骨周围的骨组织以不正常的方式生长时，也会导致这种疾病。</p>
-<!--你的镫骨需要振动才能让你听得很清楚。当它这一功能慢慢消失的时候，声音就不能完整从中耳传到内耳，这就会让你的慢慢听力下降。-->
-<p>你的镫骨（译注：具体来说是镫骨足板）需要振动才能让你听得很清楚。当它无法做到这一点时，声音就不能从你的中耳传到你的内耳。这就会让你的听力下降。</p>
+          <p>前些天经历了一场工伤维权，打了一场官司，总结了一些经验，现分享出来。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/08/what-is-otosclerosis/#more" rel="contents">
+            <a class="btn" href="/2019/09/08/how-to-lawsuit/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

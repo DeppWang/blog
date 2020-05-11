@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135655.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135658.png">
-<meta property="og:updated_time" content="2020-05-11T15:09:54.899Z">
+<meta property="og:updated_time" content="2020-05-11T15:26:11.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String 的两种实例化方式">
 <meta name="twitter:description" content="String 的两种实例化方式隐式实例化：直接赋值1234567public class Demo &amp;#123;    public static void main(String[] args) &amp;#123;        String s = &quot;hello&quot;;        String s2 = &quot;hello&quot;;        System.out.println(s == s2);">
@@ -416,6 +416,8 @@
 
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png" alt="image"></p>
 <p>String 一般使用直接赋值的方式创建字符串。此时字符串是一个<strong>匿名对象</strong>，存放于位于堆的字符串常量池（String Table）中。匿名对象也是对象，就如同对象创建后，对象本身不可以改变，字符串也有不可变的特性，每次都将创建新的字符串。因为不可变，所以字符串可以称为字符串常量。</p>
 <p>JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。</p>
@@ -572,8 +574,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/26/String-Parameter-passing/" rel="prev" title="String 的参数传递">
-                String 的参数传递 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/26/java-parameter-passing/" rel="prev" title="Java 的参数传递">
+                Java 的参数传递 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

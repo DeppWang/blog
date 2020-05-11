@@ -1459,7 +1459,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2017/07/26/String-Parameter-passing/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2017/07/26/java-parameter-passing/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DeppWang">
@@ -1478,7 +1478,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/26/String-Parameter-passing/" itemprop="url">String 的参数传递</a></h2>
+                <a class="post-title-link" href="/2017/07/26/java-parameter-passing/" itemprop="url">Java 的参数传递</a></h2>
         
 
         <div class="post-meta">
@@ -1531,8 +1531,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/26/String-Parameter-passing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/26/String-Parameter-passing/" itemprop="commentCount"></span>
+                <a href="/2017/07/26/java-parameter-passing/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/26/java-parameter-passing/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1540,7 +1540,7 @@
 
           
           
-             <span id="/2017/07/26/String-Parameter-passing/" class="leancloud_visitors" data-flag-title="String 的参数传递">
+             <span id="/2017/07/26/java-parameter-passing/" class="leancloud_visitors" data-flag-title="Java 的参数传递">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1569,18 +1569,10 @@
 
       
         
-          <h2 id="传值还是传址（引用）"><a href="#传值还是传址（引用）" class="headerlink" title="传值还是传址（引用）"></a>传值还是传址（引用）</h2><p>参数传递分为传递基本数据类型和传递引用数据类型，传递的目标在于把数据给你用，你修改了值，不会影响原来的值。引用存放对象的地址，所以传递引用也可以看做是传递值。如果通过引用修改对象，引用对象改变，所以会影响原来的值（对象）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(Test test, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        test.name = <span class="string">"test2"</span>;</span><br><span class="line">        i = <span class="number">2</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Demo demo = <span class="keyword">new</span> Demo();</span><br><span class="line">        Test test = <span class="keyword">new</span> Test();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        demo.fun(test, i);</span><br><span class="line">        System.out.print(test.name + <span class="string">" and "</span>);</span><br><span class="line">        System.out.print(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    String name = <span class="string">"test"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line">test2 <span class="keyword">and</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>网上看的 <a href="http://blog.sina.com.cn/s/blog_4b622a8e0100c1bo.html" target="_blank" rel="noopener">这篇博文</a> 把 Java 的参数传递已经讲得很清楚了。我用一道比较绕的题来理解一下 String 的参数传递。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String str = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">    <span class="keyword">char</span>[] ch = &#123;<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(String str, <span class="keyword">char</span> ch[])</span> </span>&#123;</span><br><span class="line">        str = <span class="string">"world"</span>;</span><br><span class="line">        ch[<span class="number">0</span>] = <span class="string">'d'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Demo demo = <span class="keyword">new</span> Demo();</span><br><span class="line">        demo.fun(demo.str, demo.ch);</span><br><span class="line">        System.out.print(demo.str + <span class="string">" and "</span>);</span><br><span class="line">        System.out.print(demo.ch);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这道题的结果输出 “hello and dbc”.</p>
+          <h2 id="一、传值和传址（引用）"><a href="#一、传值和传址（引用）" class="headerlink" title="一、传值和传址（引用）"></a>一、传值和传址（引用）</h2><p>参数传递分为传递基本数据类型（传值）和传递引用数据类型（传址）</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/07/26/String-Parameter-passing/#more" rel="contents">
+            <a class="btn" href="/2017/07/26/java-parameter-passing/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1736,97 +1728,16 @@
 
       
         
-          
-            <h2 id="String-的两种实例化方式"><a href="#String-的两种实例化方式" class="headerlink" title="String 的两种实例化方式"></a>String 的两种实例化方式</h2><h3 id="隐式实例化：直接赋值"><a href="#隐式实例化：直接赋值" class="headerlink" title="隐式实例化：直接赋值"></a>隐式实例化：直接赋值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(s == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="String-的两种实例化方式"><a href="#String-的两种实例化方式" class="headerlink" title="String 的两种实例化方式"></a>String 的两种实例化方式</h2><h3 id="隐式实例化：直接赋值"><a href="#隐式实例化：直接赋值" class="headerlink" title="隐式实例化：直接赋值"></a>隐式实例化：直接赋值</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(s == s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135652.png" alt="image"></p>
-<p>String 一般使用直接赋值的方式创建字符串。此时字符串是一个<strong>匿名对象</strong>，存放于位于堆的字符串常量池（String Table）中。匿名对象也是对象，就如同对象创建后，对象本身不可以改变，字符串也有不可变的特性，每次都将创建新的字符串。因为不可变，所以字符串可以称为字符串常量。</p>
-<p>JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        String s = <span class="string">"world"</span>;</span><br><span class="line">        System.out.println(s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">hello</span></span><br><span class="line"><span class="attribute">world</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135655.png" alt="image"></p>
-<h3 id="显式实例化：使用构造函数"><a href="#显式实例化：使用构造函数" class="headerlink" title="显式实例化：使用构造函数"></a>显式实例化：使用构造函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String s3 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.println(s==s2);</span><br><span class="line">        System.out.println(s==s3);</span><br><span class="line">        System.out.println(s2==s3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p>String 是一个类，可以使用构造函数创建字符串。</p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135658.png" alt="image"></p>
-<h3 id="intern-方法"><a href="#intern-方法" class="headerlink" title="intern() 方法"></a>intern() 方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"hello"</span>;</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String s3 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        System.out.println(s2 == s2.intern());</span><br><span class="line">        System.out.println(s == s3.intern());</span><br><span class="line">        System.out.println(s2.intern() == s3.intern());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>intern() 方法，复制字符串对象到字符串常量池，返回字符串（引用）。native() 方法</p>
-<p>具体来说：JVM 会在字符串常量池中去比较是否有「等于（equals）」 此 String 对象的字符串，如果有，返回字符串引用，没有则将此 String 对象包含的字符串放入字符串常量池中，再返回引用</p>
-<p>String 被 final 修饰。</p>
-<ul>
-<li>final 修饰类，类不能被继承</li>
-<li>修饰方法，方法不能被重写</li>
-<li>修饰字段，字段不能指向其他对象</li>
-</ul>
-<p>字符串常量池和运行时常量池的关系</p>
-<ul>
-<li>没有关系，运行时常量池存放运行 Class 文件的常量池表。</li>
-</ul>
-<h2 id="String-常用方法"><a href="#String-常用方法" class="headerlink" title="String 常用方法"></a>String 常用方法</h2><p>转换为字符数组：toCharArray()</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String string = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">char</span>[] array = string.toCharArray();</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> String(array);</span><br></pre></td></tr></table></figure>
-
-<p>获取指定字符</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String string = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">char</span> c = string.charAt(<span class="number">0</span>) <span class="comment">// 'h'</span></span><br></pre></td></tr></table></figure>
-
-<!--关于 String 的两种实例化方式，我们要先理解类、对象、实例的含义和它们之间的区别与联系。举个形象化的例子：类是抽象化的（如狗），对象是具体化的（如京巴狗），我们常说一个对象（京巴狗）是某个类（狗）的一个实例（instance），所以对象与实例的含义等价。-->
-
-<!--我们知道，字符串操作是计算机程序设计中最常见的行为。学习 String 的实例化是非常有必要的。以下是 String 的源码：-->
-
-
-
-<!--我们可以看出 String 是 final 类型，不能被继承。它继承了 3 个接口，Serializable（可序列化的）、Comparable（可比较的）、CharSequence（字符序列）。-->
-
-<!--继承 Serializable 接口，可以被 JVM 序列化成文件。-->
-
-<!--继承 Comparable 接口，主要实现它的 compareTo(T o) 方法，此方法用来比较两个字符串的长度，返回一个 int 值。-->
-
-<!--继承 CharSequence 接口，实现的方法常用的有 length()、toString() 等。-->
-
-<!--Java 是单继承、多实现语言：即可以一个类只能被一个类继承，一个类可以实现多个接口。-->
-
-
-
-<!--JVM 中设计字符串常量池是为了减少实例化重复的字符串，以节约新建时间和内存空间。如果字符串已经在字符串常量池存在，就不再新建，而是将新的引用指向它，可以理解为多个引用共享一个字符串。-->
-
-
-
-<!--以上直接赋值，是我们常用的实例化方式。我们将采用直接赋值方式生成的字符串也称为**匿名对象**，当然，匿名对象也是对象。符号 "==" 判断两个引用是否指向同一个对象（字符串），通过输出结果为 true 可知，对于引用 s2 来说，没有重新新建一个字符串，而是将引用 s2 指向字符串 "hello"，-->
-
-
-<!--从 JVM 角度来看，JVM 在编译 Java 文件生成 Class 文件时，将字符串 "hello" 添加到字符串常量池中，在虚拟机栈（局部变量表）中给 s、s2 分配一块内存，均指向字符串 "hello"。如下图，**我们可以将引用理解为存放它 “指向” 的对象（字符串）的内存地址**，假设字符串 "hello" 的地址为 0x1001。-->
-
-<!--那如果隐式实例化如下，引用与字符串是什么关系呢？-->
-
-<!--因为 String 是 final 类型，即一个字符串（String 对象）创建后就不能被修改。所以 "world" 是一个新的字符串。引用 s 指向字符串 "world"，字符串常量池中的字符串 "hello" 由于没有了引用，会被回收。（本文是基于 jdk1.8 研究，字符串常量池已经移出永久代。字符串可以被回收）如下图所示：-->
-
-
-
-<!--从输出三个 false 可以看出，三个对象均不相同，我们知道使用 new 关键字创建的实例存放于 Java 堆中。假设堆中存放的两个 String 对象的内存地址分别为 0x1002 和 0x1003。如前面所讲，引用 s 所 “指向” 的字符串存放于字符串常量池。从 JVM 分析，有如下图示:-->
-
-
-
-<!--显式实例化常用于将字符数组转换为字符串，使用方式如下：-->
-
-
-
-<!--你是不是觉得，两种实例化方式产生的 “相等（equals())” 对象总感觉能联系起来，你的直觉是对的。它们之间的联系纽带在于 intern() 方法。intern() 方法是 String 类的方法，一个 Native 方法。一个存放在堆中的 String 对象调用此方法，JVM 会在字符串常量池中去比较是否有 “等于（==）” 此 String 对象的字符串，如果有，返回池中代表这个字符串的 String 对象，没有则将此 String 对象包含的字符串放入字符串常量池中，再返回此 String 对象的引用 (书中 78 页）。如果执行以下代码，会输出 false/true/true。-->
-
-
-
-<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ul>
-<li><a href="https://depp.wang/Java-Books/docs/深入理解Java虚拟机：JVM高级特性与最佳实践（第2版）.pdf">《深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 2 版）》</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/24/string-initialization/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
