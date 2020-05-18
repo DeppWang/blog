@@ -91,22 +91,22 @@
 
 
 
-<meta name="description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
+<meta name="description" content="作者：DeppWang、原文地址 一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N">
 <meta name="keywords" content="YoudaoNote,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一键导出「有道云笔记」所有笔记">
 <meta property="og:url" content="https://depp.wang/2020/05/18/export-youdaonote-all-notes/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
+<meta property="og:description" content="作者：DeppWang、原文地址 一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150254.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150245.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150314.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-17-121251.png">
-<meta property="og:updated_time" content="2020-05-18T02:45:21.670Z">
+<meta property="og:updated_time" content="2020-05-18T03:52:10.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一键导出「有道云笔记」所有笔记">
-<meta name="twitter:description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
+<meta name="twitter:description" content="作者：DeppWang、原文地址 一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150254.png">
 
 
@@ -413,9 +413,11 @@
       
 
       
-        <h2 id="一、出发点"><a href="#一、出发点" class="headerlink" title="一、出发点"></a>一、出发点</h2><p>原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 <a href="http://note.youdao.com/open/developguide.html" target="_blank" rel="noopener">Open API</a> ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，开发到最后发现竟然没有 Markdown 文件的接口，醉了。遂放弃。</p>
+        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/05/18/export-youdaonote-all-notes/">原文地址</a></p>
+<h2 id="一、出发点"><a href="#一、出发点" class="headerlink" title="一、出发点"></a>一、出发点</h2><p>原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 <a href="http://note.youdao.com/open/developguide.html" target="_blank" rel="noopener">Open API</a> ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，开发到最后发现竟然没有 Markdown 文件的接口，醉了。遂放弃。</p>
 <p>现在我使用 Typora + <a href="https://www.dropbox.com/" target="_blank" rel="noopener">Dropbox</a> + <a href="https://www.mweb.im/" target="_blank" rel="noopener">MWeb</a> 实现同步笔记和手机查看编辑的功能，很香。</p>
 <p>最近给朋友推荐此方式，但发现有道云笔记最新的 Mac 客户端和网页端去除了导出所有笔记的功能！这是什么逻辑，怕用户跑了么。不怕，正好我原来写了导出所有笔记的脚本。</p>
+<p>我发现知乎也有很多人关注这个问题：<a href="https://www.zhihu.com/question/21113940" target="_blank" rel="noopener">https://www.zhihu.com/question/21113940</a></p>
 <a id="more"></a>
 
 <h2 id="二、导出所有笔记"><a href="#二、导出所有笔记" class="headerlink" title="二、导出所有笔记"></a>二、导出所有笔记</h2><blockquote>
@@ -495,6 +497,7 @@
 <li><a href="https://github.com/junzixiehui/youdaonote-github" target="_blank" rel="noopener">youdaonote-github</a></li>
 <li><a href="https://github.com/wesley2012/YoudaoNoteExport" target="_blank" rel="noopener">YoudaoNoteExport</a></li>
 </ul>
+<p>有道云笔记有个功能还是比较好的，Markdown 转 PDF 很耐看。使用方式，网页版左上角选择打印，另存为 PDF。</p>
 <!--[](https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150319.png)-->
 
 <!--[](https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150303.png)-->
