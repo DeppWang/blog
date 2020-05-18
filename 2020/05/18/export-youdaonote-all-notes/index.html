@@ -91,24 +91,23 @@
 
 
 
-<meta name="description" content="使用方式1. 安装 Python3 环境，安装教程可参考 廖大 Python 安装教程 2. clone 项目 12git clone git@github.com:DeppWang/youdaonote-pull.gitcd youdaonote-pull">
+<meta name="description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
 <meta name="keywords" content="YoudaoNote,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="两个同步有道云笔记到本地的 Python 脚本">
-<meta property="og:url" content="https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/index.html">
+<meta property="og:title" content="一键导出有道云笔记所有笔记">
+<meta property="og:url" content="https://depp.wang/2020/05/18/export-youdaonote-all-notes/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="使用方式1. 安装 Python3 环境，安装教程可参考 廖大 Python 安装教程 2. clone 项目 12git clone git@github.com:DeppWang/youdaonote-pull.gitcd youdaonote-pull">
+<meta property="og:description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135043.png">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135048.png">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135050.png">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135052.png">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135054.png">
-<meta property="og:updated_time" content="2020-05-11T15:26:11.848Z">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150254.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150245.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150314.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-17-121251.png">
+<meta property="og:updated_time" content="2020-05-18T02:19:37.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="两个同步有道云笔记到本地的 Python 脚本">
-<meta name="twitter:description" content="使用方式1. 安装 Python3 环境，安装教程可参考 廖大 Python 安装教程 2. clone 项目 12git clone git@github.com:DeppWang/youdaonote-pull.gitcd youdaonote-pull">
-<meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135043.png">
+<meta name="twitter:title" content="一键导出有道云笔记所有笔记">
+<meta name="twitter:description" content="一、出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，">
+<meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150254.png">
 
 
 
@@ -136,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/">
+  <link rel="canonical" href="https://depp.wang/2020/05/18/export-youdaonote-all-notes/">
 
 
 
 
 
-  <title>两个同步有道云笔记到本地的 Python 脚本 | DeppWang's Blog</title>
+  <title>一键导出有道云笔记所有笔记 | DeppWang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -307,7 +306,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/05/18/export-youdaonote-all-notes/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DeppWang">
@@ -324,7 +323,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">两个同步有道云笔记到本地的 Python 脚本</h2>
+          <h2 class="post-title" itemprop="name headline">一键导出有道云笔记所有笔记</h2>
         
 
         <div class="post-meta">
@@ -336,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T13:26:55+00:00">
-                2019-09-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-18T13:26:55+00:00">
+                2020-05-18
               </time>
             
 
@@ -377,8 +376,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/" itemprop="commentCount"></span>
+                <a href="/2020/05/18/export-youdaonote-all-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/18/export-youdaonote-all-notes/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,7 +385,7 @@
 
           
           
-             <span id="/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/" class="leancloud_visitors" data-flag-title="两个同步有道云笔记到本地的 Python 脚本">
+             <span id="/2020/05/18/export-youdaonote-all-notes/" class="leancloud_visitors" data-flag-title="一键导出有道云笔记所有笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -414,42 +413,87 @@
       
 
       
-        <h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p><strong>1. 安装 Python3 环境，安装教程可参考 <a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1016959856222624" target="_blank" rel="noopener">廖大 Python 安装教程</a></strong></p>
-<p><strong>2. clone 项目</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github<span class="selector-class">.com</span>:DeppWang/youdaonote-pull.git</span><br><span class="line">cd youdaonote-pull</span><br></pre></td></tr></table></figure>
+        <h2 id="一、出发点"><a href="#一、出发点" class="headerlink" title="一、出发点"></a>一、出发点</h2><p>原来一直是有道云笔记的忠实用户，后面接触到了所见即所得 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 <a href="http://note.youdao.com/open/developguide.html" target="_blank" rel="noopener">Open API</a> ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，开发到最后发现竟然没有 Markdown 文件的接口，醉了。遂放弃。</p>
+<p>现在我使用 Typora + <a href="https://www.dropbox.com/" target="_blank" rel="noopener">Dropbox</a> + <a href="https://www.mweb.im/" target="_blank" rel="noopener">MWeb</a> 实现同步笔记和手机查看编辑的功能，很香。</p>
+<p>最近给朋友推荐此方式，但发现有道云笔记最新的 Mac 客户端和网页端去除了导出所有笔记的功能！这是什么逻辑，怕用户跑了么。不怕，正好我原来写了导出所有笔记的脚本。</p>
+<h2 id="二、导出所有笔记"><a href="#二、导出所有笔记" class="headerlink" title="二、导出所有笔记"></a>二、导出所有笔记</h2><p>1、导出前的准备工作</p>
+<ul>
+<li>clone 项目，里面包含脚本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:DeppWang/youdaonote-pull.git</span><br><span class="line">cd youdaonote-pull</span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
-<p><strong>3. 模拟登陆的方式同步笔记到本地</strong></p>
+<ul>
+<li>macOS 使用 Homebrew 安装 Python3 环境，其他可参考 <a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1016959856222624" target="_blank" rel="noopener">廖大 Python 安装教程</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install python3 # Homebrew 安装 python3</span><br><span class="line">sudo easy_install pip3 # 安装 Python3 Package Installer</span><br><span class="line">pip3 install requests # 安装 requests 包，脚本依赖 requests</span><br></pre></td></tr></table></figure>
+
+<p>2、运行导出脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py &lt;username&gt; &lt;password&gt; [localDir] # macOS</span><br><span class="line">python pullAll.py &lt;username&gt; &lt;password&gt; [localDir] # Windows</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>username：<strong>必填</strong>，你的有道云笔记用户名</li>
+<li>password：<strong>必填</strong>，你的有道云笔记密码</li>
+<li>localDir：选填，本地存放导出文件的文件夹，不填则默认为当前文件夹</li>
+</ul>
+<p>3、示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py deppwang@163.com 1234567 ~/Dropbox/youdaonote</span><br></pre></td></tr></table></figure>
+
+<p>4、<strong>两个问题</strong></p>
+<ol>
+<li>如果你笔记的类型是「笔记」，那么导出的文件后缀是 .note，你使用 <a href="https://www.sublimetext.com/3" target="_blank" rel="noopener">sublime</a> 打开后会发现它是一个 xml 文件。此时只能在有道云笔记手动复制粘贴，如果你有大量这种类型文档，可以提个 issue，我尝试用代码看是否能解决。ps：强烈建议使用 Markdown。</li>
+<li>你上传的图片不能显示。因为 md 文件的图片地址没有使用绝对地址，而是使用相对地址，导致图片不能正确显示。</li>
+</ol>
+<p>5、pullAll-config</p>
+<p>上一次输入的相关参数会保存到 <code>pullAll-config</code> 中，如果参数不变，再次同步时，可以直接输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py # macOS</span><br><span class="line">python pullAll.py # Windows</span><br></pre></td></tr></table></figure>
+
+<p>ps：脚本单纯本地运行，不用担心你的账号密码泄露</p>
+<h2 id="三、导出指定文件夹"><a href="#三、导出指定文件夹" class="headerlink" title="三、导出指定文件夹"></a>三、导出指定文件夹</h2><p>如果你可不想导出所有文件夹，你可以导出指定文件夹</p>
+<p>1、运行脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py &lt;username&gt; &lt;password&gt; [[localDir] [ydnoteDir]] <span class="comment"># MacOS</span></span><br><span class="line">python pullAll.py &lt;username&gt; &lt;password&gt; [[localDir] [ydnoteDir]] <span class="comment"># Windows</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>username：必填，有道云笔记用户名</li>
-<li>password：必填，有道云笔记密码</li>
-<li>localDir：选填，本地文件夹名，不填则默认为当前文件夹</li>
-<li>ydnoteDir：选填，指定有道云笔记文件夹名，不填则默认同步所有笔记</li>
+<li>ydnoteDir：有道云笔记指定导出文件夹名</li>
 </ul>
-<p>上一次输入的相关参数会保存到 <code>pullAll-config</code> 中，如果参数不变，再次同步时，可以直接输入以下命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py <span class="comment"># MacOS</span></span><br><span class="line">python pullAll.py <span class="comment"># Windows</span></span><br></pre></td></tr></table></figure>
+<p>2、示例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 pullAll.py deppwang@163.com 1234567 ~/GitHub GitHub</span><br></pre></td></tr></table></figure>
 
-<p>注意：此种方式采用模拟登陆方式，频繁操作会被封 ip，此时可等待几分钟后重试，若一直被封。也可使用下面这种方式：</p>
-<p><strong>4. 分享文件夹，同步文件夹下的笔记到本地</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pull.py &lt;shareKey&gt; &lt;dirId&gt; [localDir] <span class="comment"># MacOS</span></span><br><span class="line">python pull.py &lt;shareKey&gt; &lt;dirId&gt; [localDir] <span class="comment"># Windows</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135043.png" alt="image"></p>
+<p>3、效果</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150254.png" alt=""></p>
+<p>pullAll.py 脚本采用模拟登陆方式，频繁操作会被封 ip，此时可等待几分钟后重试，若一直被封。也可使用下面这种方式</p>
+<h3 id="分享文件夹方式"><a href="#分享文件夹方式" class="headerlink" title="分享文件夹方式"></a>分享文件夹方式</h3><p>1、先在有道云笔记上分享文件夹</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150245.png" alt="image"></p>
 <ul>
-<li>shareKey：必填，当前文件夹的 shareKey（分享链接的 id 也是 shareKey）</li>
+<li>shareKey：必填，当前文件夹的 shareKey（分享链接（url）的 id 也是 shareKey）</li>
 <li>dirId：必填，分享文件夹的 id</li>
 <li>localDir：选填，本地文件夹名，不填则默认为当前文件夹</li>
 </ul>
-<p>同理，上一次输入的相关参数会保存到 <code>config</code> 中，如果参数不变，再次同步时，可以直接输入以下命令：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pull.py <span class="comment"># MacOS</span></span><br><span class="line">python pull.py <span class="comment"># Windows</span></span><br></pre></td></tr></table></figure>
+<p>2、运行脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pull.py &lt;shareKey&gt; &lt;dirId&gt; [localDir] # macOS</span><br><span class="line">python pull.py &lt;shareKey&gt; &lt;dirId&gt; [localDir] # Windows</span><br></pre></td></tr></table></figure>
 
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><strong>1. 模拟登陆方式同步笔记到本地</strong></p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135048.png" alt=""></p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135050.png" alt=""></p>
-<p><strong>2. 同步分享文件夹下的笔记到本地</strong></p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135052.png" alt=""></p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135054.png" alt=""></p>
+<ul>
+<li>localDir：选填，本地存放导出文件的文件夹，不填则默认为当前文件夹</li>
+</ul>
+<p>3、示例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 pull.py &lt;shareKey&gt; WEB0868de6ab385d5f607b29e8cb13ffecc ~/GitHub # macOS</span><br></pre></td></tr></table></figure>
+
+<p>4、效果</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150314.png" alt=""></p>
+<p>5、一个问题</p>
+<p>因为这个脚本我原来只导出 Markdown 格式笔记，经测试，导出的文件的 .note 文件不能正常打开，如果你有这方面的需求，请提 issue。</p>
+<p>6、config</p>
+<p>跟上面一样，上一次输入的相关参数会保存到 <code>config</code> 中，如果参数不变，再次同步时，可以直接输入以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 pull.py # macOS</span><br><span class="line">python pull.py # Windows</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-17-121251.png" alt="image-20200517201250649"></p>
+<h2 id="四、感谢（参考）"><a href="#四、感谢（参考）" class="headerlink" title="四、感谢（参考）"></a>四、感谢（参考）</h2><ul>
+<li><a href="https://github.com/junzixiehui/youdaonote-github" target="_blank" rel="noopener">youdaonote-github</a></li>
+<li><a href="https://github.com/wesley2012/YoudaoNoteExport" target="_blank" rel="noopener">YoudaoNoteExport</a></li>
+</ul>
+<!--[](https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150319.png)-->
+
+<!--[](https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-29-150303.png)-->
+
 
       
     </div>
@@ -483,7 +527,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/" title="两个同步有道云笔记到本地的 Python 脚本">https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/</a>
+      <a href="https://depp.wang/2020/05/18/export-youdaonote-all-notes/" title="一键导出有道云笔记所有笔记">https://depp.wang/2020/05/18/export-youdaonote-all-notes/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -514,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/" rel="next" title="一个可以导出「有道云笔记」指定文件夹的小工具">
-                <i class="fa fa-chevron-left"></i> 一个可以导出「有道云笔记」指定文件夹的小工具
+              <a href="/2020/05/06/static-block-method-and-constructor-method/" rel="next" title="从虚拟机角度理解，为什么静态块函数先于构造函数执行">
+                <i class="fa fa-chevron-left"></i> 从虚拟机角度理解，为什么静态块函数先于构造函数执行
               </a>
             
           </div>
@@ -523,10 +567,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/07/the-truth-about-carbs/" rel="prev" title="碳水化合物的真相">
-                碳水化合物的真相 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -706,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方式"><span class="nav-number">1.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">2.</span> <span class="nav-text">效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、出发点"><span class="nav-number">1.</span> <span class="nav-text">一、出发点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、导出所有笔记"><span class="nav-number">2.</span> <span class="nav-text">二、导出所有笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、导出指定文件夹"><span class="nav-number">3.</span> <span class="nav-text">三、导出指定文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分享文件夹方式"><span class="nav-number">3.1.</span> <span class="nav-text">分享文件夹方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、感谢（参考）"><span class="nav-number">4.</span> <span class="nav-text">四、感谢（参考）</span></a></li></ol></div>
             
 
           </div>
@@ -873,9 +913,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://depp.wang/2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/';
-          this.page.identifier = '2019/09/07/two-python-script-can-pull-youdaonote-to-localdir/';
-          this.page.title = '两个同步有道云笔记到本地的 Python 脚本';
+          this.page.url = 'https://depp.wang/2020/05/18/export-youdaonote-all-notes/';
+          this.page.identifier = '2020/05/18/export-youdaonote-all-notes/';
+          this.page.title = '一键导出有道云笔记所有笔记';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://deppwang-1.disqus.com/embed.js';
