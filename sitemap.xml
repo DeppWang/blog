@@ -2,6 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://depp.wang/tools/index.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/09/23/git-note/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/01/11/share-a-few-useful-websites/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/09/17/idea-ssr-wunderlist-wox/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/05/17/use-qiniu-jdk-batch-modify-videos-format/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/05/05/reflection-in-spring-and-reflection-principle/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/06/18/7-sort-algorithms/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2017/09/13/implementing-stack-with-arrays/</loc>
   </url>
   
@@ -106,6 +158,18 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/googlec27ee4754ff2e800.html</loc>
   </url>
   
@@ -119,10 +183,6 @@
   
   <url>
     <loc>https://depp.wang/tags/index.html</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/tools/index.html</loc>
   </url>
   
   <url>
@@ -211,66 +271,6 @@
   
   <url>
     <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/09/23/git-note/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/01/11/share-a-few-useful-websites/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/09/17/idea-ssr-wunderlist-wox/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/05/17/use-qiniu-jdk-batch-modify-videos-format/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/05/05/reflection-in-spring-and-reflection-principle/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/06/18/7-sort-algorithms/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
   </url>
   
 </urlset>
