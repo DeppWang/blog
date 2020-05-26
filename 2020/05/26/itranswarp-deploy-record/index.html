@@ -91,20 +91,20 @@
 
 
 
-<meta name="description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）端口入站 10.0.0.0/0 tcp:13306,1">
+<meta name="description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）入站端口 10.0.0.0/0 tcp:13306,1">
 <meta name="keywords" content="iTranswarp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iTranswarp 部署记录">
 <meta property="og:url" content="https://depp.wang/2020/05/26/itranswarp-deploy-record/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）端口入站 10.0.0.0/0 tcp:13306,1">
+<meta property="og:description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）入站端口 10.0.0.0/0 tcp:13306,1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-25-143614.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-26-084417.png">
-<meta property="og:updated_time" content="2020-05-26T10:56:01.481Z">
+<meta property="og:updated_time" content="2020-05-26T11:08:28.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iTranswarp 部署记录">
-<meta name="twitter:description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）端口入站 10.0.0.0/0 tcp:13306,1">
+<meta name="twitter:description" content="目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）入站端口 10.0.0.0/0 tcp:13306,1">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-25-143614.png">
 
 
@@ -411,15 +411,15 @@
       
 
       
-        <p>目的：使用 iTranswarp 学习 ngix、redis 部署</p>
+        <p>目的：使用 <a href="https://github.com/michaelliao/itranswarp" target="_blank" rel="noopener">iTranswarp</a> 学习 ngix、redis 部署</p>
 <h2 id="Google-Cloud-Platform-配置"><a href="#Google-Cloud-Platform-配置" class="headerlink" title="Google Cloud Platform 配置"></a>Google Cloud Platform 配置</h2><p>本地部署耗资源，服务器部署</p>
 <p>腾讯云 clone GitHub 项目太慢，使用 <a href="https://console.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Platform</a>，招商银行国际信用卡注册</p>
 <p>Compute Engine 新建「虚拟机实例」 CentOS7</p>
-<p>实例配置（防火墙）端口入站</p>
+<p>实例配置（防火墙）入站端口</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">0</span> tcp:<span class="number">13306</span>,<span class="number">16379</span>,<span class="number">443</span>,<span class="number">80</span></span><br></pre></td></tr></table></figure>
 
-<p>「元数据」添加 id_rsa_.pub，远程 SSH 公钥登录，原理请看<a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH 原理与运用（一）：远程登录</a></p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~<span class="regexp">/.ssh/id</span>_rsa_4 deppwxq<span class="variable">@ip</span></span><br></pre></td></tr></table></figure>
+<p>「元数据」添加公钥 id_rsa.pub，远程 SSH 公钥登录，原理请看<a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH 原理与运用（一）：远程登录</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~/.ssh/id_rsa(私钥) your_user_name@ip</span><br><span class="line"></span><br><span class="line">ssh -i ~/.ssh/id_rsa_4 deppwxq@35.201.176.108 # 示例</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
@@ -435,7 +435,7 @@
 <li>可能需要输入用户密码，用户密码为 Google 账号密码</li>
 <li>未生效时重启实例</li>
 </ul>
-<p>语言设置为英文</p>
+<p>语言设置为英文（未成功）</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">localectl</span></span><br></pre></td></tr></table></figure>
 
 <p>安装 <a href="https://docs.docker.com/install/linux/docker-ce/centos/" target="_blank" rel="noopener">Docker</a>，<a href="https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">Docker 教程</a></p>
@@ -454,7 +454,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install lynx</span><br><span class="line">lynx https://www.local.itranswarp.com/</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-25-143614.png" alt="image-20200525223613874"></p>
-<h2 id="使用自定义域名"><a href="#使用自定义域名" class="headerlink" title="使用自定义域名"></a>使用自定义域名</h2><h3 id="配置域名解析"><a href="#配置域名解析" class="headerlink" title="配置域名解析"></a>配置域名解析</h3><p>（万网）配置域名解析</p>
+<h2 id="使用自定义域名"><a href="#使用自定义域名" class="headerlink" title="使用自定义域名"></a>使用自定义域名</h2><h3 id="配置域名解析"><a href="#配置域名解析" class="headerlink" title="配置域名解析"></a>配置域名解析</h3><p>（例：万网）配置域名解析</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A www.xingquan.wang ip</span><br><span class="line">A static.xingquan.wang ip</span><br><span class="line">A source.xingquan.wang ip</span><br><span class="line">A @xingquan.wang ip</span><br></pre></td></tr></table></figure>
 
 <h3 id="申请数字证书"><a href="#申请数字证书" class="headerlink" title="申请数字证书"></a>申请数字证书</h3><p><a href="https://freessl.org/" target="_blank" rel="noopener">freessl</a> 申请免费数字证书</p>

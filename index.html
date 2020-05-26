@@ -411,15 +411,15 @@
 
       
         
-          <p>目的：使用 iTranswarp 学习 ngix、redis 部署</p>
+          <p>目的：使用 <a href="https://github.com/michaelliao/itranswarp" target="_blank" rel="noopener">iTranswarp</a> 学习 ngix、redis 部署</p>
 <h2 id="Google-Cloud-Platform-配置"><a href="#Google-Cloud-Platform-配置" class="headerlink" title="Google Cloud Platform 配置"></a>Google Cloud Platform 配置</h2><p>本地部署耗资源，服务器部署</p>
 <p>腾讯云 clone GitHub 项目太慢，使用 <a href="https://console.cloud.google.com/" target="_blank" rel="noopener">Google Cloud Platform</a>，招商银行国际信用卡注册</p>
 <p>Compute Engine 新建「虚拟机实例」 CentOS7</p>
-<p>实例配置（防火墙）端口入站</p>
+<p>实例配置（防火墙）入站端口</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">0</span> tcp:<span class="number">13306</span>,<span class="number">16379</span>,<span class="number">443</span>,<span class="number">80</span></span><br></pre></td></tr></table></figure>
 
-<p>「元数据」添加 id_rsa_.pub，远程 SSH 公钥登录，原理请看<a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH 原理与运用（一）：远程登录</a></p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~<span class="regexp">/.ssh/id</span>_rsa_4 deppwxq<span class="variable">@ip</span></span><br></pre></td></tr></table></figure>
+<p>「元数据」添加公钥 id_rsa.pub，远程 SSH 公钥登录，原理请看<a href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">SSH 原理与运用（一）：远程登录</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -i ~/.ssh/id_rsa(私钥) your_user_name@ip</span><br><span class="line"></span><br><span class="line">ssh -i ~/.ssh/id_rsa_4 deppwxq@35.201.176.108 # 示例</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/05/26/itranswarp-deploy-record/#more" rel="contents">
