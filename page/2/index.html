@@ -740,13 +740,12 @@
 
       
         
-          <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><p>int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位</p>
-<p>8 用二进制表示               00000000000000000000000000001000</p>
-<p>-8 如果只变符号位          10000000000000000000000000001000</p>
-<p>那么 8 + -8 =                    10000000000000000000000000010000 = -16</p>
-<p>-8 的反码                          11111111111111111111111111110111</p>
-<p>-8 的补码（反码加 1）    11111111111111111111111111111000</p>
-<p>8 的补码 + -8 的补码     100000000000000000000000000000000 = 0，溢出 1 位</p>
+          <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><p>1 用二进制表示                    00000001</p>
+<p>-1 如果只变符号位（原码）10000001</p>
+<p>那么 1 + -1 =                         10000010   =   -2</p>
+<p>-1 的反码                               11111110  除去符号位，整体翻转</p>
+<p>-1 的补码（<strong>反码加 1</strong>）         11111111 补码  也等于  0 - 1 的原（补）码</p>
+<p>1 的补码 + -1 的补码            10000000 = 0，溢出 1 位</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/11/java-operator/#more" rel="contents">
@@ -1139,7 +1138,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/30/mysql-note/" itemprop="url">MySQL 笔记</a></h2>
+                <a class="post-title-link" href="/2019/10/30/mysql-note/" itemprop="url">廖雪峰 MySQL 笔记</a></h2>
         
 
         <div class="post-meta">
@@ -1201,7 +1200,7 @@
 
           
           
-             <span id="/2019/10/30/mysql-note/" class="leancloud_visitors" data-flag-title="MySQL 笔记">
+             <span id="/2019/10/30/mysql-note/" class="leancloud_visitors" data-flag-title="廖雪峰 MySQL 笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1562,7 +1561,7 @@
       
         
           <h2 id="一、安装-Git"><a href="#一、安装-Git" class="headerlink" title="一、安装 Git"></a>一、安装 Git</h2><ul>
-<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a>.</li>
+<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git</a>.</li>
 <li>Mac：使用 <a href="http://mxcl.github.com/homebrew/" target="_blank" rel="noopener">Homebrew</a>, <a href="http://www.macports.org/" target="_blank" rel="noopener">MacPorts</a> 或者下载 <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="noopener">安装程序</a>。</li>
 <li>Linux (Ubuntu, Debian)：<code>sudo apt-get install git-core</code></li>
 <li>Linux (Fedora, Red Hat, CentOS)：<code>sudo yum install git-core</code></li>

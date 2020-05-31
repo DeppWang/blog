@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="一、原码、反码、补码int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位 8 用二进制表示               00000000000000000000000000001000 -8 如果只变符号位          10000000000000000000000000001000 那么 8 + -8 =                    100000000000">
+<meta name="description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
 <meta name="keywords" content="运算符 Operator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 的几种运算符">
 <meta property="og:url" content="https://depp.wang/2020/01/11/java-operator/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="一、原码、反码、补码int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位 8 用二进制表示               00000000000000000000000000001000 -8 如果只变符号位          10000000000000000000000000001000 那么 8 + -8 =                    100000000000">
+<meta property="og:description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png">
-<meta property="og:updated_time" content="2020-05-26T11:08:28.913Z">
+<meta property="og:updated_time" content="2020-05-31T14:42:25.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 的几种运算符">
-<meta name="twitter:description" content="一、原码、反码、补码int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位 8 用二进制表示               00000000000000000000000000001000 -8 如果只变符号位          10000000000000000000000000001000 那么 8 + -8 =                    100000000000">
+<meta name="twitter:description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 
 
@@ -412,15 +412,15 @@
       
 
       
-        <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><p>int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位</p>
-<p>8 用二进制表示               00000000000000000000000000001000</p>
-<p>-8 如果只变符号位          10000000000000000000000000001000</p>
-<p>那么 8 + -8 =                    10000000000000000000000000010000 = -16</p>
-<p>-8 的反码                          11111111111111111111111111110111</p>
-<p>-8 的补码（反码加 1）    11111111111111111111111111111000</p>
-<p>8 的补码 + -8 的补码     100000000000000000000000000000000 = 0，溢出 1 位</p>
+        <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><p>1 用二进制表示                    00000001</p>
+<p>-1 如果只变符号位（原码）10000001</p>
+<p>那么 1 + -1 =                         10000010   =   -2</p>
+<p>-1 的反码                               11111110  除去符号位，整体翻转</p>
+<p>-1 的补码（<strong>反码加 1</strong>）         11111111 补码  也等于  0 - 1 的原（补）码</p>
+<p>1 的补码 + -1 的补码            10000000 = 0，溢出 1 位</p>
 <a id="more"></a>
 
+<p>int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位</p>
 <p>为了方便运算，Java 整数二进制<strong>默认使用补码表示</strong>，<strong>正数和 0 的补码不变，负数的补码为反码加 1</strong></p>
 <ul>
 <li>0 :             00000000000000000000000000000000 <code>32个0</code></li>

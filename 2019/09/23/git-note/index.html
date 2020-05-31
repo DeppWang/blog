@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="一、安装 Git Windows：下载并安装 git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
+<meta name="description" content="一、安装 Git Windows：下载并安装 Git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 笔记：常用命令与原理">
 <meta property="og:url" content="https://depp.wang/2019/09/23/git-note/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="一、安装 Git Windows：下载并安装 git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
+<meta property="og:description" content="一、安装 Git Windows：下载并安装 Git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135148.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135204.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135209.png">
-<meta property="og:updated_time" content="2020-05-26T11:08:28.917Z">
+<meta property="og:updated_time" content="2020-05-31T14:42:25.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 笔记：常用命令与原理">
-<meta name="twitter:description" content="一、安装 Git Windows：下载并安装 git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
+<meta name="twitter:description" content="一、安装 Git Windows：下载并安装 Git. Mac：使用 Homebrew, MacPorts 或者下载 安装程序。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135148.png">
 
 
@@ -413,7 +413,7 @@
 
       
         <h2 id="一、安装-Git"><a href="#一、安装-Git" class="headerlink" title="一、安装 Git"></a>一、安装 Git</h2><ul>
-<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a>.</li>
+<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git</a>.</li>
 <li>Mac：使用 <a href="http://mxcl.github.com/homebrew/" target="_blank" rel="noopener">Homebrew</a>, <a href="http://www.macports.org/" target="_blank" rel="noopener">MacPorts</a> 或者下载 <a href="http://sourceforge.net/projects/git-osx-installer/" target="_blank" rel="noopener">安装程序</a>。</li>
 <li>Linux (Ubuntu, Debian)：<code>sudo apt-get install git-core</code></li>
 <li>Linux (Fedora, Red Hat, CentOS)：<code>sudo yum install git-core</code></li>
@@ -426,7 +426,7 @@
 
 <p>SSH Key 是一对，分为私钥和公钥，是非对称加密，当本地仓库需要往远程仓库 push 时，私钥加密传输内容，而只有对应的公钥才能解密，所以远程仓库需要添加公钥。</p>
 <p> <strong>一台电脑要连多个远程仓库，可以就用一对 SSH Key。</strong>如果在一台电脑上，要为不同远程仓库对应不同私钥时，需要新增 <code>config</code> 文件，为不同远程仓库指定使用不同的私钥。</p>
-<figure class="highlight plain"><figcaption><span>config</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 第一个账号，默认使用的账号</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line"># 第二个账号</span><br><span class="line">Host second.github.com # second 为前缀名，可以任意设置</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_2</span><br><span class="line"></span><br><span class="line"># 第三个账号</span><br><span class="line">Host e.coding.net</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 第一个账号，默认使用的账号</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line"># 第二个账号</span><br><span class="line">Host second.github.com # second 为前缀名，可以任意设置</span><br><span class="line">HostName github.com</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_2</span><br><span class="line"></span><br><span class="line"># 第三个账号</span><br><span class="line">Host e.coding.net</span><br><span class="line">User git</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_3</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>原理分析：本地 SSH 客户端（Git）使用类似 <code>git@github.com:deppwang/deppwang.github.io.git</code> 地址来连接远程仓库（可通过 <code>git remote</code> 命令查看）。<code>@</code> 后面跟的是 <code>Host</code>，<code>@github.com</code> 代表使用 id_rsa 这个私钥</li>
@@ -465,6 +465,9 @@
 <p>常规</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">git add . /git add -A  /git add --all <span class="comment"># 添加所有的文件</span></span><br><span class="line">git add -u <span class="comment"># update，add 所有 modified 文件</span></span><br><span class="line"></span><br><span class="line">git st <span class="comment"># 查看状态</span></span><br><span class="line"></span><br><span class="line">git ci -m &lt;message&gt; <span class="comment">## Commit</span></span><br><span class="line"></span><br><span class="line">git ci --amend <span class="comment"># 修改最后一次 commit，已提交到远程的 commit 不要修改</span></span><br><span class="line"></span><br><span class="line">git merge dev <span class="comment"># 将 dev 分支合并到当前分支（默认 Fast-forward 模式，看不出来合并历史）</span></span><br><span class="line">git merge --no-ff -m <span class="string">"merge with no-ff"</span> dev <span class="comment"># 禁用 Fast-forward，可以看出合并历史</span></span><br><span class="line"></span><br><span class="line">git diff &lt;file&gt; <span class="comment"># 查看修改的内容 (工作区和暂存区的不同，工作区和原来的不同)</span></span><br><span class="line">git diff HEAD -- &lt;file&gt; <span class="comment"># 查看工作区与版本库最新版本（分支的最新 commit）的不同</span></span><br><span class="line">git diff --cached &lt;file&gt; <span class="comment"># 查看暂存区和分支的不同</span></span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> -p &lt;file&gt; <span class="comment"># 查看当前文件 commit 记录</span></span><br><span class="line">git blame &lt;file&gt; <span class="comment"># 查看当前文件被谁修改过</span></span><br><span class="line"></span><br><span class="line">Ctrl + C <span class="comment"># 命令错误时，退出编辑页面</span></span><br><span class="line">Ctrl + Z <span class="comment"># 退出</span></span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>rebase 让分支变为一根直线，更加清晰</li>
+</ul>
 <p>分支</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git br dev <span class="comment"># 创建分支</span></span><br><span class="line">git br -m oldName newName <span class="comment"># 修改分支名字</span></span><br><span class="line">git br <span class="comment"># 查看当前分支</span></span><br><span class="line">git br -v <span class="comment"># 查看本地分支详情</span></span><br><span class="line">git br -a <span class="comment"># 查看所有分支</span></span><br><span class="line">git br -av <span class="comment"># 查看所有分支详情</span></span><br><span class="line">git br -d dev <span class="comment"># 删除 dev 分支，只是删除了 dev 指针。</span></span><br><span class="line">git br -D &lt;branch-name&gt; <span class="comment"># 强行删除没有合并的分支</span></span><br><span class="line">git br | grep -v <span class="string">"dev"</span> | xargs git branch -D <span class="comment"># 删除除 dev 外的所有分支</span></span><br><span class="line">git co -b dev <span class="comment"># 创建并切换分支</span></span><br></pre></td></tr></table></figure>
 
