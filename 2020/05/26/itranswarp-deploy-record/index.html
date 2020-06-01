@@ -101,7 +101,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-25-143614.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-26-084417.png">
-<meta property="og:updated_time" content="2020-06-01T08:49:03.915Z">
+<meta property="og:updated_time" content="2020-06-01T08:49:38.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iTranswarp 部署记录">
 <meta name="twitter:description" content="作者：DeppWang、原文地址 目的：使用 iTranswarp 学习 ngix、redis 部署 Google Cloud Platform 配置本地部署耗资源，服务器部署 腾讯云 clone GitHub 项目太慢，使用 Google Cloud Platform，招商银行国际信用卡注册 Compute Engine 新建「虚拟机实例」 CentOS7 实例配置（防火墙）入站端口 10.0.">
@@ -462,7 +462,7 @@
 
 <p>远程连接 Mysql 使用 Navicat Premium</p>
 <p>进入容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker container exec -it [containerId] /bin/bash # 执行容器实例 bash</span><br><span class="line">or</span><br><span class="line">docker exec -it [containerId] /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker container exec -it [containerId] /bin/bash # 启动容器实例 bash</span><br><span class="line">or</span><br><span class="line">docker exec -it [containerId] /bin/bash</span><br></pre></td></tr></table></figure>
 
 <h2 id="使用自定义域名"><a href="#使用自定义域名" class="headerlink" title="使用自定义域名"></a>使用自定义域名</h2><h3 id="配置域名解析"><a href="#配置域名解析" class="headerlink" title="配置域名解析"></a>配置域名解析</h3><p>（例：万网）配置域名解析</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A www.xingquan.wang ip</span><br><span class="line">A static.xingquan.wang ip</span><br><span class="line">A source.xingquan.wang ip</span><br><span class="line">A @xingquan.wang ip</span><br></pre></td></tr></table></figure>
