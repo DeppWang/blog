@@ -100,7 +100,7 @@
 <meta property="og:description" content="作者：DeppWang、原文地址 出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-09-130325.jpg">
-<meta property="og:updated_time" content="2020-06-11T11:13:52.204Z">
+<meta property="og:updated_time" content="2020-06-11T11:16:26.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个一键导出&#x2F;备份「有道云笔记」所有笔记的脚本">
 <meta name="twitter:description" content="作者：DeppWang、原文地址 出发点原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 Typora，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 Open API ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年">
@@ -414,7 +414,9 @@
 <h2 id="出发点"><a href="#出发点" class="headerlink" title="出发点"></a>出发点</h2><p>原来一直是有道云笔记的忠实用户，后面接触到了所见即所得的 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>，有点用不惯有道云笔记了，想着有什么法子能电脑本地文件和有道云笔记同步，这样电脑使用 Typora，手机使用有道云笔记。发现有道云笔记有 <a href="http://note.youdao.com/open/developguide.html" target="_blank" rel="noopener">Open API</a> ，打算利用提供的 API，写两个脚本，一个 pull 所有文件到本地，一个 push 本地文件到云笔记。但 API 太难用了，N 多年没更新了，问客服也没更新的意思，开发到最后发现竟然没有 Markdown 文件的接口，醉了。遂放弃。</p>
 <p>现在我使用 Typora + <a href="https://www.dropbox.com/" target="_blank" rel="noopener">Dropbox</a> + <a href="https://www.mweb.im/" target="_blank" rel="noopener">MWeb</a> 实现同步笔记和手机查看编辑的功能，很香。</p>
 <p>最近给朋友推荐此方式，但发现有道云笔记最新的 Mac 客户端和网页端去除了导出所有笔记的功能！这是什么逻辑，怕用户跑了么。所以在原来 pull 脚本的基础上修改得到此脚本。</p>
-<p>脚本地址：<a href="https://github.com/DeppWang/youdaonote-pull.git" target="_blank" rel="noopener">https://github.com/DeppWang/youdaonote-pull.git</a></p>
+<p>脚本地址：<a href="https://github.com/DeppWang/youdaonote-pull" target="_blank" rel="noopener">https://github.com/DeppWang/youdaonote-pull</a></p>
+<a id="more"></a>
+
 <h2 id="使用提示"><a href="#使用提示" class="headerlink" title="使用提示"></a>使用提示</h2><ol>
 <li>脚本单纯本地运行，不用担心你的账号密码泄露。但注意，如果你自己修改脚本，注意不要将 config.json 文件 push 到 GitHub</li>
 <li>.note 格式笔记下载后为 xml 格式，<strong>默认将 .note 格式笔记转换为 Markdown 格式</strong>，table 等未转换，需要手动复制</li>
