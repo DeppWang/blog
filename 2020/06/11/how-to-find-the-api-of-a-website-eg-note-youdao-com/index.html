@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="开发了个 《一键导出、备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
+<meta name="description" content="开发了个 《一键导出 / 备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
 <meta name="keywords" content="有道云笔记,接口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何查找某个网站的（如：有道云笔记）的接口">
 <meta property="og:url" content="https://depp.wang/2020/06/11/how-to-find-the-api-of-a-website-eg-note-youdao-com/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="开发了个 《一键导出、备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
+<meta property="og:description" content="开发了个 《一键导出 / 备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-150019.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-062936.png">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-102800.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-113424.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-060620.png">
-<meta property="og:updated_time" content="2020-06-11T11:16:26.768Z">
+<meta property="og:updated_time" content="2020-06-11T13:09:39.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何查找某个网站的（如：有道云笔记）的接口">
-<meta name="twitter:description" content="开发了个 《一键导出、备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
+<meta name="twitter:description" content="开发了个 《一键导出 / 备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-150019.png">
 
 
@@ -188,7 +188,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">这是副标题</h1>
+        <p class="site-subtitle">这是副标题</p>
       
   </div>
 
@@ -329,7 +329,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">如何查找某个网站的（如：有道云笔记）的接口</h2>
+          <h1 class="post-title" itemprop="name headline">如何查找某个网站的（如：有道云笔记）的接口</h1>
         
 
         <div class="post-meta">
@@ -419,7 +419,7 @@
       
 
       
-        <p>开发了个 《一键导出、备份「有道云笔记」所有笔记》的<a href="https://github.com/DeppWang/youdaonote-pull" target="_blank" rel="noopener">脚本</a>。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。</p>
+        <p>开发了个 《一键导出 / 备份「有道云笔记」所有笔记》的<a href="https://github.com/DeppWang/youdaonote-pull" target="_blank" rel="noopener">脚本</a>。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。</p>
 <a id="more"></a>
 
 <h2 id="一、登录"><a href="#一、登录" class="headerlink" title="一、登录"></a>一、登录</h2><p>登录的目的是获取 Cookie</p>
@@ -446,7 +446,7 @@
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">https:</span>/<span class="regexp">/note.youdao.com/web</span><span class="regexp">/#/file</span><span class="regexp">/F83DF1ADA69344D194C7CE861D09B1A1/note</span><span class="regexp">/WEB4aa8bf8074d61befea1dd20f5593f01c/</span></span><br></pre></td></tr></table></figure>
 
 <p>「我的文件夹」 是根目录，它的 id 是 <code>F83DF1ADA69344D194C7CE861D09B1A1</code>，下面称它为 root_id。</p>
-<p>我们推测，有道云笔记是设计是根据文件夹 id，获取文件夹下的所有文件信息（打开文件夹，可看到文件下的文件夹的文件）。所以我们需要先得到 root_id。当登录成功后，跳转到首页时，应该有接口能得到 root_id。</p>
+<p>我们推测，有道云笔记是设计是根据文件夹 id，获取文件夹下的所有文件信息（打开文件夹，可看到文件夹下的文件）。所以我们需要先得到 root_id。当登录成功后，跳转到首页时，应该有接口能得到 root_id。</p>
 <p>测试发现下面接口返回值包含 root_id：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>note.youdao.com<span class="regexp">/yws/</span>api<span class="regexp">/personal/</span>file?method=getByPath&amp;keyfrom=web&amp;cstk=<span class="number">01</span>PvSwwu</span><br></pre></td></tr></table></figure>
 
@@ -490,9 +490,11 @@
 <p>跳转登录页后，要执行下面 3 个接口</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">self.get(<span class="string">'https://note.youdao.com/login/acc/pe/getsess?product=YNOTE&amp;_='</span> + timestamp())</span><br><span class="line">self.get(<span class="string">'https://note.youdao.com/auth/cq.json?app=web&amp;_='</span> + timestamp())</span><br><span class="line">self.get(<span class="string">'https://note.youdao.com/auth/urs/login.json?app=web&amp;_='</span> + timestamp())</span><br></pre></td></tr></table></figure>
 
-<h2 id="四、结语"><a href="#四、结语" class="headerlink" title="四、结语"></a>四、结语</h2><p>根据找到的接口，模拟用户操作也有不少应用。除了开发像导出文件的脚本，可以开发一切你想自动化执行的操作。比方 cnblogs、juelin 发文章等。比较麻烦的就是像上面这样找接口了，可以先看看有没有人有过总结。</p>
-<p>也可以利用一些浏览器的 API，如 <a href="https://github.com/puppeteer/puppeteer" target="_blank" rel="noopener">Puppeteer</a>，它提供一个真实的浏览器环境，可以模拟用户操作，不需要找到所有接口，还是需要设置网页 url，以及按钮属性。它属于重量级操作。可以看看 <a href="https://github.com/crawlab-team/artipub" target="_blank" rel="noopener">ArtiPub</a> 如何使用 Puppeteer。这个方式有点不好的地方就是平台可能改前端属性，需要注意更新。</p>
-<p>有什么不明白的看看<a href="http://github.com/DeppWang/youdaonote-pull/blob/master/pull.py" target="_blank" rel="noopener">源码</a>就知道了。</p>
+<h2 id="四、结语"><a href="#四、结语" class="headerlink" title="四、结语"></a>四、结语</h2><p>根据找到的接口，模拟用户操作也有不少应用场景。除了开发像导出文件的脚本，可以开发一切你想自动化执行的操作。比方 cnblogs、juejin 发文章等。比较麻烦的就是像上面这样找接口了，可以先看看有没有人有过总结。</p>
+<p>也可以利用一些浏览器的 API，如 <a href="https://github.com/puppeteer/puppeteer" target="_blank" rel="noopener">Puppeteer</a>，它提供一个真实的浏览器环境，可以真正模拟用户操作，不需要找到所有接口，只需要设置网页 url，以及设置需要操作的「按钮」属性。因为提供浏览器环境，它属于重量级操作。可以看看 <a href="https://github.com/crawlab-team/artipub" target="_blank" rel="noopener">ArtiPub</a> 如何使用 Puppeteer。这种方式有点不好的地方就是平台可能改前端属性，需要注意更新。</p>
+<!--有什么不明白的看看[源码](http://github.com/DeppWang/youdaonote-pull/blob/master/pull.py)就知道了。-->
+
+<p>全文完。</p>
 <!--cnblogs.com 发布文章是用 i.cnblogs.com/api/posts 接口。所以 ArtiPub 没有接口？-->
 
 
@@ -643,7 +645,7 @@
           <p class="site-author-name" itemprop="name">DeppWang</p>
            
               <p class="site-description motion-element" itemprop="description">每个人都需要有自己的哈姆雷特</p>
-           
+          
         </div>
         <nav class="site-state motion-element">
 
@@ -726,6 +728,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="https://coolshell.cn" title="CoolShell" target="_blank">CoolShell</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://1byte.io" title="1byte" target="_blank">1byte</a>
                 </li>
               
             </ul>
