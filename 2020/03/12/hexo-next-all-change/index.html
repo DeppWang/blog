@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
 <meta property="og:description" content="先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： 1234.category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新增">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-14T10:48:39.697Z">
+<meta property="og:updated_time" content="2020-06-14T10:58:11.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + NexT 博客优化（修改）记录">
 <meta name="twitter:description" content="先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： 1234.category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新增">
@@ -430,13 +430,13 @@
 
 <ul>
 <li><code>_custom\custom.styl</code> 为全局自定义样式</li>
-<li>本身设置在 <code>themes\next\source\css\_variables\base.styl</code> 中</li>
+<li>如果未生效，在 <code>themes\next\source\css\_variables\base.styl</code> 中修改</li>
 </ul>
 <h3 id="更改内容区域的宽度"><a href="#更改内容区域的宽度" class="headerlink" title="更改内容区域的宽度"></a>更改内容区域的宽度</h3><p><code>themes\next\source\css\_custom\custom.styl</code> 中新增：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改成你期望的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop = <span class="number">800px</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当视窗超过 1600px 后的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop-large = <span class="number">1000px</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>本身设置在 <code>themes\next\source\css\_variables\base.styl</code> 中</li>
+<li>如果未生效，在 <code>themes\next\source\css\_variables\base.styl</code> 中修改</li>
 </ul>
 <h3 id="更改-h1-h2-字体大小"><a href="#更改-h1-h2-字体大小" class="headerlink" title="更改 h1 h2 字体大小"></a>更改 h1 h2 字体大小</h3><p>在 <code>themes\next\source\css\_custom\custom.styl</code> 中新增：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Custom styles.</span></span><br><span class="line"><span class="comment">// 新增</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2em</span>; <span class="comment">// 2em = 32px</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5em</span>; <span class="comment">// 1.5em = 24px, 1em = 16px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
