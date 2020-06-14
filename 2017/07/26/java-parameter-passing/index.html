@@ -101,7 +101,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135821.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135824.png">
-<meta property="og:updated_time" content="2020-06-14T10:01:07.285Z">
+<meta property="og:updated_time" content="2020-06-14T10:21:56.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 的参数传递">
 <meta name="twitter:description" content="一、传值，还是传址（引用）Java 的参数传递分为传递基本数据类型（传值）和传递引用数据类型（传址）">
@@ -418,7 +418,7 @@
 
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line">test2 <span class="keyword">and</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p>对于基本数据类型，当我们修改传递的值，原来的值不会改变，所以传递的是值的拷贝。值得拷贝在一块儿新的内存中。</p>
+<p>对于基本数据类型，当我们修改传递的值，原来的值不会改变，所以传递的是值的拷贝。值的拷贝在一块儿新的内存中。</p>
 <p>对于引用数据类型，当我们通过传递的引用修改对象的属性，原引用指向的对象也将改变，所以没有将对象的数据拷贝传递，传递的是本身的引用变量，即对象的地址。</p>
 <p>正常来说，传值更符合正常思路。我把值传给你，你使用它，不会影响我的值。</p>
 <p>因为对象的特点，可以将多个值存放到对象中传递，减少参数的大小。</p>
