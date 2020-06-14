@@ -91,20 +91,20 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1.1、创建 Bean 实例时的反射1234// 通过类加载器，根据 class 路径，得到其类对象Class&amp;lt;?&amp;gt; clz = Thre">
+<meta name="description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。">
 <meta name="keywords" content="反射,Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 中的反射与反射的原理">
 <meta property="og:url" content="https://depp.wang/2020/05/05/reflection-in-spring-and-reflection-principle/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1.1、创建 Bean 实例时的反射1234// 通过类加载器，根据 class 路径，得到其类对象Class&amp;lt;?&amp;gt; clz = Thre">
+<meta property="og:description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-05-123303.png">
-<meta property="og:updated_time" content="2020-06-11T13:09:39.062Z">
+<meta property="og:updated_time" content="2020-06-14T09:47:50.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 中的反射与反射的原理">
-<meta name="twitter:description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。   一、Spring 中的反射1.1、创建 Bean 实例时的反射1234// 通过类加载器，根据 class 路径，得到其类对象Class&amp;lt;?&amp;gt; clz = Thre">
+<meta name="twitter:description" content="作者：DeppWang、原文地址  在造轮子：实现一个简易的 Spring IoC 容器一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-29-154427.jpg">
 
 
@@ -416,11 +416,11 @@
 <p>在<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/">造轮子：实现一个简易的 Spring IoC 容器</a>一文中提到 Spring 在创建 Bean 实例和依赖注入时使用了反射，本文来具体分析一下 Spring 中的反射以及反射的原理。</p>
 <!--[造轮子：实现一个简易的 Spring IoC 容器](https://mp.weixin.qq.com/s/0kfeHOK6FjbGQ0PwzWe58A)-->
 
+<a id="more"></a>
+
 <h2 id="一、Spring-中的反射"><a href="#一、Spring-中的反射" class="headerlink" title="一、Spring 中的反射"></a>一、Spring 中的反射</h2><h3 id="1-1、创建-Bean-实例时的反射"><a href="#1-1、创建-Bean-实例时的反射" class="headerlink" title="1.1、创建 Bean 实例时的反射"></a>1.1、创建 Bean 实例时的反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过类加载器，根据 class 路径，得到其类对象</span></span><br><span class="line">Class&lt;?&gt; clz = Thread.currentThread().getContextClassLoader().loadClass(<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>);</span><br><span class="line"><span class="comment">// 根据类对象生成 Bean 实例</span></span><br><span class="line"><span class="keyword">return</span> clz.newInstance();</span><br></pre></td></tr></table></figure>
 
 <p>反射体现在 <code>clz.newInstance();</code> 中，核心代码可分为两部分：</p>
-<a id="more"></a>
-
 <p>1、<strong>利用反射</strong>获取当前类 PetStoreService 的所有构造方法信息（Constructor 对象）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java.lang.Class.java</span></span><br><span class="line"><span class="comment">// 调用 native 方法，此时 publicOnly 为 false</span></span><br><span class="line">res = getDeclaredConstructors0(publicOnly);</span><br><span class="line"><span class="comment">// native 方法，从 jvm 中的 class 文件中获取构造方法信息，再转换为 Constructor 对象</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">native</span> Constructor&lt;T&gt;[] getDeclaredConstructors0(<span class="keyword">boolean</span> publicOnly);</span><br></pre></td></tr></table></figure>
 
@@ -772,7 +772,7 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰个人网站" target="_blank">廖雪峰个人网站</a>
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的官方网站" target="_blank">廖雪峰的官方网站</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
