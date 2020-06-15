@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
   </url>
   
@@ -14,11 +22,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/09/23/git-note/</loc>
+    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
+    <loc>https://depp.wang/2019/09/23/git-note/</loc>
   </url>
   
   <url>
@@ -74,15 +82,15 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/07/21/Object-Message/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/10/01/execution-of-finally-code-block/</loc>
+    <loc>https://depp.wang/2017/07/21/object-funciton/</loc>
   </url>
   
   <url>
     <loc>https://depp.wang/2017/07/15/String-ByteCode/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/10/01/execution-of-finally-code-block/</loc>
   </url>
   
   <url>
@@ -106,19 +114,19 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/12/17/install-mysql5.6/</loc>
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2019/09/07/the-truth-about-carbs/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/05/18/export-youdaonote-all-notes/</loc>
+    <loc>https://depp.wang/2017/12/17/install-mysql5.6/</loc>
   </url>
   
   <url>
     <loc>https://depp.wang/2017/07/04/two-logical-question-about-hat/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/05/18/export-youdaonote-all-notes/</loc>
   </url>
   
   <url>
@@ -182,11 +190,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/01/01/two-encoded-style-of-post-request/</loc>
+    <loc>https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/</loc>
+    <loc>https://depp.wang/2019/01/01/two-encoded-style-of-post-request/</loc>
   </url>
   
   <url>
@@ -199,6 +207,10 @@
   
   <url>
     <loc>https://depp.wang/2017/06/14/hexo-statistical/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/</loc>
   </url>
   
   <url>
@@ -218,7 +230,7 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/</loc>
+    <loc>https://depp.wang/2018/01/07/js-how-to-use-the-Date-object-addition-and-subtraction-dates/</loc>
   </url>
   
   <url>
@@ -226,7 +238,7 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2018/01/07/js-how-to-use-the-Date-object-addition-and-subtraction-dates/</loc>
+    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
   </url>
   
   <url>
@@ -234,7 +246,7 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
+    <loc>https://depp.wang/2020/05/26/itranswarp-deploy-record/</loc>
   </url>
   
   <url>
@@ -242,15 +254,7 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/05/26/itranswarp-deploy-record/</loc>
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2018/08/09/a-tutorial-that-installation-centos7-and-use-xshell6-links/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
   </url>
   
   <url>
@@ -258,19 +262,11 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
   </url>
   
   <url>
@@ -279,6 +275,10 @@
   
   <url>
     <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
   </url>
   
 </urlset>

@@ -49,7 +49,7 @@ https://depp.wang/2017/09/13/implementing-stack-with-arrays/
 https://depp.wang/2017/08/15/hashmap-put-method-source-code/
 https://depp.wang/2017/07/26/java-parameter-passing/
 https://depp.wang/2017/07/24/string-initialization/
-https://depp.wang/2017/07/21/Object-Message/
+https://depp.wang/2017/07/21/object-funciton/
 https://depp.wang/2017/07/18/reverse-String/
 https://depp.wang/2017/07/15/String-ByteCode/
 https://depp.wang/2017/07/13/jvm-runtime-data-area/
