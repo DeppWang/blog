@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
-    <loc>https://depp.wang/2019/09/23/git-note/</loc>
-    <lastmod>2020-06-15</lastmod>
-  </url>  <url>
     <loc>https://depp.wang/2020/03/27/redirect-404-url-by-js/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
@@ -46,10 +25,10 @@
     <loc>https://depp.wang/2017/06/18/7-sort-algorithms/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
+    <loc>https://depp.wang/2017/06/13/hexo4/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
-    <loc>https://depp.wang/2017/06/13/hexo4/</loc>
+    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>https://depp.wang/2017/11/12/deploy-hexo-blog/</loc>
@@ -185,6 +164,27 @@
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2019/09/23/git-note/</loc>
+    <lastmod>2020-06-15</lastmod>
+  </url>  <url>
+    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
     <lastmod>2020-06-15</lastmod>
   </url>  <url>
     <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>

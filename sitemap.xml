@@ -2,34 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/09/23/git-note/</loc>
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2020/03/27/redirect-404-url-by-js/</loc>
   </url>
   
@@ -62,11 +34,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
+    <loc>https://depp.wang/2017/06/13/hexo4/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/06/13/hexo4/</loc>
+    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
   </url>
   
   <url>
@@ -267,6 +239,34 @@
   
   <url>
     <loc>https://depp.wang/2019/08/24/a-tool-that-can-export-the-youdaonote-specified-folder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/11/10/translate-alfred-workflows-help/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/09/20/ShadowsocksR-kexueshangwang/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/29/chrome-extensions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/09/23/git-note/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/14/idea's-common-shortcuts-plugins-and-settings/</loc>
   </url>
   
   <url>
