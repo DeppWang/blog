@@ -415,13 +415,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] input = &#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</span><br><span class="line">        <span class="comment">// 此处调用方法，以调用冒泡排序为例</span></span><br><span class="line">        bubbleSort(input);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= input.length; i++) &#123;</span><br><span class="line">            System.out.println(input[i - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>本篇博文所有排序实现均默认 <strong>从小到大</strong>。</p>
-<h2 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h2><p>每一次通过两两比较找到最大（小）的元素放在未排序序列的最后，直至有序。</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>比较两个相邻的元素。如果前面比后面个大（小），就交换顺序。</li>
-<li>从第 1 个数与第 2 个数开始比较，直到第 n-1 个数与第 n 个数结束。到最后，最大（小）的数就 “ 浮 “ 在了最上面。</li>
-<li>持续每次对前面越来越少的未排序元素重复上面的步骤，直到所有元素有序。</li>
-</ol>
-<h3 id="排序演示"><a href="#排序演示" class="headerlink" title="排序演示"></a>排序演示</h3><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-141329.gif" alt="image"></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/18/7-sort-algorithms/#more" rel="contents">

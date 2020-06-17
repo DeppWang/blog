@@ -100,7 +100,7 @@
 <meta property="og:description" content="作者：DeppWang、原文地址 又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-10-143047.jpg">
-<meta property="og:updated_time" content="2020-06-15T04:59:39.379Z">
+<meta property="og:updated_time" content="2020-06-17T15:44:31.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你真的会写单例模式吗">
 <meta name="twitter:description" content="作者：DeppWang、原文地址 又一篇一抓一大把的博文，可是你真的的搞懂了吗？点开看看，事后，你也来一篇。。。  人生在世，谁不面试。单例模式：一个搞懂不加分，不搞懂减分的知识点   单例模式是面试中非常喜欢问的了，我们往往自认为已经完全理解了，没什么问题了。但要把它手写出来的时候，可能出现各种小错误，下面是我总结的快速准确的写出单例模式的方法。 单例模式有各种写法，什么「双重检锁法」、什么「饿">
@@ -430,7 +430,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Singleon using static initialization in Java"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here is how to access this Singleton class</span></span><br><span class="line">Singleton.getInstance().show();</span><br></pre></td></tr></table></figure>
 
 <p>当执行 Singleton.getInstance() 时，类加载器加载 Singleton.class 进虚拟机，虚拟机在方法区（元数据区）为类变量分配一块内存，并赋值为空。再执行类构造器 <code>&lt;client&gt;()</code> 方法，新建实例指向类变量 instance。这个过程在类加载阶段执行，并由虚拟机保证线程安全。所以执行 getInstance() 前，实例就已经存在，所以 getInstance() 是线程安全的。</p>
-<p>很多博文说 instance 还需要声明为 final，其实不用。final 的作用在于不可变，使引用 instance 不能指向另一个实例，保证变量可见性（线程安全），因为 instance 不会改变，这里用不上。当然，加上也没问题。</p>
+<p>很多博文说 instance 还需要声明为 final，其实不用。final 的作用在于不可变，使引用 instance 不能指向另一个实例，保证变量可见性（线程安全）。这里 instance 不会指向其他实例，用不上。当然，加上也没问题。</p>
 <p>看到这里，单例模式的写法你已经学到了。后面的是加餐，可以选择不看了。</p>
 <!--// final 修饰的基本数据类型，在编译期时，初始化数据放在常量池-->
 
@@ -450,7 +450,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton instance;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(Singleton.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>为什么要判断两次：</strong></p>
-<p>多个线程将 instance 拷贝进工作内存，即多个线程读取到 instance == null，虽然每次只有一个线程进入 synchronized 方法，当进入线程成功新建了实例，synchronized 保证了可见性（在 unlock 操作前将变量写回了主内存），此时 instance 不等于 null 了，但其他线程已经执行到 synchronized 这里了，某个线程就又会进入 synchronized 方法，如果不判断一次，又会再次新建一个实例。</p>
+<p>多个线程将 instance 拷贝进工作内存，即多个线程读取到 instance == null。虽然每次只有一个线程进入 synchronized 方法，当进入线程成功新建了实例，synchronized 保证了可见性（在 unlock 操作前将变量写回了主内存），此时 instance 不等于 null 了。但其他线程已经执行到 synchronized 这里了，某个线程就又会进入 synchronized 方法，如果不判断一次，就会再次新建一个实例。</p>
 <p><strong>为什么要用 volatile 修饰 instance：</strong></p>
 <p>synchronized 已经可以实现原子性、可见性、有序性，其中实现原子性：一次只有一个线程执行同步块的代码。但计算机为了提升运行效率，会指令重排序。</p>
 <p>代码 <code>instance = new Singleton();</code> 会被计算机拆为 3 步执行。</p>
@@ -459,7 +459,7 @@
 <li>B：在内存空间位置新建一个实例</li>
 <li>C：将引用指向实例，即，引用存放实例的内存空间地址</li>
 </ul>
-<p>线程可能按 ACB 执行，如果 instance 都在 synchronized 里面，怎么重排序都没啥问题，问题出现在还有 instance 在 synchronized 外边，因为此时外边一群饿狼（线程），就在等待一个 instance 这块肉不为 null。</p>
+<p>线程可能按 ACB 执行，如果 instance 都在 synchronized 里面，怎么重排序都没啥问题。问题出现在还有 instance 在 synchronized 外边，因为此时外边一群饿狼（线程），就在等待一个 instance 这块肉不为 null。</p>
 <p>模拟一下指令重排序的出错场景：多线程环境下，正好一个线程，在同步块中按 ACB 执行，执行到 AC 时（并将 instance 写回了主内存），另一个线程执行第一个判断时，从主内存拷贝了最新的 instance，认为 instance 不为空，返回 instance，但此时 instance 还没被正确初始化，所以出错。</p>
 <p>volatile 修饰 instance 时，虚拟机在 ACB 后添加一个 <code>lock</code> 指令，lock 指令之前的操作执行完成后，后面的操作才能执行。只有当 ACB 都执行完了之后，其他线程才能读取 instance 的值，即：只有当写操作完成之后，读操作才能开始。这也是 Java 虚拟机规范的其中一条先行发生原则：对 volatile 修饰的变量，读操作，必须等写操作完成。</p>
 <p>所以用 volatile 修饰 instance，是使用它的禁止指令重排序特性：禁止读指令重排序到写指令之前。（它禁止不了 lock 指令前的指令重排序。）</p>
@@ -473,7 +473,7 @@
 
 <p>这个写法还是比较有逼格的，但稍不注意就容易出错。</p>
 <h2 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h2><p>单例模式主要为了节省内存开销，Spring 容器的 Bean 就是通过单例模式创建出来的。</p>
-<p>单例模式没写出来，那也没啥事，因为那下一个问题你也不一定能答出来 :)。</p>
+<p>单例模式没写出来，那也没啥事，因为那下一个问题你也不一定能答出来 :-)。</p>
 <!--单例模式不会写，也不影响你称为大佬，哈哈。-->
 
 <h2 id="六、延伸阅读"><a href="#六、延伸阅读" class="headerlink" title="六、延伸阅读"></a>六、延伸阅读</h2><ul>

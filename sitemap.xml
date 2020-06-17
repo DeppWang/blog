@@ -2,7 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://depp.wang/tools/index.html</loc>
+    <loc>https://depp.wang/2020/05/26/itranswarp-deploy-record/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/08/09/a-tutorial-that-installation-centos7-and-use-xshell6-links/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/01/03/which-recommended-items-bought-in-2019/</loc>
   </url>
   
   <url>
@@ -11,6 +23,10 @@
   
   <url>
     <loc>https://depp.wang/2019/10/08/what-is-the-test-driven-development/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
   </url>
   
   <url>
@@ -62,11 +78,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/09/13/implementing-stack-with-arrays/</loc>
+    <loc>https://depp.wang/2017/06/18/7-sort-algorithms/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/06/18/7-sort-algorithms/</loc>
+    <loc>https://depp.wang/2017/09/13/implementing-stack-with-arrays/</loc>
   </url>
   
   <url>
@@ -74,11 +90,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
+    <loc>https://depp.wang/2017/11/12/deploy-hexo-blog/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/11/12/deploy-hexo-blog/</loc>
+    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
   </url>
   
   <url>
@@ -122,19 +138,19 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/12/17/install-mysql5.6/</loc>
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2019/09/07/the-truth-about-carbs/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/05/18/export-youdaonote-all-notes/</loc>
+    <loc>https://depp.wang/2017/12/17/install-mysql5.6/</loc>
   </url>
   
   <url>
     <loc>https://depp.wang/2017/07/04/two-logical-question-about-hat/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/05/18/export-youdaonote-all-notes/</loc>
   </url>
   
   <url>
@@ -158,7 +174,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/10/30/mysql-note/</loc>
+    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>
   </url>
   
   <url>
@@ -178,6 +198,10 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/tools/index.html</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2020/05/06/find-the-k-th-smallest-odd-number-in-the-array-arr/</loc>
   </url>
   
@@ -186,15 +210,15 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/2017/09/14/convert-sorted-array-to-binary-search-tree/</loc>
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2019/09/07/do-you-have-a-friend-who-is-a-mango-dealer/</loc>
   </url>
   
   <url>
     <loc>https://depp.wang/2019/09/09/how-long-is-the-shortest-time/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/09/14/convert-sorted-array-to-binary-search-tree/</loc>
   </url>
   
   <url>
@@ -210,15 +234,15 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/</loc>
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2017/06/15/hexo-disqus/</loc>
   </url>
   
   <url>
     <loc>https://depp.wang/2017/06/14/hexo-statistical/</loc>
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/</loc>
   </url>
   
   <url>
@@ -234,11 +258,11 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
+    <loc>https://depp.wang/2019/06/02/java-primitive-types-and-warpper/</loc>
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/06/02/java-primitive-types-and-warpper/</loc>
+    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
   </url>
   
   <url>
@@ -255,30 +279,6 @@
   
   <url>
     <loc>https://depp.wang/2019/09/18/linux-note/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/05/26/itranswarp-deploy-record/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/08/09/a-tutorial-that-installation-centos7-and-use-xshell6-links/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/01/03/which-recommended-items-bought-in-2019/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2018/11/28/the-morning-peak-of-the-subway-from-dongsanqi-to-xierqi/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/</loc>
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2019/03/29/deal-miniprogram-video-cann't-play-question/</loc>
   </url>
   
 </urlset>
