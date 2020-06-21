@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="作者：DeppWang 互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
+<meta name="description" content="作者：DeppWang  互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
 <meta name="keywords" content="互联网协议">
 <meta property="og:type" content="article">
 <meta property="og:title" content="互联网协议入门">
 <meta property="og:url" content="https://depp.wang/2020/03/20/internet-protocol-suite-introduction/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang 互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
+<meta property="og:description" content="作者：DeppWang  互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-16-091651.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-131628.jpg">
@@ -124,10 +124,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-124357.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-083129.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-17-150358.png">
-<meta property="og:updated_time" content="2020-06-20T16:38:24.412Z">
+<meta property="og:updated_time" content="2020-06-21T07:54:02.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="互联网协议入门">
-<meta name="twitter:description" content="作者：DeppWang 互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
+<meta name="twitter:description" content="作者：DeppWang  互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-16-091651.png">
 
 
@@ -434,7 +434,9 @@
       
 
       
-        <p>作者：<a href="https://depp.wang">DeppWang</a></p>
+        <blockquote>
+<p>作者：<a href="https://depp.wang">DeppWang</a></p>
+</blockquote>
 <p>互联网上的数据能从一台设备发送到另一台设备，整个过程由<a href="https://zh.wikipedia.org/wiki/TCP/IP协议族" target="_blank" rel="noopener">互联网协议</a>（ Internet Protocol Suite）实现的。 </p>
 <p>对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过<a href="www.ruanyifeng.com">阮一峰</a>的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。</p>
 <ul>
