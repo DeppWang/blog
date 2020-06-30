@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
+<meta name="description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
 <meta name="keywords" content="Spring,IoC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta property="og:url" content="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
+<meta property="og:description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-17-143303.png">
@@ -106,10 +106,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-06-28T14:58:27.690Z">
+<meta property="og:updated_time" content="2020-06-30T04:31:42.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
-<meta name="twitter:description" content="作者：DeppWang、原文地址  我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。对于">
+<meta name="twitter:description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg">
 
 
@@ -416,7 +416,9 @@
       
 
       
-        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container">原文地址</a></p>
+        <blockquote>
+<p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2020/04/19/realize-a-simple-spring-ioc-container">原文地址</a></p>
+</blockquote>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-110638.jpg" alt="source:https://fernandofranzini.wordpress.com/"></p>
 <p>我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，<strong>需要配合源码阅读</strong>，<a href="https://github.com/DeppWang/litespring" target="_blank" rel="noopener">源码地址</a>。</p>
 <p>结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。</p>

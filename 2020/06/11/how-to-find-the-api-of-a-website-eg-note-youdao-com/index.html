@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-102800.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-113424.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-060620.png">
-<meta property="og:updated_time" content="2020-06-28T14:58:27.694Z">
+<meta property="og:updated_time" content="2020-06-30T04:31:42.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何查找某个网站的（如：有道云笔记）的接口">
 <meta name="twitter:description" content="作者：DeppWang、原文地址  开发了个 《一键导出 / 备份「有道云笔记」所有笔记》的脚本。主要原理是利用有道云笔记本身的接口。下面是根据正常用户操作逻辑，找到需要的接口，主要是登录和「下载」。">
@@ -434,7 +434,7 @@
 <h3 id="1-2-推导密码加密规则"><a href="#1-2-推导密码加密规则" class="headerlink" title="1.2 推导密码加密规则"></a>1.2 推导密码加密规则</h3><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-062936.png" alt="image-20200610142935436"></p>
 <p>本地测试使用同样错误密码用不同加密算法加密，看加密结果是否一致</p>
 <p>发现使用 md5 加密</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Python</span></span><br><span class="line">password=hashlib.md5(password.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Python3</span></span><br><span class="line">password=hashlib.md5(password.encode(<span class="string">'utf-8'</span>)).hexdigest()</span><br></pre></td></tr></table></figure>
 
 <h3 id="1-3-找返回验证登录状态-Cookie-的接口"><a href="#1-3-找返回验证登录状态-Cookie-的接口" class="headerlink" title="1.3 找返回验证登录状态 Cookie 的接口"></a>1.3 找返回验证登录状态 Cookie 的接口</h3><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-10-091312.png" alt="image-20200610171312277" style="zoom:50%;"></p>
 
@@ -500,6 +500,7 @@
 <p>全文完。</p>
 <!--cnblogs.com 发布文章是用 i.cnblogs.com/api/posts 接口。所以 ArtiPub 没有接口？-->
 
+<p>5</p>
 
       
     </div>

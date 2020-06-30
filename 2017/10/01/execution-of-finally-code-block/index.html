@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址 finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (Exc">
+<meta name="description" content="作者：DeppWang、原文地址  finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (E">
 <meta name="keywords" content="Exception,Try-Catch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="finally 代码块的执行情况">
 <meta property="og:url" content="https://depp.wang/2017/10/01/execution-of-finally-code-block/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址 finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (Exc">
+<meta property="og:description" content="作者：DeppWang、原文地址  finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (E">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-28T14:58:27.690Z">
+<meta property="og:updated_time" content="2020-06-30T04:31:42.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="finally 代码块的执行情况">
-<meta name="twitter:description" content="作者：DeppWang、原文地址 finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (Exc">
+<meta name="twitter:description" content="作者：DeppWang、原文地址  finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。 关闭流的栗子： 1234567891011121314      InputStream is = null;try &amp;#123;	is = new FileInputStream(&quot;inputfile.txt&quot;);&amp;#125; catch (E">
 
 
 
@@ -408,7 +408,9 @@
       
 
       
-        <p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2017/10/01/execution-of-finally-code-block/">原文地址</a></p>
+        <blockquote>
+<p>作者：<a href="https://depp.wang">DeppWang</a>、<a href="https://depp.wang/2017/10/01/execution-of-finally-code-block/">原文地址</a></p>
+</blockquote>
 <p>finally 块用来执行即使有异常也能执行的代码，常用于出现异常时关闭流，或者释放锁。finally 总会执行。</p>
 <p>关闭流的栗子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">      InputStream is = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	is = <span class="keyword">new</span> FileInputStream(<span class="string">"inputfile.txt"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (is != <span class="keyword">null</span>) &#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                  is.close();</span><br><span class="line">              &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                  e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
