@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新增&amp;#12">
+<meta name="description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
 <meta name="keywords" content="Hexo,NexT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT 博客优化（修改）记录">
 <meta property="og:url" content="https://depp.wang/2020/03/12/hexo-next-all-change/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新增&amp;#12">
+<meta property="og:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-01T06:01:45.733Z">
+<meta property="og:updated_time" content="2020-07-01T15:12:39.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + NexT 博客优化（修改）记录">
-<meta name="twitter:description" content="先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新增&amp;#12">
+<meta name="twitter:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
 
 
 
@@ -408,13 +408,13 @@
       
 
       
-        <p>先看<a href="https://theme-next.iissnan.com/faqs.html" target="_blank" rel="noopener">官方文档</a>，和 <a href="https://github.com/iissnan/hexo-theme-next/issues" target="_blank" rel="noopener">issue</a></p>
+        <p>有问题建议先看<a href="https://theme-next.iissnan.com/faqs.html" target="_blank" rel="noopener">官方文档</a>，和 <a href="https://github.com/iissnan/hexo-theme-next/issues" target="_blank" rel="noopener">issue</a></p>
 <h2 id="一、样式修改"><a href="#一、样式修改" class="headerlink" title="一、样式修改"></a>一、样式修改</h2><p>注意：重新部署后，样式若没更新，清除浏览器缓存</p>
 <h3 id="分类横向展示"><a href="#分类横向展示" class="headerlink" title="分类横向展示"></a>分类横向展示</h3><p><code>themes\next\source\css\_common\component\pages\categories.styl</code> 中修改：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.category-list-item</span> &#123; </span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">10px</span>; </span><br><span class="line">  display: inline-block; // 新增</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>display: inline-block</code>：可以不换行，让其他元素元素显示在旁边；并且可以设置高度，<a href="https://www.w3schools.com/css/css_inline-block.asp" target="_blank" rel="noopener">w3schools: CSS Layout - display: inline-block</a></li>
+<li><code>display: inline-block</code>：可以不换行，让其他元素元素显示在旁边；并且可以设置高度。<a href="https://www.w3schools.com/css/css_inline-block.asp" target="_blank" rel="noopener">w3schools: CSS Layout - display: inline-block</a></li>
 </ul>
 <a id="more"></a>
 
@@ -441,6 +441,9 @@
 <h3 id="更改-h1-h2-字体大小"><a href="#更改-h1-h2-字体大小" class="headerlink" title="更改 h1 h2 字体大小"></a>更改 h1 h2 字体大小</h3><p>在 <code>themes\next\source\css\_custom\custom.styl</code> 中新增：</p>
 <figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Custom styles.</span></span><br><span class="line"><span class="comment">// 新增</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">2em</span>; <span class="comment">// 2em = 32px</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5em</span>; <span class="comment">// 1.5em = 24px, 1em = 16px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>em: <a href="https://www.w3.org/Style/Examples/007/units.en.html#translations#:~:text=use%20the%20default%20size%20of%20the%20device" target="_blank" rel="noopener">use the default size of the device</a>，即根据正文字体的大小决定</li>
+</ul>
 <h3 id="设置-h2-下划线"><a href="#设置-h2-下划线" class="headerlink" title="设置 h2 下划线"></a>设置 h2 下划线</h3><p> <code>themes\next\source\css\_common\component\post\post-expand.styl</code> 中修改</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.posts-expand</span> <span class="selector-class">.post-body</span> &#123;</span><br><span class="line">  ...</span><br><span class="line">  // 新增</span><br><span class="line">  <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: .<span class="number">3em</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#eaecef</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -453,8 +456,8 @@
 
 <!--正常来说，标题和段落之间就要要比段落与段落之间隔得近？-->
 
-<h3 id="URL-中文改为英文"><a href="#URL-中文改为英文" class="headerlink" title="URL 中文改为英文"></a>URL 中文改为英文</h3><p>文章标题块添加 english-tile，站点配置文件修改 permalink</p>
-<p>站点配置文件设置 tag_map、category_map</p>
+<h3 id="URL-中文改为英文"><a href="#URL-中文改为英文" class="headerlink" title="URL 中文改为英文"></a>URL 中文改为英文</h3><p>文章标题块添加 english-tile，<code>站点配置文件</code>修改 permalink</p>
+<p><code>站点配置文件</code>设置 tag_map、category_map</p>
 <h2 id="二、功能添加"><a href="#二、功能添加" class="headerlink" title="二、功能添加"></a>二、功能添加</h2><ul>
 <li>底部添加版权声明、微信公众号图片、分享按钮</li>
 </ul>
@@ -467,8 +470,8 @@
 <li><a href="https://liujunzhou.top/2018/8/10/gitalk-error/" target="_blank" rel="noopener">gitalk-error</a></li>
 <li><a href="https://priesttomb.github.io/%E6%97%A5%E5%B8%B8/2018/02/12/%E5%A4%84%E7%90%86Gitalk%E4%B8%AD%E7%94%B1%E4%BA%8E%E6%96%87%E7%AB%A0URL%E8%BF%87%E9%95%BF%E5%AF%BC%E8%87%B4%E7%9A%84Validation-Failed(422)/" target="_blank" rel="noopener">处理Gitalk中由于文章URL过长导致的Validation Failed(422)</a></li>
 </ul>
-<p>缺点：发布文章后需要页面点击初始化</p>
-<h3 id="添加-Algolia-搜索"><a href="#添加-Algolia-搜索" class="headerlink" title="添加 Algolia 搜索"></a>添加 Algolia 搜索</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export HEXO_ALGOLIA_INDEXING_KEY=*** // 使用 export 临时设置一个环境变量</span><br><span class="line">echo $HEXO_ALGOLIA_INDEXING_KEY  // 查看环境变量是否设置成功</span><br></pre></td></tr></table></figure>
+<p>缺点：发布文章后需要页面点击初始化；issue 不美观</p>
+<h3 id="添加-Algolia-搜索"><a href="#添加-Algolia-搜索" class="headerlink" title="添加 Algolia 搜索"></a>添加 Algolia 搜索</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export HEXO_ALGOLIA_INDEXING_KEY=*** # 使用 export 临时设置一个环境变量</span><br><span class="line">echo $HEXO_ALGOLIA_INDEXING_KEY      # 查看环境变量是否设置成功</span><br></pre></td></tr></table></figure>
 
 <p>注意事项：</p>
 <ol>
@@ -513,20 +516,31 @@
 <p>如果使用 HTML 文件验证失败，HTML 文件添加 <code>layout: false</code></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">layout: false</span><br><span class="line">---</span><br><span class="line">google-site-verification: googlec27ee4754ff2e800.html</span><br></pre></td></tr></table></figure>
 
-<p>使用 hexo-generator-sitemap 包生成站点地图，hexo-generator-sitemap 包的作用：</p>
+<p>使用 <a href="https://github.com/hexojs/hexo-generator-sitemap/" target="_blank" rel="noopener">hexo-generator-sitemap</a> 包生成站点地图，hexo-generator-sitemap 包的作用：</p>
 <ul>
-<li>每次 <code>hexo g</code> 时，根据_post 的文章生成站点地图：sitemap.xml，所以 sitemap.xm 中的时间跟 _post 文件的最后修改时间有关。</li>
-<li>如果能生成说明配置没有问题</li>
+<li>每次 <code>hexo g</code> 时，根据 _post 的文章生成站点地图：sitemap.xml。插件默认根据最近修改时间生成 sitemap 中的  <code>&lt;lastmod&gt;</code>，如果使用 <a href="https://github.com/DeppWang/hexo-action" target="_blank" rel="noopener">hexo-action</a>，需要添加 sitemap 模板（<code>/source/sitemap_template.xml</code>），使用文章的 date</li>
 </ul>
-<p>Google 定期抓取你设置的 sitemap</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">urlset</span> <span class="attr">xmlns</span>=<span class="string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span>&gt;</span></span><br><span class="line">  &#123;% for post in posts %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>&#123;&#123; post.permalink | uriencode &#125;&#125;<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    &#123;% if post.date %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">lastmod</span>&gt;</span>&#123;&#123; post.date.toISOString().substring(0, 10) &#125;&#125;<span class="tag">&lt;/<span class="name">lastmod</span>&gt;</span></span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">urlset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">  template:</span> <span class="string">./source/sitemap_template.xml</span></span><br><span class="line"><span class="attr">  rel:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>正常来说，当添加了 sitemap，Google 将定期抓取你设置的 sitemap</p>
 <ul>
 <li>站点地图抓取时间不更新解释：<a href="https://metinsaylan.com/9642/how-to-solve-search-console-sitemap-could-not-be-read-error/" target="_blank" rel="noopener">[How To] Solve Search Console “Sitemap could not be read” Error</a></li>
+</ul>
+<p>sitemap 的 <code>&lt;lastmod&gt;</code> 应该对应 <a href="https://github.com/deppwang/deppwang.github.io" target="_blank" rel="noopener">deppwang.github.io</a> 的 html 文件的最近修改时间，sitemap 的最新文章的 url 的 <code>lastmod</code> 是对的，但其他 url 的时间不一定是对的。因为 Hexo 每次发布基本上都会更新所有文章 <code>og:updated_time</code> 改变。所以 GCS 是否因为文章时间对应不上而不抓取？或者因为网站权重太低？</p>
+<p>如果 sitemap 不能读取，也可以设置 atom.xml</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo-generator-sitemap/issues/92" target="_blank" rel="noopener">https://github.com/hexojs/hexo-generator-sitemap/issues/92</a></li>
 </ul>
 <h2 id="四、其他可能遇到的问题"><a href="#四、其他可能遇到的问题" class="headerlink" title="四、其他可能遇到的问题"></a>四、其他可能遇到的问题</h2><ul>
 <li>Google 不收录网址的问题</li>
 <li>博客源文件每次被覆盖的问题</li>
 </ul>
-<h3 id="网址描述不显示问题"><a href="#网址描述不显示问题" class="headerlink" title="网址描述不显示问题"></a>网址描述不显示问题</h3><p>原因在于 NexT 开起了 SEO，SEO 覆盖掉了原来的代码</p>
+<h3 id="头像下网址描述不显示问题"><a href="#头像下网址描述不显示问题" class="headerlink" title="头像下网址描述不显示问题"></a>头像下网址描述不显示问题</h3><p>可能是你在 <code>主题配置文件</code> 中开起了 SEO，SEO 覆盖掉了原来的代码</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">seo:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>目测开启没有什么效果，可以关闭解决。也可以修改源代码</p>
 <p>思路：找到不显示字样的 class，IDEA 打开文件，全局搜索 class，找到代码位置，进行修改</p>
 <p>修改文件位置</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/next/</span>layout<span class="regexp">/_macro/</span>sidebar.swig</span><br></pre></td></tr></table></figure>
@@ -797,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、样式修改"><span class="nav-number">1.</span> <span class="nav-text">一、样式修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类横向展示"><span class="nav-number">1.1.</span> <span class="nav-text">分类横向展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片居中"><span class="nav-number">1.2.</span> <span class="nav-text">设置图片居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置字体大小"><span class="nav-number">1.3.</span> <span class="nav-text">设置字体大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改内容区域的宽度"><span class="nav-number">1.4.</span> <span class="nav-text">更改内容区域的宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改-h1-h2-字体大小"><span class="nav-number">1.5.</span> <span class="nav-text">更改 h1 h2 字体大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-h2-下划线"><span class="nav-number">1.6.</span> <span class="nav-text">设置 h2 下划线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-h1-h2-h3-h4-间距"><span class="nav-number">1.7.</span> <span class="nav-text">修改 h1 h2 h3 h4 间距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-中文改为英文"><span class="nav-number">1.8.</span> <span class="nav-text">URL 中文改为英文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、功能添加"><span class="nav-number">2.</span> <span class="nav-text">二、功能添加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Disqus-评论"><span class="nav-number">2.1.</span> <span class="nav-text">添加 Disqus 评论</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#也可以使用-Gitalk"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">也可以使用 Gitalk</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Algolia-搜索"><span class="nav-number">2.2.</span> <span class="nav-text">添加 Algolia 搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加文章阅读次数统计、网站访问次数统计"><span class="nav-number">2.3.</span> <span class="nav-text">添加文章阅读次数统计、网站访问次数统计</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#三、外部设置"><span class="nav-number">3.</span> <span class="nav-text">三、外部设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义域名加密为-HTTPS"><span class="nav-number">3.1.</span> <span class="nav-text">自定义域名加密为 HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交到-Google-搜索引擎"><span class="nav-number">3.2.</span> <span class="nav-text">提交到 Google 搜索引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、其他可能遇到的问题"><span class="nav-number">4.</span> <span class="nav-text">四、其他可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网址描述不显示问题"><span class="nav-number">4.1.</span> <span class="nav-text">网址描述不显示问题</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、样式修改"><span class="nav-number">1.</span> <span class="nav-text">一、样式修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类横向展示"><span class="nav-number">1.1.</span> <span class="nav-text">分类横向展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片居中"><span class="nav-number">1.2.</span> <span class="nav-text">设置图片居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置字体大小"><span class="nav-number">1.3.</span> <span class="nav-text">设置字体大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改内容区域的宽度"><span class="nav-number">1.4.</span> <span class="nav-text">更改内容区域的宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改-h1-h2-字体大小"><span class="nav-number">1.5.</span> <span class="nav-text">更改 h1 h2 字体大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-h2-下划线"><span class="nav-number">1.6.</span> <span class="nav-text">设置 h2 下划线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-h1-h2-h3-h4-间距"><span class="nav-number">1.7.</span> <span class="nav-text">修改 h1 h2 h3 h4 间距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-中文改为英文"><span class="nav-number">1.8.</span> <span class="nav-text">URL 中文改为英文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、功能添加"><span class="nav-number">2.</span> <span class="nav-text">二、功能添加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Disqus-评论"><span class="nav-number">2.1.</span> <span class="nav-text">添加 Disqus 评论</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#也可以使用-Gitalk"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">也可以使用 Gitalk</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Algolia-搜索"><span class="nav-number">2.2.</span> <span class="nav-text">添加 Algolia 搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加文章阅读次数统计、网站访问次数统计"><span class="nav-number">2.3.</span> <span class="nav-text">添加文章阅读次数统计、网站访问次数统计</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#三、外部设置"><span class="nav-number">3.</span> <span class="nav-text">三、外部设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义域名加密为-HTTPS"><span class="nav-number">3.1.</span> <span class="nav-text">自定义域名加密为 HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交到-Google-搜索引擎"><span class="nav-number">3.2.</span> <span class="nav-text">提交到 Google 搜索引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、其他可能遇到的问题"><span class="nav-number">4.</span> <span class="nav-text">四、其他可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头像下网址描述不显示问题"><span class="nav-number">4.1.</span> <span class="nav-text">头像下网址描述不显示问题</span></a></li></ol></li></div>
             
 
           </div>
