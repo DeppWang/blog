@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-124357.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-20-083129.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-17-150358.png">
-<meta property="og:updated_time" content="2020-07-01T03:28:56.808Z">
+<meta property="og:updated_time" content="2020-07-01T03:35:08.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="互联网协议入门">
 <meta name="twitter:description" content="作者：DeppWang  互联网上的数据能从一台设备发送到另一台设备，整个过程由互联网协议（ Internet Protocol Suite）实现的。  对于互联网协议，一直一知半解。知道会分为几层，但为什么分层，分层有什么好处，都不甚理解。通过阮一峰的这两篇文章，大概有了一个初步认识，下面是我对互联网协议的理解。  互联网协议入门（一）阮一峰 互联网协议入门（二）阮一峰">
@@ -566,7 +566,7 @@
 <p>对于发送方的数据处理，<strong>这个过程像是一个俄罗斯套娃的过程</strong>：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-03-17-150358.png" alt="图片来自 Wiki"></p>
 <p>如果用发快递来类比一下：</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">应用层：将物体打包为快递  </span><br><span class="line">      <span class="string">|</span></span><br><span class="line">传输层：为快递填上收件人门牌号；如果快递丢失重新发送</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">网络层：为快递填上收件人小区地址；并根据收件人小区地址，找到下一个快递中转站的地址，最终找到整个线路</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">链路层：为快递填上下一个中转地地址；并负责将快递发往到下一个中转站</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">物理层：运快递的车</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">应用层：将物体打包为快递  </span><br><span class="line">      <span class="string">|</span></span><br><span class="line">传输层：为快递填上收件人门牌号；如果快递丢失重新发送</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">网络层：为快递填上收件人小区地址；并根据收件人小区地址，找到下一个快递中转站的地址，最终找到整个线路</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">链路层：为快递填上下一个中转地地址；并负责将快递发往到下一个中转站</span><br><span class="line">      <span class="string">|</span></span><br><span class="line">物理层：运快递的车</span><br></pre></td></tr></table></figure>
 
 <p>在互联网协议中，因为 TCP/IP 协议最重要，所以互联网协议也可以叫做 「<strong>TCP/IP 协议族</strong>」。</p>
 <p>此文只是个人对互联网协议的浅显理解，毕竟没有深入研究，可能有诸多不当处，欢迎留言指出。</p>

@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 1http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： 1https://www.zhihu.com/question/25536695">
+<meta name="description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： https://www.zhihu.com/question/25536695/a">
 <meta name="keywords" content="Dubbo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用 Dubbo 的直连和服务分组">
 <meta property="og:url" content="https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 1http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： 1https://www.zhihu.com/question/25536695">
+<meta property="og:description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： https://www.zhihu.com/question/25536695/a">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135336.png">
-<meta property="og:updated_time" content="2020-07-01T03:28:56.804Z">
+<meta property="og:updated_time" content="2020-07-01T03:35:08.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 Dubbo 的直连和服务分组">
-<meta name="twitter:description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 1http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： 1https://www.zhihu.com/question/25536695">
+<meta name="twitter:description" content="此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。 http://dubbo.apache.org/zh-cn/docs/user/preface/background.html  Dubbo 概念Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答： https://www.zhihu.com/question/25536695/a">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135336.png">
 
 
@@ -411,10 +411,10 @@
 
       
         <p>此文基于 Dubbo 官方文档，结合实际项目讲解几个常用的知识点，建议先根据以下官方文档学习。</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/preface/background.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/preface/background.html</span><br></pre></td></tr></table></figure>
 
 <h2 id="Dubbo-概念"><a href="#Dubbo-概念" class="headerlink" title="Dubbo 概念"></a>Dubbo 概念</h2><p>Dubbo 是一个 RPC 框架，关于什么是 RPC，可看知乎的这个回答：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>www.zhihu.com<span class="regexp">/question/</span><span class="number">25536695</span><span class="regexp">/answer/</span><span class="number">36197244</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>www.zhihu.com<span class="regexp">/question/</span><span class="number">25536695</span><span class="regexp">/answer/</span><span class="number">36197244</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>RPC 是指远程过程调用，也就是说两台服务器 A，B，一个应用部署在 A 服务器上，想要调用 B 服务器上应用提供的函数 / 方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。</p>
@@ -431,27 +431,27 @@
 
 <h2 id="直连"><a href="#直连" class="headerlink" title="直连"></a>直连</h2><p>由于 Dubbo 采用负载均衡的策略，多次请求服务时总会有一次调用本地的服务 (如果本地服务者启动了)，是随机的。<strong>为了方便 Dubbo 在本地开发和调试</strong>，我们在本地项目中采用直连的方式，直连就是服务提供者不向注册中心注册服务，服务消费者直连服务提供者。如何在项目中配置直连：</p>
 <p><strong>1</strong>. 参考以下修改 provider.xml</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:registry <span class="attribute">protocol</span>=<span class="string">"zookeeper"</span> <span class="attribute">address</span>=<span class="string">"="</span>10.20.153.10:9090" <span class="attribute">register</span>=<span class="string">"false"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;dubbo:registry <span class="attribute">protocol</span>=<span class="string">"zookeeper"</span> <span class="attribute">address</span>=<span class="string">"="</span>10.20.153.10:9090" <span class="attribute">register</span>=<span class="string">"false"</span>/&gt;</span><br></pre></td></tr></table></figure>
 
 <p>主要起作用的配置是<strong>register=”false”</strong>，代表不向注册中心注册。</p>
 <p><strong>2</strong>. 增加默认直连的配置文件 (<code>dubbo-resolve.properties</code>)</p>
 <p>Dubbo2.0 以上版本，直连时，会默认加载 <code>${user.home}/dubbo-resolve.properties</code> 配置文件。<code>${user.home}</code> 为用户目录，例如：win10 的 Administrator 用户的目录：<code>C:\Users\Administrator</code>；mac 用户的目录 <code>/Users/userName</code>。</p>
 <p>配置文件的示例内容如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com<span class="selector-class">.alibaba</span><span class="selector-class">.dubbo</span><span class="selector-class">.demo</span><span class="selector-class">.DemoService</span>=dubbo:<span class="comment">//localhost:20880</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">com<span class="selector-class">.alibaba</span><span class="selector-class">.dubbo</span><span class="selector-class">.demo</span><span class="selector-class">.DemoService</span>=dubbo:<span class="comment">//localhost:20880</span></span><br></pre></td></tr></table></figure>
 
 <p>通过以上配置，服务消费者会默认去 <code>dubbo://localhost:20880</code>(本地提供者) 查找 DemoServixe，如果没有，再去注册中心查找。</p>
 <h2 id="服务分组-Group"><a href="#服务分组-Group" class="headerlink" title="服务分组 (Group)"></a>服务分组 (Group)</h2><p>提供者通过运行不同的配置文件成为个性化应用，配置文件中包含：数据库；个性化名称等。</p>
 <p>服务消费者配置文件 (<code>dev.properties</code>) 中设置组名：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dubbo<span class="selector-class">.group</span><span class="selector-class">.core</span>=group_core</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">dubbo<span class="selector-class">.group</span><span class="selector-class">.core</span>=group_core</span><br></pre></td></tr></table></figure>
 
 <p>consumer.xml</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:reference <span class="attribute">id</span>=<span class="string">"indexService"</span> <span class="attribute">group</span>=<span class="string">"<span class="variable">$&#123;dubbo.group.core&#125;</span>"</span> <span class="attribute">interface</span>=<span class="string">"com.xxx.IndexService"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;dubbo:reference <span class="attribute">id</span>=<span class="string">"indexService"</span> <span class="attribute">group</span>=<span class="string">"<span class="variable">$&#123;dubbo.group.core&#125;</span>"</span> <span class="attribute">interface</span>=<span class="string">"com.xxx.IndexService"</span> /&gt;</span><br></pre></td></tr></table></figure>
 
 <p>服务提供者配置文件 (<code>dev.properties</code>) 中设置组名：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dubbo<span class="selector-class">.group</span><span class="selector-class">.core</span>=group_core</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">dubbo<span class="selector-class">.group</span><span class="selector-class">.core</span>=group_core</span><br></pre></td></tr></table></figure>
 
 <p>provider.xml</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:service <span class="keyword">group</span>=<span class="string">"$&#123;dubbo.group.core&#125;"</span> <span class="keyword">interface</span>=<span class="string">"com.xxx.IndexService"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">&lt;dubbo:service <span class="keyword">group</span>=<span class="string">"$&#123;dubbo.group.core&#125;"</span> <span class="keyword">interface</span>=<span class="string">"com.xxx.IndexService"</span> /&gt;</span><br></pre></td></tr></table></figure>
 
 <p>当消费者使用 <code>dev.properties</code> 运行时，会根据 <code>dubbo.group.core=group_core</code> 来选择使用对应配置文件 (<code>dev.properties</code>) 运行的提供者。</p>
 <p>我们常常在服务器将所有的配置文件均打包运行，当本地更改组名时，就会调用对应的提供者。</p>
@@ -471,7 +471,7 @@
 <ol start="3">
 <li>当 pC 的的版本号为 2.2.0。将其改为了 1.15.0。此时 pC 重新部署了。如果将 cT 引用 pC 的版本号改为了 1.15.0，那么此时如果 1.15.0</li>
 </ol>
-<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/demos/subscribe-only.html  // 只订阅</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/demos/service-group.html  // 服务分组</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/references/xml/dubbo-registry.html  //&lt;dubbo:registry &gt; 标签</span><br></pre></td></tr></table></figure>
+<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/demos/subscribe-only.html  // 只订阅</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/demos/service-group.html  // 服务分组</span><br><span class="line"></span><br><span class="line"><span class="symbol">http:</span>//dubbo.apache<span class="meta">.org</span>/<span class="built_in">zh</span>-cn/docs/user/references/xml/dubbo-registry.html  //&lt;dubbo:registry &gt; 标签</span><br></pre></td></tr></table></figure>
 
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>官网文档地址常常变化，如不能访问时，可访问 dubbo 的 GitHub 主页：<code>https://github.com/apache/incubator-dubbo</code>。再去 Dubbo 主页查找相关教程文档。）</p>
 <p>传输的实体需要序列化</p>

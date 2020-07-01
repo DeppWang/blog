@@ -590,7 +590,7 @@
 </blockquote>
 <p>阅读提示：此文适用于有自己博客的同学。</p>
 <p>昨天在公众号分享了一篇在 <a href="https://depp.wang/2020/03/26/how-to-insert-slide-in-markdown/">如何在 Markdown 里面插入幻灯片</a>的文章，微信公众号由于平台限制，幻灯片只能在原文里面才能看到效果，不巧，原文链接手误写错了一个单词，本来是 insert，写成了 inset。</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">https</span>://depp.wang/<span class="number">2020</span>/<span class="number">03</span>/<span class="number">26</span>/how-<span class="built_in">to</span>-inset-slide-<span class="keyword">in</span>-markdown/</span><br><span class="line">应该是</span><br><span class="line"><span class="keyword">https</span>://depp.wang/<span class="number">2020</span>/<span class="number">03</span>/<span class="number">26</span>/how-<span class="built_in">to</span>-insert-slide-<span class="keyword">in</span>-markdown/</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line"><span class="keyword">https</span>://depp.wang/<span class="number">2020</span>/<span class="number">03</span>/<span class="number">26</span>/how-<span class="built_in">to</span>-inset-slide-<span class="keyword">in</span>-markdown/</span><br><span class="line">应该是</span><br><span class="line"><span class="keyword">https</span>://depp.wang/<span class="number">2020</span>/<span class="number">03</span>/<span class="number">26</span>/how-<span class="built_in">to</span>-insert-slide-<span class="keyword">in</span>-markdown/</span><br></pre></td></tr></table></figure>
 
 <p>作为一个强迫症患者，不能忍受这样的问题。可一旦我修改了原文链接，公众号这边要么删了重发，要么来个留言，说原文链接已经修改。两种方式可以解决问题，但是不爽。</p>
 <p>除了像我手误写错链接单词的情况，<strong>很多时候，我们文章修改题目后，如果想修改 url（url 是文章题目的英文），就会面临原 url 失效的问题。</strong></p>
@@ -1090,7 +1090,7 @@
           <p>先看<a href="https://theme-next.iissnan.com/faqs.html" target="_blank" rel="noopener">官方文档</a>，和 <a href="https://github.com/iissnan/hexo-theme-next/issues" target="_blank" rel="noopener">issue</a></p>
 <h2 id="一、样式修改"><a href="#一、样式修改" class="headerlink" title="一、样式修改"></a>一、样式修改</h2><p>注意：重新部署后，样式若没更新，清除浏览器缓存</p>
 <h3 id="分类横向展示"><a href="#分类横向展示" class="headerlink" title="分类横向展示"></a>分类横向展示</h3><p><code>themes\next\source\css\_common\component\pages\categories.styl</code> 中修改：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.category-list-item</span> &#123; </span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">10px</span>; </span><br><span class="line">  display: inline-block; // 新增</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.category-list-item</span> &#123; </span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">5px</span> <span class="number">10px</span>; </span><br><span class="line">  display: inline-block; // 新增</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><code>display: inline-block</code>：可以不换行，让其他元素元素显示在旁边；并且可以设置高度，<a href="https://www.w3schools.com/css/css_inline-block.asp" target="_blank" rel="noopener">w3schools: CSS Layout - display: inline-block</a></li>
@@ -1255,10 +1255,10 @@
         
           <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-17-084920.png" alt="Image result for image Hexo"></p>
 <h2 id="一、Hexo-相关知识点"><a href="#一、Hexo-相关知识点" class="headerlink" title="一、Hexo 相关知识点"></a>一、Hexo 相关知识点</h2><p>静态博客简单，但是发布博文时稍显麻烦，一般需要下面两步：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d // 相当于 hexo g + hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d // 相当于 hexo g + hexo d</span><br></pre></td></tr></table></figure>
 
 <p>如果考虑到同步源文件，还需要每次更改后，将源文件 push 到指定仓库：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/#more" rel="contents">

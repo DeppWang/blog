@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： 1https://github.com/DeppWang/Java-Books">
+<meta name="description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： https://github.com/DeppWang/Java-Books/">
 <meta name="keywords" content="GitHub-Tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何直接下载 Github 上的某个文件">
 <meta property="og:url" content="https://depp.wang/2019/05/17/how-to-direct-download-github-a-file/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： 1https://github.com/DeppWang/Java-Books">
+<meta property="og:description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： https://github.com/DeppWang/Java-Books/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-15-063835.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135904.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135907.png">
-<meta property="og:updated_time" content="2020-07-01T03:28:56.804Z">
+<meta property="og:updated_time" content="2020-07-01T03:35:08.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何直接下载 Github 上的某个文件">
-<meta name="twitter:description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： 1https://github.com/DeppWang/Java-Books">
+<meta name="twitter:description" content="作者：DeppWang、原文地址  如何直接下载 Github 上的某个文件有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。 只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。 假设 GitHub 文件的原 URL 是： https://github.com/DeppWang/Java-Books/">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-06-15-063835.png">
 
 
@@ -418,10 +418,10 @@
 <h2 id="如何直接下载-Github-上的某个文件"><a href="#如何直接下载-Github-上的某个文件" class="headerlink" title="如何直接下载 Github 上的某个文件"></a>如何直接下载 Github 上的某个文件</h2><p>有时候我们需要下载别人 GitHub 仓库的某一个文件，但是不得不 clone 整个项目，此时需要一种能直接下载某一个文件的方式。</p>
 <p>只需要更改一下 GitHub 文件 URL，就能实现单个下载功能。</p>
 <p>假设 GitHub 文件的原 URL 是：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/DeppWang/</span>Java-Books<span class="regexp">/blob/m</span>aster<span class="regexp">/docs/</span>Algorithms,%<span class="number">204</span>th%<span class="number">20</span>Edition.pdf</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/DeppWang/</span>Java-Books<span class="regexp">/blob/m</span>aster<span class="regexp">/docs/</span>Algorithms,%<span class="number">204</span>th%<span class="number">20</span>Edition.pdf</span><br></pre></td></tr></table></figure>
 
 <p>将其更改为：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/DeppWang/</span>Java-Books<span class="regexp">/raw/m</span>aster<span class="regexp">/docs/</span>Algorithms,%<span class="number">204</span>th%<span class="number">20</span>Edition.pdf</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/DeppWang/</span>Java-Books<span class="regexp">/raw/m</span>aster<span class="regexp">/docs/</span>Algorithms,%<span class="number">204</span>th%<span class="number">20</span>Edition.pdf</span><br></pre></td></tr></table></figure>
 
 <p>即，将 <code>blob</code> 替换为 <code>raw</code>。</p>
 <p>这样就能直接下载这个 <code>Algorithms, 4th Edition.pdf</code> 文件了、</p>
@@ -431,7 +431,7 @@
 
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><code>raw.githubusercontent.com</code> 返回存储在 GitHub 中的文件的 <code>raw content</code>（原始内容），因此可以将它们简单地下载到计算机上。可以在网页上右键<em>查看源文件</em>的方式验证文件 URL 是否包含 <code>raw.githubusercontent.com</code>。</p>
 <p>其他示例：<a href="https://brew.sh/" target="_blank" rel="noopener">Install Homebrew</a></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="https://stackoverflow.com/questions/39065921/what-do-raw-githubusercontent-com-urls-represent" target="_blank" rel="noopener">What do raw.githubusercontent.com URLs represent?</a></li>
@@ -450,10 +450,10 @@
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135907.png" alt="image.png"></p>
 <ol start="3">
 <li><p>项目 repo 的 Intro.pdf 在 <code>https://USERNAME.github.io</code> 的链接：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>USERNAME.github.io<span class="regexp">/REPONAME/</span>path<span class="regexp">/Intro.pdf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">http:<span class="regexp">//</span>USERNAME.github.io<span class="regexp">/REPONAME/</span>path<span class="regexp">/Intro.pdf</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>示例：项目 <a href="https://github.com/DeppWang/Java-Books" target="_blank" rel="noopener">Java-Books</a> 的 [Algorithms, 4th Edition.pdf](<a href="https://github.com/DeppWang/Java-Books/blob/master/docs/Algorithms%2C" target="_blank" rel="noopener">https://github.com/DeppWang/Java-Books/blob/master/docs/Algorithms%2C</a> 4th Edition.pdf) 在 <a href="https://deppwang.github.io/" target="_blank" rel="noopener">https://deppwang.github.io/</a> 的链接：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>deppwang.github.io<span class="regexp">/Java-Books/</span>docs<span class="regexp">/Algorithms, 4th Edition.pdf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>deppwang.github.io<span class="regexp">/Java-Books/</span>docs<span class="regexp">/Algorithms, 4th Edition.pdf</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
