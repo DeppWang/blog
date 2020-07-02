@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
 <meta property="og:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-01T15:34:26.039Z">
+<meta property="og:updated_time" content="2020-07-02T09:41:16.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + NexT 博客优化（修改）记录">
 <meta name="twitter:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
@@ -522,7 +522,7 @@
 </ul>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">urlset</span> <span class="attr">xmlns</span>=<span class="string">"http://www.sitemaps.org/schemas/sitemap/0.9"</span>&gt;</span></span><br><span class="line">  &#123;% for post in posts %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">loc</span>&gt;</span>&#123;&#123; post.permalink | uriencode &#125;&#125;<span class="tag">&lt;/<span class="name">loc</span>&gt;</span></span><br><span class="line">    &#123;% if post.date %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">lastmod</span>&gt;</span>&#123;&#123; post.date.toISOString().substring(0, 10) &#125;&#125;<span class="tag">&lt;/<span class="name">lastmod</span>&gt;</span></span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  &#123;% endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">urlset</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">  template:</span> <span class="string">./source/sitemap_template.xml</span></span><br><span class="line"><span class="attr">  rel:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _config.yml</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line"><span class="attr">  template:</span> <span class="string">./source/sitemap_template.xml</span></span><br></pre></td></tr></table></figure>
 
 <p>正常来说，当添加了 sitemap，Google 将定期抓取你设置的 sitemap</p>
 <ul>
