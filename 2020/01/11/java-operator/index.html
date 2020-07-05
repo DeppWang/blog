@@ -91,21 +91,21 @@
 
 
 
-<meta name="description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
+<meta name="description" content="一、原码、反码、补码1  用二进制表示                00000001-1 如果只变符号位（原码）        10000001那么 1 + -1 =                 10000010 = -2-1 的反码                     11111110       除去符号位，整体翻转-1 的补码（反码加 1）           11111111 补">
 <meta name="keywords" content="运算符 Operator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 的几种运算符">
 <meta property="og:url" content="https://depp.wang/2020/01/11/java-operator/index.html">
 <meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
+<meta property="og:description" content="一、原码、反码、补码1  用二进制表示                00000001-1 如果只变符号位（原码）        10000001那么 1 + -1 =                 10000010 = -2-1 的反码                     11111110       除去符号位，整体翻转-1 的补码（反码加 1）           11111111 补">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png">
-<meta property="og:updated_time" content="2020-07-04T15:56:20.915Z">
+<meta property="og:updated_time" content="2020-07-05T03:18:16.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 的几种运算符">
-<meta name="twitter:description" content="一、原码、反码、补码1 用二进制表示                    00000001 -1 如果只变符号位（原码）10000001 那么 1 + -1 =                         10000010   =   -2 -1 的反码                               11111110  除去符号位，整体翻转 -1 的补码（反码加 1）">
+<meta name="twitter:description" content="一、原码、反码、补码1  用二进制表示                00000001-1 如果只变符号位（原码）        10000001那么 1 + -1 =                 10000010 = -2-1 的反码                     11111110       除去符号位，整体翻转-1 的补码（反码加 1）           11111111 补">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png">
 
 
@@ -412,23 +412,14 @@
       
 
       
-        <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><p>1 用二进制表示                    00000001</p>
-<p>-1 如果只变符号位（原码）10000001</p>
-<p>那么 1 + -1 =                         10000010   =   -2</p>
-<p>-1 的反码                               11111110  除去符号位，整体翻转</p>
-<p>-1 的补码（<strong>反码加 1</strong>）         11111111 补码  也等于  0 - 1 的原（补）码</p>
-<p>1 的补码 + -1 的补码            10000000 = 0，溢出 1 位</p>
+        <h2 id="一、原码、反码、补码"><a href="#一、原码、反码、补码" class="headerlink" title="一、原码、反码、补码"></a>一、原码、反码、补码</h2><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>  用二进制表示                <span class="number">00000001</span></span><br><span class="line"><span class="number">-1</span> 如果只变符号位（原码）        <span class="number">10000001</span></span><br><span class="line">那么 <span class="number">1</span> + <span class="number">-1</span> =                 <span class="number">10000010</span> = <span class="number">-2</span></span><br><span class="line"><span class="number">-1</span> 的反码                     <span class="number">11111110</span>       除去符号位，整体翻转</span><br><span class="line"><span class="number">-1</span> 的补码（反码加 <span class="number">1</span>）           <span class="number">11111111</span> 补码  也等于  <span class="number">0</span> - <span class="number">1</span> 的原（补）码</span><br><span class="line"><span class="number">1</span>  的补码 + <span class="number">-1</span> 的补码          <span class="number">10000000</span> = <span class="number">0</span>， 溢出 <span class="number">1</span> 位</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
 <p>int 为 4 个字节，32 位，1 位作为符号位，表示大小的有 31 位</p>
 <p>为了方便运算，Java 整数二进制<strong>默认使用补码表示</strong>，<strong>正数和 0 的补码不变，负数的补码为反码加 1</strong></p>
-<ul>
-<li>0 :             00000000000000000000000000000000 <code>32个0</code></li>
-<li>2^32-1     01111111111111111111111111111111 <code>0+31个1</code></li>
-<li>-2^31 :     10000000000000000000000000000000 <code>1+31个0</code></li>
-<li>-2^31+1 : 10000000000000000000000000000001 <code>1+30个0+1</code></li>
-<li>-1 :            11111111111111111111111111111111 <code>32个1</code></li>
-</ul>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span>:        <span class="number">00000000000000000000000000000000</span>  <span class="number">32</span>个<span class="number">0</span></span><br><span class="line"><span class="number">2</span>^<span class="number">32</span><span class="number">-1</span>:   <span class="number">01111111111111111111111111111111</span>  <span class="number">0</span> + <span class="number">31</span>个<span class="number">1</span></span><br><span class="line"><span class="number">-2</span>^<span class="number">31</span>:    <span class="number">10000000000000000000000000000000</span>  <span class="number">1</span> + <span class="number">31</span>个<span class="number">0</span></span><br><span class="line"><span class="number">-2</span>^<span class="number">31</span>+<span class="number">1</span>:  <span class="number">10000000000000000000000000000001</span>  <span class="number">1</span> + <span class="number">30</span>个<span class="number">0</span> + <span class="number">1</span></span><br><span class="line"><span class="number">-1</span>:       <span class="number">11111111111111111111111111111111</span>  <span class="number">32</span>个<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = Integer.toBinaryString(<span class="number">0x80000000</span>); <span class="comment">// 0x80000000: -2^31</span></span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -444,12 +435,12 @@
 <p>因为左边没有符号，所以没有无符号左移。或者说，左移运算符就是无符号左移。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> intValue = <span class="number">733183670</span>;</span><br><span class="line">    <span class="keyword">int</span> intValue2 = -<span class="number">733183670</span>;</span><br><span class="line">    System.out.println(intValue + <span class="string">" 左移 1 位："</span> + (intValue &lt;&lt; <span class="number">1</span>)); <span class="comment">// 1466367340</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 左移 1 位："</span> + (intValue2 &lt;&lt; <span class="number">1</span>)); <span class="comment">// -1466367340</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 右移 8 位："</span> + (intValue &gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998 (733183670/256)</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 右移 8 位："</span> + (intValue2 &gt;&gt; <span class="number">8</span>)); <span class="comment">// -2863999</span></span><br><span class="line">    <span class="comment">// 无符号右移，将数据变小，且最终为正数</span></span><br><span class="line">    System.out.println(intValue + <span class="string">" 无符号右移 8 位："</span> + (intValue &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 2863998</span></span><br><span class="line">    System.out.println(intValue2 + <span class="string">" 无符号右移 8 位："</span> + (intValue2 &gt;&gt;&gt; <span class="number">8</span>)); <span class="comment">// 13913217</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>733183670 &lt;&lt; 1，左移 1 位：</p>
+<p><code>733183670 &lt;&lt; 1</code>，左移 1 位：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-02-16-131127.png" alt="图片来自知乎"></p>
-<p>-733183670 &gt;&gt; 8，右移 8 位：</p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png" alt=""></p>
-<p>-733183670 &gt;&gt;&gt; 8，无符号右移 8 位：</p>
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png" alt=""></p>
+<p><code>-733183670 &gt;&gt; 8</code>，右移 8 位：</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145501.png" alt="图片来自知乎"></p>
+<p><code>-733183670 &gt;&gt;&gt; 8</code>，无符号右移 8 位：</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-05-04-145507.png" alt="图片来自知乎"></p>
 <h2 id="三、位运算符"><a href="#三、位运算符" class="headerlink" title="三、位运算符"></a>三、位运算符</h2><ul>
 <li>先转换为二进制后再运算</li>
 <li><code>&amp;</code> 按位与：<code>1&amp;1==1</code> / <code>1&amp;0==0</code> / <code>0&amp;0==0</code>，都为 1，则为 1，否则为 0</li>
