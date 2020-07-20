@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-07-13T08:38:41.984Z">
+<meta property="og:updated_time" content="2020-07-20T12:15:42.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
@@ -438,6 +438,8 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--petstore-v1.xml--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.deppwang.litespring.v1.service.PetStoreService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span> <span class="attr">class</span>=<span class="string">"org.deppwang.litespring.v1.dao.AccountDao"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>Spring 的第一步操作就是根据 xml 的标记来实例化类，在 Spring 中，我们管类叫 Bean，所以实例化类也可以称为实例化 Bean。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">BeanIocContainer iocContainer = <span class="keyword">new</span> BeanIocContainer(<span class="string">"petstore-v1.xml"</span>);</span><br></pre></td></tr></table></figure>
+
 <p>Spring 如何根据 xml 配置来实现实例化类？</p>
 <p>大致可以分为三步（配合源码 <strong>v1</strong> 阅读）：</p>
 <ol>
@@ -506,7 +508,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;(<span class="number">64</span>);</span><br></pre></td></tr></table></figure>
 
 <p>因为存放 Bean 实例也是 Map，这是除 beanDefinitionMap 外，Spring 称为 IoC 容器的另一个原因。</p>
-<p>我们将创建对象的控制权交给 Spring（BeanIocContainer.java），我们可以认为 BeanIocContainer.java 是一个创建对象的工厂（专门生产对象），也可以称为简单工厂。它实现了创建对象和使用对象分离。</p>
+<p>我们将创建对象的控制权交给 Spring（BeanIocContainer.java），我们可以认为 BeanIocContainer.java 是一个创建对象的工厂（专门生产对象），也可以称为简单工厂。<strong>它实现了创建对象和使用对象分离</strong>。</p>
 <p>Spring 为了使用不同的方式均可实现实例化 Bean，不能只是简单工厂，需要使用工厂方法模式。</p>
 <blockquote>
 <p>工厂方法模式：定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method 使一个类的实例化延迟到其子类。来源：《Head First 设计模式》</p>
@@ -551,7 +553,9 @@
 <p>@Component + @Autowired 实现 Spring 对业务类的管理。被 @Component + @Autowired  修饰的业务类算是一种特殊的 Bean。</p>
 <p>至此，我们还是在需要通过配置文件来实现组件扫描。有没有完全不使用配置文件的方式？有！</p>
 <p>我们可以使用 @Configuration 替代配置文件，并使用 @ComponentScan 来替代配置文件的  <code>&lt;context:component-scan&gt;</code> 。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">// 将类标记为 @Configuration，代表这个类是相当于一个配置文件</span></span><br><span class="line"><span class="meta">@ComponentScan</span> <span class="comment">// ComponentScan 扫描 PetStoreConfig.class 所在路径及其所在路径所有子路径的文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreConfig</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(PetStoreConfig.class);</span><br><span class="line">        PetStoreService userService = context.getBean(PetStoreService.class);</span><br><span class="line">        userService.getAccountDao();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">// 将类标记为 @Configuration，代表这个类是相当于一个配置文件</span></span><br><span class="line"><span class="meta">@ComponentScan</span> <span class="comment">// ComponentScan 扫描 PetStoreConfig.class 所在路径及其所在路径所有子路径的文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PetStoreConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(PetStoreConfig.class);</span><br><span class="line">        PetStoreService userService = context.getBean(PetStoreService.class);</span><br><span class="line">        userService.getAccountDao();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用注解其实跟使用 xml 配置文件一样，目的是将配置类作为入口，实现扫描组件，将其加载进 IoC 容器中的功能。</p>
 <p>AnnotationConfigApplicationContext 是专为针对配置类的启动类。其实现机制，可以 Google 查阅。</p>
@@ -581,21 +585,24 @@
 
 <h2 id="六、Spring-Boot-原理"><a href="#六、Spring-Boot-原理" class="headerlink" title="六、Spring Boot 原理"></a>六、Spring Boot 原理</h2><p>前面说到了 @Configuration 和 @ComponentScan，这就不得不提 Spring Boot。因为 Spring Boot 就使用了  @Configuration 和 @ComponentScan，你可以点开 @SpringBootApplication 看到。</p>
 <p>我们发现，Spring Boot 启动时，并没有使用 AnnotationConfigApplicationContext 来指定启动某某 Config 类。这是因为它使用了 @EnableAutoConfiguration 注解。</p>
-<p>Spring Boot 利用了 @EnableAutoConfiguration 来自动加载标识为 @Configuration 的配置类到容器中。Spring Boot 还可以将需要自动加载的配置类放在 spring.factories 中，Spring Boot 将自动加载 spring.factories 中的配置类。spring.factories 需放置于META-INF 下。</p>
-<p>如 Spring Boot 项目启动时，autocofigure 包中将自动加载到容器的（部分）配置类如下：</p>
+<p>Spring Boot 利用了 @EnableAutoConfiguration 来自动加载<strong>启动类路径（base-package）</strong>下标识为 @Configuration 的配置类到容器中。有时项目引入 jar 包的部分类也需要注入容器，如果引用 jar 包与启动类路径不一致，就需要一个额外标识，一个名为 spring.factories 文件。jar 包将需要自动加载的配置类放在 spring.factories 中，Spring Boot 将自动加载 jar 包 spring.factories 中的配置类。spring.factories 需放置于META-INF 下。</p>
+<p>关于 @EnableAutoConfiguration 的详细工作原理，可以看看<a href="http://tengj.top/2017/03/09/springboot3/" target="_blank" rel="noopener">这篇文章</a></p>
+<p>如 Spring Boot 项目启动时，autocofigure 包中将被自动加载到容器的（部分）配置类如下：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-05-092624.png?ynotemdtimestamp=1587214457308" alt=""></p>
 <p>以上也是 Spring Boot 的原理。</p>
-<p>在 Spring Boot 中，我们引入的 jar 包都有一个字段，<strong>starter</strong>，我们叫 starter 包。</p>
+<p>在 Spring Boot 中，我们引入的部分 jar 包包含一个字段，<strong>starter</strong>，我们叫 starter 包。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-151532.png" alt=""></p>
-<p>标识为 starter（启动器）是因为引入这些包时，我们不用设置额外操作，它能被自动装配，starter 包一般都包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
+<p>标识为 starter（启动器），可以看作是一个依赖总集，用于方便引用依赖。starter 包一般包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png" alt=""></p>
 <p>如 druid-spring-boot-starter：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png" alt=""></p>
-<p>有时候我们还需要自定义 starter 包，比如在 Spring Cloud 中，当某个应用要调用另一个应用的代码时，要么调用方使用 Feign（HTTP），要么将被调用方自定义为 starter 包，让调用方依赖引用，再 @Autowired 使用。此时需要在被调用方设置配置类和 spring.factories：</p>
+<p>有时候我们还需要自定义 starter 包，比如在 Spring Cloud 中，当某个应用要调用另一个应用的代码时，要么调用方使用 HTTP，要么将被调用方自定义为 starter 包，让调用方依赖引用，再 @Autowired 使用。此时需要在被调用方设置配置类和 spring.factories：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderAppConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// spring.factories</span></span><br><span class="line"># Auto Configure</span><br><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">com.amy.cloud.amycloudact.ProviderAppConfiguration</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png" alt=""></p>
-<p>当然，你也可以把这两个文件放在调用方（此时要指定扫描路径），但一般放在被调用方。ps：如果你两个应用的 base-package 路径一样，那么可以不用这一步。</p>
+<p>当然，你也可以把这两个文件放在调用方（此时要指定扫描路径），但一般放在被调用方。注意：如果你两个应用的 base-package 路径一样，那么可以不用这一步。</p>
+<!--[Starter 包官方介绍](https://docs.spring.io/spring-boot/docs/1.2.1.RELEASE/reference/htmlsingle/#using-boot-starter-poms)-->
+
 <p>说了 Spring Boot，那么在 Spring MVC，如何将引入 jar 包的组件注入容器？</p>
 <ul>
 <li>跟扫描本项目包一样，在 xml ，增加引入 jar 包的扫描路径：</li>
