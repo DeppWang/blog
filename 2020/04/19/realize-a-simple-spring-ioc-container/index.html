@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-07-20T12:15:42.939Z">
+<meta property="og:updated_time" content="2020-07-21T11:11:01.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
@@ -522,7 +522,7 @@
 <!--这里创建对象的工厂方法是**构造方法**。-->
 
 <p>实现：将 BeanIocContainer 修改为 BeanFactory 接口，只提供 getBean() 方法。实现不同的子类对应不同什么的方式实例化 Bean。</p>
-<p>Spring 使用 *<em>getBean() *</em>作为工厂方法。getBean() 包含创建对象的方法。</p>
+<p>Spring 使用 <strong>getBean()</strong> 作为工厂方法。getBean() 包含创建对象的方法。</p>
 <p>本节源码对应：<strong>v3</strong></p>
 <h2 id="四、实现「注解」"><a href="#四、实现「注解」" class="headerlink" title="四、实现「注解」"></a>四、实现「注解」</h2><p>在业务开发中，如果每个业务类均设置构造函数，并且需要在 xml 中配置，那么就太繁琐，还容易出错。Spring 从 2.5<sup><a href="https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm" target="_blank" rel="noopener">ref</a></sup> 开始，新增了注解，可以使用注解来替代业务类的 xml 配置和构造函数。</p>
 <ul>
@@ -592,12 +592,14 @@
 <p>以上也是 Spring Boot 的原理。</p>
 <p>在 Spring Boot 中，我们引入的部分 jar 包包含一个字段，<strong>starter</strong>，我们叫 starter 包。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-151532.png" alt=""></p>
-<p>标识为 starter（启动器），可以看作是一个依赖总集，用于方便引用依赖。starter 包一般包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
+<p>标识为 starter（启动器），可以看作是一个依赖总集，用于方便引用依赖。starter 包不需要额外配置，如果有配置类需要默认注入容器，则会包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png" alt=""></p>
 <p>如 druid-spring-boot-starter：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png" alt=""></p>
 <p>有时候我们还需要自定义 starter 包，比如在 Spring Cloud 中，当某个应用要调用另一个应用的代码时，要么调用方使用 HTTP，要么将被调用方自定义为 starter 包，让调用方依赖引用，再 @Autowired 使用。此时需要在被调用方设置配置类和 spring.factories：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderAppConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// spring.factories</span></span><br><span class="line"># Auto Configure</span><br><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">com.amy.cloud.amycloudact.ProviderAppConfiguration</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderAppConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># spring.factories</span></span><br><span class="line"><span class="comment"># Auto Configure</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span></span><br><span class="line"><span class="string">com.amy.cloud.amycloudact.ProviderAppConfiguration</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png" alt=""></p>
 <p>当然，你也可以把这两个文件放在调用方（此时要指定扫描路径），但一般放在被调用方。注意：如果你两个应用的 base-package 路径一样，那么可以不用这一步。</p>
