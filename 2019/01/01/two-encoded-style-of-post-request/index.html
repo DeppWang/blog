@@ -79,7 +79,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="DeppWang's Blog" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Depp Wang's Blog" type="application/atom+xml">
 
 
 
@@ -91,13 +91,13 @@
 
 
 
-<meta name="description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解： 一、前端表单提交时application/x-www-form-urlencoded表单代码： &amp;lt;form action=&quot;http://localhost:8888/task/&quot; method=&quot;POST&quot;&amp;gt;First name: &amp;lt;inp">
+<meta name="description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解：">
 <meta name="keywords" content="POST,application&#x2F;x-www-form-urlencoded,multipart&#x2F;form-data">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP POST 请求的两种编码格式：application&#x2F;x-www-form-urlencoded 和 multipart&#x2F;form-data">
 <meta property="og:url" content="https://depp.wang/2019/01/01/two-encoded-style-of-post-request/index.html">
-<meta property="og:site_name" content="DeppWang&#39;s Blog">
-<meta property="og:description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解： 一、前端表单提交时application/x-www-form-urlencoded表单代码： &amp;lt;form action=&quot;http://localhost:8888/task/&quot; method=&quot;POST&quot;&amp;gt;First name: &amp;lt;inp">
+<meta property="og:site_name" content="Depp Wang&#39;s Blog">
+<meta property="og:description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135214.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135218.png">
@@ -112,10 +112,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135258.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135310.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135323.png">
-<meta property="og:updated_time" content="2020-07-21T11:11:01.727Z">
+<meta property="og:updated_time" content="2020-08-04T06:07:20.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP POST 请求的两种编码格式：application&#x2F;x-www-form-urlencoded 和 multipart&#x2F;form-data">
-<meta name="twitter:description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解： 一、前端表单提交时application/x-www-form-urlencoded表单代码： &amp;lt;form action=&quot;http://localhost:8888/task/&quot; method=&quot;POST&quot;&amp;gt;First name: &amp;lt;inp">
+<meta name="twitter:description" content="在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解：">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135214.png">
 
 
@@ -150,7 +150,7 @@
 
 
 
-  <title>HTTP POST 请求的两种编码格式：application/x-www-form-urlencoded 和 multipart/form-data | DeppWang's Blog</title>
+  <title>HTTP POST 请求的两种编码格式：application/x-www-form-urlencoded 和 multipart/form-data | Depp Wang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -186,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">DeppWang's Blog</span>
+        <span class="site-title">Depp Wang's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -318,13 +318,13 @@
     <link itemprop="mainEntityOfPage" href="https://depp.wang/2019/01/01/two-encoded-style-of-post-request/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DeppWang">
+      <meta itemprop="name" content="Depp Wang">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/deppwang.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DeppWang's Blog">
+      <meta itemprop="name" content="Depp Wang's Blog">
     </span>
 
     
@@ -423,6 +423,8 @@
 
       
         <p>在常见业务开发中，POST 请求常常在这些地方使用：前端表单提交时、调用接口代码时和使用 Postman 测试接口时。我们下面来一一了解：</p>
+<a id="more"></a>
+
 <h2 id="一、前端表单提交时"><a href="#一、前端表单提交时" class="headerlink" title="一、前端表单提交时"></a>一、前端表单提交时</h2><h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>表单代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8888/task/"</span> <span class="attr">method</span>=<span class="string">"POST"</span>&gt;</span></span><br><span class="line">First name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"firstName"</span> <span class="attr">value</span>=<span class="string">"Mickey&amp;"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">Last name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"lastName"</span> <span class="attr">value</span>=<span class="string">"Mouse "</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">" 提交 "</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -431,8 +433,6 @@
 <p>我们可以看出，服务器知道参数用符号 <code>&amp;</code> 间隔，如果参数值中需要 <code>&amp;</code>，则必须对其进行编码。编码格式就是 <code>application/x-www-form-urlencoded</code>（<strong>将键值对的参数用 &amp; 连接起来，如果有空格，将空格转换为 <code>+</code> 加号；有特殊符号，将特殊符号转换为 <code>ASCII HEX</code> 值</strong>）。</p>
 <p><code>application/x-www-form-urlencoded</code> 是浏览器默认的编码格式。对于 Get 请求，是将参数转换 <code>?key=value&amp;key=value</code> 格式，连接到 url 后</p>
 <p>ps：可以在这个网址测试表单：<a href="http://www.runoob.com/try/try.php?filename=tryhtml_form_submit" target="_blank" rel="noopener">http://www.runoob.com/try/try.php?filename=tryhtml_form_submit</a></p>
-<a id="more"></a>
-
 <h3 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h3><p>那么当服务器使用 <code>multipart/form-data</code> 接收 POST 请求时，服务器怎么知道每个参数的开始位置和结束位置呢？</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8888/task/"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">First name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"firstName"</span> <span class="attr">value</span>=<span class="string">"Mickey&amp;"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">Last name: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"lastName"</span> <span class="attr">value</span>=<span class="string">"Mouse "</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">" 提交 "</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -475,11 +475,11 @@
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135310.png" alt=""></p>
 <p><strong>JavaScript XHR</strong>：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135323.png" alt="image.png"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>POST 请求的两种编码格式：<code>application/x-www-urlencoded</code> 是浏览器默认的编码格式，用于键值对参数，参数之间用 <code>&amp;</code> 间隔；<code>multipart/form-data</code> 常用于文件等二进制，也可用于键值对参数，最后连接成一串字符传输 (参考 Java OK HTTP)。除了这两个编码格式，还有 <code>application/json</code> 也经常使用。</p>
 <h2 id="接口代码"><a href="#接口代码" class="headerlink" title="接口代码"></a>接口代码</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/task"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(String firstName, String lastName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> firstName + lastName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testFile"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testFile</span><span class="params">(String firstName, String lastName, MultipartFile file)</span> </span>&#123;</span><br><span class="line">        String result = firstName + lastName;</span><br><span class="line">        <span class="keyword">if</span> (file != <span class="keyword">null</span>) &#123;</span><br><span class="line">            result += (file.getOriginalFilename() != <span class="keyword">null</span>) ? file.getOriginalFilename() : <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h2><ul>
-<li><a href="http://www.w3school.com.cn/tags/att_form_enctype.asp" target="_blank" rel="noopener">HTML <form> 标签的 enctype 属性</form></a></li>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>POST 请求的两种编码格式：<code>application/x-www-urlencoded</code> 是浏览器默认的编码格式，用于键值对参数，参数之间用 <code>&amp;</code> 间隔；<code>multipart/form-data</code> 常用于文件等二进制，也可用于键值对参数，最后连接成一串字符传输 (参考 Java OK HTTP)。除了这两个编码格式，还有 <code>application/json</code> 也经常使用。</p>
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ul>
+<li><a href="http://www.w3school.com.cn/tags/att_form_enctype.asp" target="_blank" rel="noopener">HTML <code>&lt;form&gt;</code> 标签的 enctype 属性</a></li>
 <li><a href="https://www.cnblogs.com/libertycode/p/5979260.html" target="_blank" rel="noopener">HttpUrlConnection 基础使用</a></li>
 <li><a href="https://www.cnblogs.com/ifindu-san/p/8251370.html#undefined" target="_blank" rel="noopener">SpringMvc 接收 multipart/form-data 传输的数据 及 PostMan 各类数据类型的区别</a></li>
 <li><a href="https://stackoverflow.com/questions/3508338/what-is-the-boundary-in-multipart-form-data" target="_blank" rel="noopener">What is the boundary in multipart/form-data?</a></li>
@@ -492,7 +492,7 @@
       
         
 <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-01-06-wechat-qcode.png" alt="DeppWang wechat" style="width: 200px; max-width: 100%;">
+    <img id="wechat_subscriber_qcode" src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-01-06-wechat-qcode.png" alt="Depp Wang wechat" style="width: 200px; max-width: 100%;">
     <div>个人公众号</div>
 </div>
 
@@ -513,7 +513,7 @@
   <ul class="post-copyright">
     <li class="post-copyright-author">
       <strong>本文作者：</strong>
-      DeppWang
+      Depp Wang
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
@@ -634,8 +634,8 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/deppwang.png" alt="DeppWang">
-          <p class="site-author-name" itemprop="name">DeppWang</p>
+          <img class="site-author-image" itemprop="image" src="/images/deppwang.png" alt="Depp Wang">
+          <p class="site-author-name" itemprop="name">Depp Wang</p>
            
               <p class="site-description motion-element" itemprop="description">每个人都需要有自己的哈姆雷特</p>
           
@@ -696,6 +696,15 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/deppwang1" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
           
         </div>
 
@@ -746,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前端表单提交时"><span class="nav-number">1.</span> <span class="nav-text">一、前端表单提交时</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">1.1.</span> <span class="nav-text">application/x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">1.2.</span> <span class="nav-text">multipart/form-data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件上传"><span class="nav-number">1.2.1.</span> <span class="nav-text">文件上传</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、调用接口代码时"><span class="nav-number">2.</span> <span class="nav-text">二、调用接口代码时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用-Postman-测试接口时"><span class="nav-number">3.</span> <span class="nav-text">三、使用 Postman 测试接口时</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、POST-请求-gt-Body-gt-x-www-form-urlencoded"><span class="nav-number">3.1.</span> <span class="nav-text">1、POST 请求 -&gt; Body -&gt; x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、POST-请求-gt-Body-gt-form-data"><span class="nav-number">3.2.</span> <span class="nav-text">2、POST 请求 -&gt; Body -&gt; form-data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口代码"><span class="nav-number">5.</span> <span class="nav-text">接口代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考网址"><span class="nav-number">6.</span> <span class="nav-text">参考网址</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前端表单提交时"><span class="nav-number">1.</span> <span class="nav-text">一、前端表单提交时</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">1.1.</span> <span class="nav-text">application/x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">1.2.</span> <span class="nav-text">multipart/form-data</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件上传"><span class="nav-number">1.2.1.</span> <span class="nav-text">文件上传</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、调用接口代码时"><span class="nav-number">2.</span> <span class="nav-text">二、调用接口代码时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用-Postman-测试接口时"><span class="nav-number">3.</span> <span class="nav-text">三、使用 Postman 测试接口时</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、POST-请求-gt-Body-gt-x-www-form-urlencoded"><span class="nav-number">3.1.</span> <span class="nav-text">1、POST 请求 -&gt; Body -&gt; x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、POST-请求-gt-Body-gt-form-data"><span class="nav-number">3.2.</span> <span class="nav-text">2、POST 请求 -&gt; Body -&gt; form-data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口代码"><span class="nav-number">4.</span> <span class="nav-text">接口代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">6.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
@@ -773,7 +782,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">DeppWang</span>
+  <span class="author" itemprop="copyrightHolder">Depp Wang</span>
 </div>
 
 
