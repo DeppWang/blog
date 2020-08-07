@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101336.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101537.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101616.png">
-<meta property="og:updated_time" content="2020-08-07T14:56:45.736Z">
+<meta property="og:updated_time" content="2020-08-07T15:03:29.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 macOS 中，如何自动压缩截屏图片大小">
 <meta name="twitter:description" content="一、错误的误会我是这样在 Markdown 中插入截屏图片的：截屏到剪贴板后，直接在 Typora 中粘贴，iPic 将自动将图片上传到阿里云图床（对象存储）。我一直使用 Alfred 的 Clipboard History 功能查看截图大小，发现图片占内存都很大，全屏截图有 10 多 MB，就想着一定要找到一种方法来缩小截屏大小，不然我的阿里云图床费用得嗖嗖涨。">
@@ -465,20 +465,20 @@
 </tr>
 </tbody></table>
 <p>压缩效果：74.8%</p>
-<h3 id="2-5、自动压缩"><a href="#2-5、自动压缩" class="headerlink" title="2.5、自动压缩"></a>2.5、自动压缩</h3><p>现在，只有在本地执行一个命令，就能将图片压缩了。可以将命令作为一个脚本，交给工作流来自动执行，工作流可以选择 Alfred 工作流（<a href="https://www.alfredapp.com/workflows/" target="_blank" rel="noopener">Workflow</a>）、系统自带的 <a href="https://support.apple.com/en-au/guide/automator/welcome/mac" target="_blank" rel="noopener">Automator</a> 和专业工作流软件 <a href="https://www.noodlesoft.com/" target="_blank" rel="noopener">Hazel（）</a>。Alfred 工作流需要关键字或快捷键触发，不符合我们自动压缩的 feelstyle，pass。下面分别演示如何使用 Hazel 和 Automator。 </p>
+<h3 id="2-5、自动压缩"><a href="#2-5、自动压缩" class="headerlink" title="2.5、自动压缩"></a>2.5、自动压缩</h3><p>现在，只有在本地执行一个命令，就能将图片压缩了。可以将命令作为一个脚本，交给工作流来自动执行，工作流可以选择 Alfred 工作流（<a href="https://www.alfredapp.com/workflows/" target="_blank" rel="noopener">Workflow</a>）、系统自带的 <a href="https://support.apple.com/en-au/guide/automator/welcome/mac" target="_blank" rel="noopener">Automator</a> 和专业工作流软件 <a href="https://www.noodlesoft.com/" target="_blank" rel="noopener">Hazel（</a>试用结束后软件收费）。Alfred 工作流需要关键字或快捷键触发，不符合我们自动压缩的 feelstyle，pass。下面分别演示如何使用 Hazel 和 Automator。 </p>
 <p>Hazel 设置工作流：</p>
 <ol>
-<li>添加文件夹，设置触发条件，条件为对文件夹中最近一分钟新增的 PNG 文件执行脚本</li>
+<li>添加指定文件夹，设置触发条件，条件为对文件夹中最近一分钟新增的 PNG 文件执行脚本</li>
 <li>设置脚本，脚本为压缩图片，并复制压缩后的图片到剪贴板</li>
 <li>通知压缩完成</li>
 </ol>
 <p>Automator 设置工作流：</p>
 <ol>
-<li>添加 Folder Action，选择 Run  Shell Script</li>
+<li>添加 Folder Action，选择指定文件夹，添加 Run  Shell Script</li>
 <li>设置脚本，将新加入图片作为参数，遍历执行脚本</li>
 <li>没有通知功能</li>
 </ol>
-<p>设置完成后，我们使用截图工具（如： <a href="https://xnipapp.com/" target="_blank" rel="noopener">Xnip</a>）将截图保存到本地文件夹时，将会触发工作流。</p>
+<p>设置完成后，我们使用截图工具（如： <a href="https://xnipapp.com/" target="_blank" rel="noopener">Xnip</a>）将截图保存到指定文件夹时，将会触发工作流，完成自动压缩。</p>
 <table>
 <thead>
 <tr>
@@ -502,7 +502,7 @@
 <!--可以选择开源免费的 [fswatch](https://github.com/emcrisostomo/fswatch) 把.-->
 
 <ul>
-<li>使用 Automator，需在 Security &amp; Privay（安全与隐私），Accessibility（辅助功能）里面开启权限。</li>
+<li>使用 Automator，需在 Security &amp; Privay（安全与隐私）-&gt; Accessibility（辅助功能）里面开启权限。</li>
 </ul>
 <p>相关命令：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pngquant 256 --skip-if-larger --strip --ext=.png --force "$1"</span><br><span class="line">osascript -e "set the clipboard to (read (POSIX file \"$(perl -e "print glob('$1')")\") as &#123;«class PNGf»&#125;)"</span><br></pre></td></tr></table></figure>
@@ -565,7 +565,7 @@
 </ul>
 <p>这张全屏壁纸截图未压缩前大小为 2880 × 1800，所以有 5,184,000 个像素点，图片内存为 8.7 MB（8,738,825 bytes），有 69,910,600 位（bit），每个像素点约占 13.5 位。</p>
 <p>压缩后分辩率不变，内存为 2.8 MB，为 23,488,102 位，每个像素点约占 4.3 位。</p>
-<p>可以看出，截屏图片的像素没有达到默认的 32 位，我认为是图片颜色没有特别丰富，所以用不了 32 位表示。测试截颜色单一的屏幕，所需要的内存会更低。个人认为这跟 UTF-8 类似，像素点的大小为可变，不常见的颜色更占内存。</p>
+<p>可以看出，截屏图片的像素没有达到默认的 32 位，我认为是图片颜色没有特别丰富，所以用不了 32 位表示。测试截颜色单一的屏幕，所需要的内存更低。个人认为这跟 UTF-8 类似，像素点的大小为可变，不常见的颜色更占内存。</p>
 <p>值得注意的是，虽然 MacBook Pro 的屏幕分辨率是 2560 × 1600 px，但系统默认做了一定缩放，缩放为了 2880  ×  1800 px，而屏幕显示为 1440  ×  900 pt（point，1pt = 2px），即将 4 个像素压缩为 1 个像素显示，来实现更好的显示效果，这被称为 Retain 技术。所以在 macOS 中，浏览器前端样式 1 px 对应 1 pt。</p>
 <h2 id="四、PNG-vs-JPEG-JPG"><a href="#四、PNG-vs-JPEG-JPG" class="headerlink" title="四、PNG vs JPEG(JPG)"></a>四、PNG vs JPEG(JPG)</h2><p><a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener">PNG</a>：<strong>P</strong>ortable <strong>N</strong>etwork <strong>G</strong>raphics，便携式网络图形。是一种支持<a href="https://en.wikipedia.org/wiki/Lossless_compression" target="_blank" rel="noopener">无损压缩</a>的<a href="https://zh.wikipedia.org/wiki/位图" target="_blank" rel="noopener">位图</a>图形格式。PNG 更适合保存截屏。</p>
 <p>无损压缩一方面指压缩后对图片质量没有损失，另一方面指压缩后还可以还原（如压缩包解压）。PNG 图片可以无损压缩，但也可以有损压缩，就像前面的 pngquant 一样。</p>
