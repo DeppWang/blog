@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101336.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101537.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101616.png">
-<meta property="og:updated_time" content="2020-08-07T15:03:29.787Z">
+<meta property="og:updated_time" content="2020-08-08T01:03:20.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 macOS 中，如何自动压缩截屏图片大小">
 <meta name="twitter:description" content="一、错误的误会我是这样在 Markdown 中插入截屏图片的：截屏到剪贴板后，直接在 Typora 中粘贴，iPic 将自动将图片上传到阿里云图床（对象存储）。我一直使用 Alfred 的 Clipboard History 功能查看截图大小，发现图片占内存都很大，全屏截图有 10 多 MB，就想着一定要找到一种方法来缩小截屏大小，不然我的阿里云图床费用得嗖嗖涨。">
@@ -527,10 +527,10 @@
 <p><strong>物理像素</strong>是物理设备上显示颜色的物理点。物理设备如电脑、手机、电视等。</p>
 <ul>
 <li>以 <a href="https://support.apple.com/kb/SP754?locale=en_AU" target="_blank" rel="noopener">MacBook Pro 2017 13.3-inch</a>（后面简称 MacBook Pro）为例，屏幕尺寸是 13.3 英寸，即屏幕斜对角长为 13.3 英寸（1 英寸 = 2.54 cm）。（斜对角长约 34.0 cm，长约 28.8 cm，宽约 18.0 cm），像素个数为  2560 × 1600，所以每个像素点的面积约为 0.01125 cm × 0.01125 cm。</li>
-<li>以 <a href="https://www.apple.com/iphone-xr/specs/" target="_blank" rel="noopener">iPhone XR</a> 为例，屏幕尺寸为 6.06-inch。（斜对角长约 15.4 cm，长约 14 cm，宽约 6.5 cm），像素个数为：1792 × 828，所以每个像素点的面积为 0.00785cm × 0.00785 cm。</li>
+<li><a href="https://www.apple.com/iphone-xr/specs/" target="_blank" rel="noopener">iPhone XR</a>，屏幕尺寸为 6.06-inch。（斜对角长约 15.4 cm，长约 14 cm，宽约 6.5 cm），像素个数为：1792 × 828，所以每个像素点的面积约为 0.00785cm × 0.00785 cm。</li>
 </ul>
 <p>我们可以看出，MacBook Rro 和 iPhone XR 屏幕的像素点为正方形。</p>
-<p><strong>图片像素</strong>是图片中最小的单位。同样大小的照片，包含的像素可能不同。小米 10 有一个颗 1 亿像素的摄像头，如果全输出，拍出来的照片，包含像素个数为 12032 × 9024 ，乘积结果为 1.08 亿。iPhone XR 是 1200 万像素，照片像素为 3024  ×  4032。</p>
+<p><strong>图片像素</strong>是图片中最小的单位。同样大小的照片，包含的像素可能不同。小米 10 有一个颗 1 亿像素的摄像头，如果全输出，拍出来的照片，包含像素个数为 12032 × 9024 ，乘积结果为 1.08 亿。iPhone XR 是 1200 万像素，照片像素为 3024  ×  4032。摄像头一般说多少多少像素，对于屏幕，我们一般称分辨率。</p>
 <!--**分辨率 **-->
 
 <p><a href="https://en.wikipedia.org/wiki/Dispute_resolution" target="_blank" rel="noopener">分辨率</a>，也叫显示分辨率（Display Resolution），分辨率指像素的总和，比如我们说 MacBook Pro 屏幕的分辨率是  2560 × 1600 px。分辨率和屏幕大小尺寸没有关系，MacBook Pro 的分辨率是  2560 × 1600 px，一台 75 英寸的 <a href="https://www.mi.com/mitv5/75/specs" target="_blank" rel="noopener">小米电视 5</a> 的分辨率也才 3840 × 2160 px。小米电视 5 自称是 <a href="https://en.wikipedia.org/wiki/4K_resolution" target="_blank" rel="noopener">4K</a>，其实只是接近 4K，4K 的标准是横向像素达到 4000。衡量屏幕显示的是像素密度。</p>
@@ -564,7 +564,7 @@
 <li>1KB = 1000 Bytes（字节）（十进制换算）；1KB = 1024 Bytes（二进制换算）</li>
 </ul>
 <p>这张全屏壁纸截图未压缩前大小为 2880 × 1800，所以有 5,184,000 个像素点，图片内存为 8.7 MB（8,738,825 bytes），有 69,910,600 位（bit），每个像素点约占 13.5 位。</p>
-<p>压缩后分辩率不变，内存为 2.8 MB，为 23,488,102 位，每个像素点约占 4.3 位。</p>
+<p>压缩后分辨率不变，内存为 2.8 MB，为 23,488,102 位，每个像素点约占 4.3 位。</p>
 <p>可以看出，截屏图片的像素没有达到默认的 32 位，我认为是图片颜色没有特别丰富，所以用不了 32 位表示。测试截颜色单一的屏幕，所需要的内存更低。个人认为这跟 UTF-8 类似，像素点的大小为可变，不常见的颜色更占内存。</p>
 <p>值得注意的是，虽然 MacBook Pro 的屏幕分辨率是 2560 × 1600 px，但系统默认做了一定缩放，缩放为了 2880  ×  1800 px，而屏幕显示为 1440  ×  900 pt（point，1pt = 2px），即将 4 个像素压缩为 1 个像素显示，来实现更好的显示效果，这被称为 Retain 技术。所以在 macOS 中，浏览器前端样式 1 px 对应 1 pt。</p>
 <h2 id="四、PNG-vs-JPEG-JPG"><a href="#四、PNG-vs-JPEG-JPG" class="headerlink" title="四、PNG vs JPEG(JPG)"></a>四、PNG vs JPEG(JPG)</h2><p><a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener">PNG</a>：<strong>P</strong>ortable <strong>N</strong>etwork <strong>G</strong>raphics，便携式网络图形。是一种支持<a href="https://en.wikipedia.org/wiki/Lossless_compression" target="_blank" rel="noopener">无损压缩</a>的<a href="https://zh.wikipedia.org/wiki/位图" target="_blank" rel="noopener">位图</a>图形格式。PNG 更适合保存截屏。</p>
