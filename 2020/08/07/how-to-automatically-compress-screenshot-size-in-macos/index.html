@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101336.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101537.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-08-07-101616.png">
-<meta property="og:updated_time" content="2020-08-08T01:03:20.816Z">
+<meta property="og:updated_time" content="2020-08-10T03:12:55.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 macOS 中，如何自动压缩截屏图片大小">
 <meta name="twitter:description" content="一、错误的误会我是这样在 Markdown 中插入截屏图片的：截屏到剪贴板后，直接在 Typora 中粘贴，iPic 将自动将图片上传到阿里云图床（对象存储）。我一直使用 Alfred 的 Clipboard History 功能查看截图大小，发现图片占内存都很大，全屏截图有 10 多 MB，就想着一定要找到一种方法来缩小截屏大小，不然我的阿里云图床费用得嗖嗖涨。">
@@ -504,8 +504,10 @@
 <ul>
 <li>使用 Automator，需在 Security &amp; Privay（安全与隐私）-&gt; Accessibility（辅助功能）里面开启权限。</li>
 </ul>
-<p>相关命令：</p>
+<p>脚本：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pngquant 256 --skip-if-larger --strip --ext=.png --force "$1"</span><br><span class="line">osascript -e "set the clipboard to (read (POSIX file \"$(perl -e "print glob('$1')")\") as &#123;«class PNGf»&#125;)"</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">The compressed image `<span class="built_in">file</span>` has been copied <span class="keyword">to</span> <span class="built_in">the clipboard</span>.</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">for f in "$@"</span><br><span class="line">do</span><br><span class="line">	/usr/local/bin/pngquant 256 --skip-if-larger --strip --ext=.png --force "$f"</span><br><span class="line">	osascript -e "set the clipboard to (read (POSIX file \"$(perl -e "print glob('$f')")\") as &#123;«class PNGf»&#125;)"</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
