@@ -100,8 +100,7 @@
 <meta property="og:description" content="大部分内容总结于 《廖雪峰 SQL 笔记》 主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGI">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg">
-<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135810.jpg">
-<meta property="og:updated_time" content="2020-08-22T14:50:46.846Z">
+<meta property="og:updated_time" content="2020-08-26T10:48:53.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="廖雪峰 MySQL 笔记">
 <meta name="twitter:description" content="大部分内容总结于 《廖雪峰 SQL 笔记》 主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGI">
@@ -535,8 +534,11 @@
 <li>ENGINE=InnoDB DEFAULT：默认引擎 InnoDB</li>
 </ul>
 <p><strong>列</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> birth <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>; // 给 students 表新增一列 birth</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students <span class="keyword">CHANGE</span> <span class="keyword">COLUMN</span> birth birthday <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>; // 把列名改为 birthday，类型改为 VARCHAR(20)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> studens <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> birthday; // 删除 birthday 列</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> birth <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>; // 给 students 表新增一列 birth</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students <span class="keyword">CHANGE</span> <span class="keyword">COLUMN</span> birth birthday <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>; // 把列名改为 birthday，类型改为 VARCHAR(20)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students <span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> birth <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">''</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>; // 设置默认值为 ''</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> studens <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> birthday; // 删除 birthday 列</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><a href="https://www.w3schools.com/sql/sql_alter.asp" target="_blank" rel="noopener">https://www.w3schools.com/sql/sql_alter.asp</a></li>
+</ul>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXIT // 退出</span><br></pre></td></tr></table></figure>
 
 <h2 id="实用-SQL"><a href="#实用-SQL" class="headerlink" title="实用 SQL"></a>实用 SQL</h2><p>插入或替换</p>
@@ -785,7 +787,6 @@
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg" alt="image-20191126122815557"></p>
 <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> host,<span class="keyword">user</span>,<span class="keyword">password</span> <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135810.jpg" alt="image-20191126123141389"></p>
 
       
     </div>
