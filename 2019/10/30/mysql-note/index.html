@@ -91,19 +91,19 @@
 
 
 
-<meta name="description" content="大部分内容总结于 《廖雪峰 SQL 笔记》 主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGI">
+<meta name="description" content="主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGINT自增类型则可以最多约 922 亿亿条记录">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="廖雪峰 MySQL 笔记">
+<meta property="og:title" content="MySQL 的 SQL 笔记">
 <meta property="og:url" content="https://depp.wang/2019/10/30/mysql-note/index.html">
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
-<meta property="og:description" content="大部分内容总结于 《廖雪峰 SQL 笔记》 主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGI">
+<meta property="og:description" content="主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGINT自增类型则可以最多约 922 亿亿条记录">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg">
-<meta property="og:updated_time" content="2020-08-26T10:48:53.062Z">
+<meta property="og:updated_time" content="2020-08-27T10:50:03.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="廖雪峰 MySQL 笔记">
-<meta name="twitter:description" content="大部分内容总结于 《廖雪峰 SQL 笔记》 主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGI">
+<meta name="twitter:title" content="MySQL 的 SQL 笔记">
+<meta name="twitter:description" content="主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGINT自增类型则可以最多约 922 亿亿条记录">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg">
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <title>廖雪峰 MySQL 笔记 | Depp Wang's Blog</title>
+  <title>MySQL 的 SQL 笔记 | Depp Wang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -320,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">廖雪峰 MySQL 笔记</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL 的 SQL 笔记</h1>
         
 
         <div class="post-meta">
@@ -382,7 +382,7 @@
 
           
           
-             <span id="/2019/10/30/mysql-note/" class="leancloud_visitors" data-flag-title="廖雪峰 MySQL 笔记">
+             <span id="/2019/10/30/mysql-note/" class="leancloud_visitors" data-flag-title="MySQL 的 SQL 笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,8 +410,7 @@
       
 
       
-        <p>大部分内容总结于 <a href="https://www.liaoxuefeng.com/wiki/1177760294764384" target="_blank" rel="noopener">《廖雪峰 SQL 笔记》</a></p>
-<h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响</p>
+        <h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响</p>
 <p>类型：</p>
 <ol>
 <li>自增整数类型（id）：<code>BIGINT NOT NULL AUTO_INCREMENT</code>。</li>
@@ -525,12 +524,13 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> <span class="keyword">test</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>表</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`students`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">"ID"</span>,</span><br><span class="line">  <span class="string">`class_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">"班级 ID"</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">"姓名"</span>,</span><br><span class="line">  <span class="string">`gender`</span> <span class="built_in">varchar</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">"性别"</span>,</span><br><span class="line">  <span class="string">`score`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">"分数"</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span> <span class="string">"学生表"</span>;</span><br><span class="line"></span><br><span class="line">DESC students; // <span class="keyword">describe</span>，查看表结构</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students; // 查看创建表的语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> students; // 删除表</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`students`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">"ID"</span>,</span><br><span class="line">  <span class="string">`class_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> <span class="string">"班级 ID"</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">"姓名"</span>,</span><br><span class="line">  <span class="string">`gender`</span> <span class="built_in">varchar</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="string">'男'</span> <span class="keyword">COMMENT</span> <span class="string">"性别"</span>,</span><br><span class="line">  <span class="string">`score`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="number">100</span> <span class="keyword">COMMENT</span> <span class="string">"分数"</span>,</span><br><span class="line">  <span class="string">`created_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">  <span class="string">`updated_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span> <span class="string">"学生表"</span>;</span><br><span class="line"></span><br><span class="line">DESC students; // <span class="keyword">describe</span>，查看表结构</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students; // 查看创建表的语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> students; // 删除表</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>bigint(20) 后面的 20 指的是字段的长度。最长不超过 20 位（922亿亿）</li>
+<li>bigint(20) 后面的 20 指的是字段最长长度，只是起提示作用。bigint 8 字节，最长不超过 20 位（922亿亿）</li>
 <li>NOT NULL：插入数据时，必须有值</li>
-<li>CHARSET( character set )</li>
+<li>CHARSET( character set ) <a href="https://www.eversql.com/mysql-utf8-vs-utf8mb4-whats-the-difference-between-utf8-and-utf8mb4/" target="_blank" rel="noopener">utf8 与 utf8mb4 的区别</a>，char utf8 默认为 3 个字节，utf8mb4 默认为 4 个字节</li>
+<li>COLLATE=<a href="https://www.monolune.com/what-is-the-utf8mb4_0900_ai_ci-collation/" target="_blank" rel="noopener">utf8mb4_0900_ai_ci</a></li>
 <li>ENGINE=InnoDB DEFAULT：默认引擎 InnoDB</li>
 </ul>
 <p><strong>列</strong></p>
@@ -787,6 +787,9 @@
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg" alt="image-20191126122815557"></p>
 <figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> host,<span class="keyword">user</span>,<span class="keyword">password</span> <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
 
+<h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384" target="_blank" rel="noopener">《廖雪峰 SQL 笔记》</a></li>
+</ul>
 
       
     </div>
@@ -820,7 +823,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2019/10/30/mysql-note/" title="廖雪峰 MySQL 笔记">https://depp.wang/2019/10/30/mysql-note/</a>
+      <a href="https://depp.wang/2019/10/30/mysql-note/" title="MySQL 的 SQL 笔记">https://depp.wang/2019/10/30/mysql-note/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -1054,7 +1057,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">1.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询数据"><span class="nav-number">3.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改数据"><span class="nav-number">4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库-表-列-SQL"><span class="nav-number">5.</span> <span class="nav-text">库/表/列 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用-SQL"><span class="nav-number">6.</span> <span class="nav-text">实用 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">7.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Uncommitted（可读到未提交）"><span class="nav-number">7.1.</span> <span class="nav-text">Read Uncommitted（可读到未提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Commited（可读到已提交）"><span class="nav-number">7.2.</span> <span class="nav-text">Read Commited（可读到已提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeatable-Commited（可重复读）"><span class="nav-number">7.3.</span> <span class="nav-text">Repeatable Commited（可重复读）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializable"><span class="nav-number">7.4.</span> <span class="nav-text">Serializable</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">1.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询数据"><span class="nav-number">3.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改数据"><span class="nav-number">4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库-表-列-SQL"><span class="nav-number">5.</span> <span class="nav-text">库/表/列 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用-SQL"><span class="nav-number">6.</span> <span class="nav-text">实用 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">7.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Uncommitted（可读到未提交）"><span class="nav-number">7.1.</span> <span class="nav-text">Read Uncommitted（可读到未提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Commited（可读到已提交）"><span class="nav-number">7.2.</span> <span class="nav-text">Read Commited（可读到已提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeatable-Commited（可重复读）"><span class="nav-number">7.3.</span> <span class="nav-text">Repeatable Commited（可重复读）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializable"><span class="nav-number">7.4.</span> <span class="nav-text">Serializable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">8.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
@@ -1223,7 +1226,7 @@
         var disqus_config = function () {
           this.page.url = 'https://depp.wang/2019/10/30/mysql-note/';
           this.page.identifier = '2019/10/30/mysql-note/';
-          this.page.title = '廖雪峰 MySQL 笔记';
+          this.page.title = 'MySQL 的 SQL 笔记';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://deppwang-1.disqus.com/embed.js';

@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
 <meta property="og:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-08-26T10:48:53.062Z">
+<meta property="og:updated_time" content="2020-08-27T10:50:03.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + NexT 博客优化（修改）记录">
 <meta name="twitter:description" content="有问题建议先看官方文档，和 issue 一、样式修改注意：重新部署后，样式若没更新，清除浏览器缓存 分类横向展示themes\next\source\css\_common\component\pages\categories.styl 中修改： .category-list-item &amp;#123;   margin: 5px 10px;   display: inline-block; // 新">
@@ -426,14 +426,14 @@
 <li>图片链接格式不为 <code>![]()</code> 时，需要用 <code>&lt;p&gt;&lt;/p&gt;</code> 包裹，此时图片才有间距</li>
 </ul>
 <h3 id="设置字体大小"><a href="#设置字体大小" class="headerlink" title="设置字体大小"></a>设置字体大小</h3><p><code>themes\next\source\css\_custom\custom.styl</code> 中新增：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正文字体的大小</span></span><br><span class="line"><span class="variable">$font</span>-size-base = <span class="number">16px</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正文字体的大小</span></span><br><span class="line"><span class="variable">$font</span>-size-base = <span class="number">15px</span> <span class="comment">// 原 14 px</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><code>_custom\custom.styl</code> 为全局自定义样式</li>
 <li>如果未生效，在 <code>themes\next\source\css\_variables\base.styl</code> 中修改</li>
 </ul>
 <h3 id="更改内容区域的宽度"><a href="#更改内容区域的宽度" class="headerlink" title="更改内容区域的宽度"></a>更改内容区域的宽度</h3><p><code>themes\next\source\css\_custom\custom.styl</code> 中新增：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 修改成你期望的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop = <span class="number">800px</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当视窗超过 1600px 后的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop-large = <span class="number">1000px</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 修改成你期望的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop = <span class="number">800px</span> <span class="comment">// 原 700px</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当视窗超过 1600px 后的宽度</span></span><br><span class="line"><span class="variable">$content</span>-desktop-large = <span class="number">1000px</span> <span class="comment">// 原 900px</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>如果未生效，在 <code>themes\next\source\css\_variables\base.styl</code> 中修改</li>
