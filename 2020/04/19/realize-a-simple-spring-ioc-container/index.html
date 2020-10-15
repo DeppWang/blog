@@ -105,8 +105,12 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-151532.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074720.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074801.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074258.png">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074549.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-111026.png">
-<meta property="og:updated_time" content="2020-09-13T04:05:24.598Z">
+<meta property="og:updated_time" content="2020-10-15T07:54:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="造轮子：实现一个简易的 Spring IoC 容器">
 <meta name="twitter:description" content="作者：DeppWang、原文地址   我通过实现一个简易的 Spring IoC 容器，算是真正入门了 Spring 框架。本文是对实现过程的一个总结提炼，需要配合源码阅读，源码地址。 结合本文和源码，你应该可以学到：Spring 的原理和 Spring Boot 的原理。 Spring 框架是 Java 开发的，Java 是面向对象的语言，所以 Spring 框架本身有大量的抽象、继承、多态。">
@@ -590,12 +594,21 @@
 <p>如 Spring Boot 项目启动时，autocofigure 包中将被自动加载到容器的（部分）配置类如下：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-05-092624.png?ynotemdtimestamp=1587214457308" alt=""></p>
 <p>以上也是 Spring Boot 的原理。</p>
-<p>在 Spring Boot 中，我们引入的部分 jar 包包含一个字段，<strong>starter</strong>，我们叫 starter 包。</p>
+<h3 id="Starter-包"><a href="#Starter-包" class="headerlink" title="Starter 包"></a>Starter 包</h3><p>在 Spring Boot 中，我们引入的部分 jar 包一般包含一个字段，<strong>starter</strong>，我们叫 starter 包。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-151532.png" alt=""></p>
-<p>标识为 starter（启动器），可以看作是一个依赖总集，用于方便引用依赖。starter 包不需要额外配置，如果有配置类需要默认注入容器，则会包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
+<p>标识为 starter（启动器），可以看作是一个依赖总集，用于方便引用依赖。starter 包不需要额外配置，相关 Bean 会自动装配到容器。这是如何实现自动装配 Bean 呢。其实很简单，也是利用 spring.factories + 配置类。</p>
+<p>1、starter 包包含自己的 spring.factories。如 spring-cloud-starter-eureka-server：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-18-134518.png" alt=""></p>
 <p>如 druid-spring-boot-starter：</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-04-19-085235.png" alt=""></p>
+<p>2、将相关配置类放在 autocofigure 中，由 autoconfigure 来自动装配。如 spring-boot-starter-jdbc：</p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074720.png" alt="image-20201015154719951"></p>
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074801.png" alt="image-20201015154801013"></p>
+<p>如：spring-boot-starter-amqp</p>
+<img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074258.png" alt="image-20201015154258123" style="zoom:50%;">
+
+<p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-15-074549.png" alt="image-20201015154548874"></p>
+<p>一般来说，我们在 application.properties(application.yml) 的配置的数据将由相应配置类读取</p>
 <p>有时候我们还需要自定义 starter 包，比如在 Spring Cloud 中，当某个应用要调用另一个应用的代码时，要么调用方使用 HTTP，要么将被调用方自定义为 starter 包，让调用方依赖引用，再 @Autowired 使用。此时需要在被调用方设置配置类和 spring.factories：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderAppConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -898,7 +911,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#零、Spring-的作用"><span class="nav-number">1.</span> <span class="nav-text">零、Spring 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实现「实例化-Bean-」"><span class="nav-number">2.</span> <span class="nav-text">一、实现「实例化 Bean 」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实现「填充属性（依赖注入）」"><span class="nav-number">3.</span> <span class="nav-text">二、实现「填充属性（依赖注入）」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用「单例模式、工厂方法模式」"><span class="nav-number">4.</span> <span class="nav-text">三、使用「单例模式、工厂方法模式」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、实现「注解」"><span class="nav-number">5.</span> <span class="nav-text">四、实现「注解」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、注解-Bean"><span class="nav-number">6.</span> <span class="nav-text">五、注解 @Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Spring-Boot-原理"><span class="nav-number">7.</span> <span class="nav-text">六、Spring Boot 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、结语"><span class="nav-number">8.</span> <span class="nav-text">七、结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#零、Spring-的作用"><span class="nav-number">1.</span> <span class="nav-text">零、Spring 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、实现「实例化-Bean-」"><span class="nav-number">2.</span> <span class="nav-text">一、实现「实例化 Bean 」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实现「填充属性（依赖注入）」"><span class="nav-number">3.</span> <span class="nav-text">二、实现「填充属性（依赖注入）」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、使用「单例模式、工厂方法模式」"><span class="nav-number">4.</span> <span class="nav-text">三、使用「单例模式、工厂方法模式」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、实现「注解」"><span class="nav-number">5.</span> <span class="nav-text">四、实现「注解」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、注解-Bean"><span class="nav-number">6.</span> <span class="nav-text">五、注解 @Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Spring-Boot-原理"><span class="nav-number">7.</span> <span class="nav-text">六、Spring Boot 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Starter-包"><span class="nav-number">7.1.</span> <span class="nav-text">Starter 包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、结语"><span class="nav-number">8.</span> <span class="nav-text">七、结语</span></a></li></ol></div>
             
 
           </div>
