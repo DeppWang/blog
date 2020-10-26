@@ -1,4 +1,3 @@
-https://depp.wang/2020/10/26/undefined/
 https://depp.wang/2020/10/26/java-implements-a-custom-distributed-session/
 https://depp.wang/2020/08/20/hashmap-9-question/
 https://depp.wang/2020/08/07/how-to-automatically-compress-screenshot-size-in-macos/
