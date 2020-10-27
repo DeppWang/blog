@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
 <meta property="og:description" content="HTTP 是无状态协议，所以服务端如果需要记住登录用户，就需要维护一个 SessionId(Cookie) - Session 的键值对。Session 存放用户信息对象。用户信息对象作为 Session 的一个 Attribute。当浏览器请求中包含 Cookie 时，服务器就能识别出具体是哪个用户了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-26T14:41:10.864Z">
+<meta property="og:updated_time" content="2020-10-27T16:00:46.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 实现一个自定义分布式 Session">
 <meta name="twitter:description" content="HTTP 是无状态协议，所以服务端如果需要记住登录用户，就需要维护一个 SessionId(Cookie) - Session 的键值对。Session 存放用户信息对象。用户信息对象作为 Session 的一个 Attribute。当浏览器请求中包含 Cookie 时，服务器就能识别出具体是哪个用户了。">
@@ -445,7 +445,7 @@
 <ul>
 <li>封装 Attribute 的设置与获取的实现细节</li>
 <li>可以自定义 Cookie</li>
-<li>做一个二级缓存 Attributes，自定义 Session 中存放一份，Redis 再存放一份。</li>
+<li>Attributes 做一个二级缓存，自定义 Session 中存放一份，Redis 再存放一份。</li>
 </ul>
 <p>需要利用下面这几个原生类：</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">HttpSession</span></span><br><span class="line"><span class="attribute">HttpServletRequestWrapper</span></span><br><span class="line"><span class="attribute">HttpServletResponseWrapper</span></span><br></pre></td></tr></table></figure>
@@ -462,7 +462,7 @@
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionConfigEntry</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String key;</span><br><span class="line">    <span class="keyword">private</span> StoreType storeType;</span><br><span class="line">    <span class="keyword">private</span> String domain;</span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、使用 CookieStore 存放 Cookie，使用 CacheStore 存放 attributes，默认直接从 CacheStore 中取，CacheStore 从 Redis 缓存中读取。</p>
+<p>3、使用 CookieStore 存放 Cookie。使用 CacheStore 存放 attributes，获取 attribute 时默认直接从 CacheStore 中取（CacheStore 从 Redis 缓存中读取）。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CacheStore</span> <span class="keyword">implements</span> <span class="title">SessionStore</span>, <span class="title">SessionCacheContainerAware</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> WrapperSessionServletRequest wrapperRequest;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> Map&lt;String, Object&gt; attributes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CookieStore</span> <span class="keyword">implements</span> <span class="title">SessionStore</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; undecodedCookies = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Attribute&gt; attributes = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -560,6 +560,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/10/27/several-algorithms-for-api-limitation/" rel="prev" title="接口限流的几种算法">
+                接口限流的几种算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -641,7 +645,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-count">73</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -652,7 +656,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -663,7 +667,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
