@@ -95,7 +95,7 @@
 <meta name="keywords" content="接口限流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接口限流的几种算法">
-<meta property="og:url" content="https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/index.html">
+<meta property="og:url" content="https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/index.html">
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
 <meta property="og:description" content="今天面试遇到一个关于接口限流的问题：设计一个方案，保证每秒只有 10 个请求可以访问接口。不得不说，此问题可以很好的考察面试高级工程师岗位的候选人的过往经验。不过很遗憾，我原来并没有做过这方面的工作。">
 <meta property="og:locale" content="zh-Hans">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2016/11/29/f78f52a51de6278c4449ba15b4a533b3">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-105409.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-155606.jpg">
-<meta property="og:updated_time" content="2020-10-27T16:00:46.431Z">
+<meta property="og:updated_time" content="2020-10-27T16:05:12.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口限流的几种算法">
 <meta name="twitter:description" content="今天面试遇到一个关于接口限流的问题：设计一个方案，保证每秒只有 10 个请求可以访问接口。不得不说，此问题可以很好的考察面试高级工程师岗位的候选人的过往经验。不过很遗憾，我原来并没有做过这方面的工作。">
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/">
+  <link rel="canonical" href="https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/">
 
 
 
@@ -308,7 +308,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Depp Wang">
@@ -360,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
                   </a>
                 </span>
 
@@ -378,8 +378,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/10/27/several-algorithms-for-api-limitation/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/27/several-algorithms-for-api-limitation/" itemprop="commentCount"></span>
+                <a href="/2020/10/27/several-algorithms-for-api-rate-limiting/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/27/several-algorithms-for-api-rate-limiting/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -387,7 +387,7 @@
 
           
           
-             <span id="/2020/10/27/several-algorithms-for-api-limitation/" class="leancloud_visitors" data-flag-title="接口限流的几种算法">
+             <span id="/2020/10/27/several-algorithms-for-api-rate-limiting/" class="leancloud_visitors" data-flag-title="接口限流的几种算法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -421,7 +421,7 @@
 <p>在自己的知识储备中，首先想到的是：假如保证每秒只有 1 个请求访问接口，如何实现。在这个前提下，首先想到的是直接加锁，加锁后，每次只有一个请求可以访问接口，但是每个请求的处理时间不确定，可能小于 1s（也可能大于 1 s），此种方法不符合问题要求，pass。</p>
 <p>接着想到使用 Redis 设置 1 个过期时间为 1s 的互斥 key，key 的命名可根据业务场景设定，每个请求均尝试设置这个 key，设置成功就可以访问接口，否则拒绝。而针对每秒限制 10 个请求，就索性设置 10 个过期时间为 1s 的互斥 key，每个请求使用 for 循环依次尝试设置这 10 个 key，前 10 个请求就将 10 key 设置，当第 1 个 key 没有过期时，第 11 个请求将设置失败，访问拒绝。此种虽然可以变相实现需求，但有一个巨大的问题，假设 QPS 为 1 万，限制每秒限制 1000 个请求，Redis 客户端和服务器通信的网络 IO，将变成 1000 万次，不敢想。</p>
 <p>面试完成之后（当然挂了），发现思考方向还是太窄了，有很多简单方式就能实现限流。</p>
-<h2 id="1、计数器"><a href="#1、计数器" class="headerlink" title="1、计数器"></a>1、计数器</h2><p>使用一个计数器代表请求数，设置每秒请求限制数为 10（图片为 100） ，当请求间隔大于 1s（图片为 1 minutes） 时，请求通过，重置计数器，当前时间设为间隔开始时间；当间隔时间小于 1 s 时，计数器加 1，如果计数器大于限制数时，此时请求拒绝，小于时，请求通过。这种方式也叫固定时间窗口算法。</p>
+<h2 id="1、计数器（固定时间窗口算法）"><a href="#1、计数器（固定时间窗口算法）" class="headerlink" title="1、计数器（固定时间窗口算法）"></a>1、计数器（固定时间窗口算法）</h2><p>使用一个计数器代表请求数，设置每秒请求限制数为 10（图片为 100） ，当请求间隔大于 1s（图片为 1 minutes） 时，请求通过，重置计数器，当前时间设为间隔开始时间；当间隔时间小于 1 s 时，计数器加 1，如果计数器大于限制数时，此时请求拒绝，小于时，请求通过。这种方式也叫固定时间窗口算法。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-124254.jpg" alt="2016-09-01_20:31:28.jpg"></p>
 <p>伪代码如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CounterDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timeStamp = getNowTime();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> reqCount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> limit = <span class="number">10</span>; <span class="comment">// 时间窗口内最大请求数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> interval = <span class="number">1000</span>; <span class="comment">// 时间窗口 1000 ms, 1s</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">grant</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> now = getNowTime();</span><br><span class="line">        <span class="keyword">if</span> (now &lt; timeStamp + interval) &#123;</span><br><span class="line">            <span class="comment">// 在时间窗口内</span></span><br><span class="line">            reqCount++;</span><br><span class="line">            <span class="comment">// 判断当前时间窗口内是否超过最大请求控制数</span></span><br><span class="line">            <span class="keyword">return</span> reqCount &lt;= limit;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            timeStamp = now;</span><br><span class="line">            <span class="comment">// 超时后重置</span></span><br><span class="line">            reqCount = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -433,7 +433,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	UserService userService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@PostMapping</span>(<span class="string">"/signin"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">doSignin</span><span class="params">(@RequestParam(<span class="string">"email"</span>)</span> String email, @<span class="title">RequestParam</span><span class="params">(<span class="string">"password"</span>)</span> String password,</span></span><br><span class="line"><span class="function">			HttpSession session) </span>&#123;</span><br><span class="line">        CounterDemo counter = <span class="keyword">new</span> CounterDemo();</span><br><span class="line">        <span class="keyword">if</span> (!counter.grant()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"signin.html"</span>, Map.of(<span class="string">"email"</span>, email, <span class="string">"error"</span>, <span class="string">"Signin failed"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			User user = userService.signin(email, password);</span><br><span class="line">			session.setAttribute(KEY_USER, user);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (RuntimeException e) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"signin.html"</span>, Map.of(<span class="string">"email"</span>, email, <span class="string">"error"</span>, <span class="string">"Signin failed"</span>));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/profile"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面是一个接口一个 counter，如果要限制所有接口的每秒请求数，可以在 Filter 中设置。</p>
-<h2 id="2、滑动时间窗口（Sliding-Window）"><a href="#2、滑动时间窗口（Sliding-Window）" class="headerlink" title="2、滑动时间窗口（Sliding Window）"></a>2、滑动时间窗口（Sliding Window）</h2><p>如果每秒限制请求访问数量为系统临界值时，假设每秒 100 次，如果 1s 内前 800ms 内没有访问，后 200ms 内访问了 100 次，后 1s 的前 200ms 又访问了 100 次，此时这 1s 就访问 200 次，此时可能会造成系统崩溃。但如果限制每秒访问次数是 10 次，那么上面计数器这种方式就足够了，毕竟每秒最多 20 次访问不会出现什么问题。</p>
+<h2 id="2、滑动时间窗口算法（Sliding-Window）"><a href="#2、滑动时间窗口算法（Sliding-Window）" class="headerlink" title="2、滑动时间窗口算法（Sliding Window）"></a>2、滑动时间窗口算法（Sliding Window）</h2><p>如果每秒限制请求访问数量为系统临界值时，假设每秒 100 次，如果 1s 内前 800ms 内没有访问，后 200ms 内访问了 100 次，后 1s 的前 200ms 又访问了 100 次，此时这 1s 就访问 200 次，此时可能会造成系统崩溃。但如果限制每秒访问次数是 10 次，那么上面计数器这种方式就足够了，毕竟每秒最多 20 次访问不会出现什么问题。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-073522.png" alt="img"></p>
 <p>此时需要使用滑动窗口来保证间隔处不会出现超限制请求的情况。具体需要记录时间窗口每个请求的时间。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-123937.png" alt="img"></p>
@@ -456,10 +456,11 @@
 <h2 id="4、令牌桶算法（Token-bucket）"><a href="#4、令牌桶算法（Token-bucket）" class="headerlink" title="4、令牌桶算法（Token bucket）"></a>4、令牌桶算法（<a href="https://en.wikipedia.org/wiki/Token_bucket" target="_blank" rel="noopener">Token bucket</a>）</h2><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-105409.jpg" alt="image"></p>
 <p>上面漏桶算法是往里面塞，这个令牌桶是从里面取。以一个固定的速率从桶中取 token（令牌），每次请求均需要一个令牌，没有令牌将不能访问，</p>
 <p>每 1 秒最多取走 100 个 token，桶的容量 100，令牌放入的速度 100 token/s，0.1 token/ms。</p>
+<p>伪代码如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenBucketDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timeStamp = getNowTime();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity = <span class="number">100</span>; <span class="comment">// 桶的容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> rate = <span class="number">0.1f</span>; <span class="comment">// 令牌放入速度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tokens = <span class="number">100</span>; <span class="comment">// 当前令牌数量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">grant</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> now = getNowTime();</span><br><span class="line">        <span class="comment">// 先添加令牌</span></span><br><span class="line">        tokens = min(capacity, tokens + (now - timeStamp) * rate); </span><br><span class="line">        timeStamp = now;</span><br><span class="line">        <span class="keyword">if</span> (tokens &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 若不到1个令牌,则拒绝</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 还有令牌，领取令牌</span></span><br><span class="line">            tokens -= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>令牌桶，当桶满了，可以一下拿走 100 个令牌。漏桶算法，漏完了，一次可以加 100 个请求，所有都可以应对突发性请求。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果限制请求很低，直接使用计数器（固定时间窗口算法）。</p>
+<p>令牌桶算法，当桶满了，可以一下拿走 100 个令牌。漏桶算法，漏完了，一次可以加 100 个请求，所有都可以应对突发性请求。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果限制请求很低，可以直接使用计数器（固定时间窗口算法）。</p>
 <p>滑动时间窗口算法可以需要更多的内存</p>
 <p>令牌桶和漏桶算法相比固定时间窗口算法整形效果更好（有速度控制），相比滑动时间窗口算法可应对突发性请求。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-155606.jpg" alt="2016-09-02_14:40:58.jpg"></p>
@@ -524,7 +525,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/" title="接口限流的几种算法">https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/</a>
+      <a href="https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/" title="接口限流的几种算法">https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -655,7 +656,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -754,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、计数器"><span class="nav-number">1.</span> <span class="nav-text">1、计数器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、滑动时间窗口（Sliding-Window）"><span class="nav-number">2.</span> <span class="nav-text">2、滑动时间窗口（Sliding Window）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、漏桶算法（Leaky-Bucket"><span class="nav-number">3.</span> <span class="nav-text">3、漏桶算法（Leaky Bucket)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、令牌桶算法（Token-bucket）"><span class="nav-number">4.</span> <span class="nav-text">4、令牌桶算法（Token bucket）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、计数器（固定时间窗口算法）"><span class="nav-number">1.</span> <span class="nav-text">1、计数器（固定时间窗口算法）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、滑动时间窗口算法（Sliding-Window）"><span class="nav-number">2.</span> <span class="nav-text">2、滑动时间窗口算法（Sliding Window）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、漏桶算法（Leaky-Bucket"><span class="nav-number">3.</span> <span class="nav-text">3、漏桶算法（Leaky Bucket)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、令牌桶算法（Token-bucket）"><span class="nav-number">4.</span> <span class="nav-text">4、令牌桶算法（Token bucket）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -921,8 +922,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://depp.wang/2020/10/27/several-algorithms-for-api-limitation/';
-          this.page.identifier = '2020/10/27/several-algorithms-for-api-limitation/';
+          this.page.url = 'https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/';
+          this.page.identifier = '2020/10/27/several-algorithms-for-api-rate-limiting/';
           this.page.title = '接口限流的几种算法';
         };
         var d = document, s = d.createElement('script');
