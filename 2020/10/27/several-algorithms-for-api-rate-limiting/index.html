@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2016/11/29/f78f52a51de6278c4449ba15b4a533b3">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-105409.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-155606.jpg">
-<meta property="og:updated_time" content="2020-10-27T16:12:32.752Z">
+<meta property="og:updated_time" content="2020-10-27T16:17:53.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口限流的几种算法">
 <meta name="twitter:description" content="今天面试遇到一个关于接口限流的问题：设计一个方案，保证每秒只有 10 个请求可以访问接口。不得不说，此问题可以很好的考察面试高级工程师岗位的候选人的过往经验。不过很遗憾，我原来并没有做过这方面的工作。">
@@ -419,7 +419,7 @@
 <a id="more"></a>
 
 <p>在自己的知识储备中，首先想到的是：假如保证每秒只有 1 个请求访问接口，如何实现。在这个前提下，首先想到的是直接加锁，加锁后，每次只有一个请求可以访问接口，但是每个请求的处理时间不确定，可能小于 1s（也可能大于 1 s），此种方法不符合问题要求，pass。</p>
-<p>接着想到使用 Redis 设置 1 个过期时间为 1s 的互斥 key，key 的命名可根据业务场景设定，每个请求均尝试设置这个 key，设置成功就可以访问接口，否则拒绝。而针对每秒限制 10 个请求，就索性设置 10 个过期时间为 1s 的互斥 key，每个请求使用 for 循环依次尝试设置这 10 个 key，前 10 个请求就将 10 key 设置，当第 1 个 key 没有过期时，第 11 个请求将设置失败，访问拒绝。此种虽然可以变相实现需求，但有一个巨大的问题，假设 QPS 为 1 万，限制每秒限制 1000 个请求，Redis 客户端和服务器通信的网络 IO，将变成 1000 万次，不敢想。</p>
+<p>接着想到使用 Redis 设置 1 个过期时间为 1s 的互斥 key，key 的命名可根据业务场景设定，每个请求均尝试设置这个 key，设置成功就可以访问接口，否则拒绝。而针对每秒限制 10 个请求，就索性设置 10 个过期时间为 1s 的互斥 key，每个请求使用 for 循环依次尝试设置这 10 个 key，前 10 个请求就将 10 key 设置，当第 1 个 key 没有过期时，第 11 个请求将设置失败，访问拒绝。此种虽然可以变相实现需求，但有一个巨大的问题，假设 QPS 为 1 万，每秒限制 100 个请求，Redis 客户端和服务器通信的网络 IO，将变成 100 万次，不敢想。</p>
 <p>面试完成之后（当然挂了），发现思考方向还是太窄了，有很多简单方式就能实现限流。</p>
 <h2 id="1、计数器（固定时间窗口算法）"><a href="#1、计数器（固定时间窗口算法）" class="headerlink" title="1、计数器（固定时间窗口算法）"></a>1、计数器（固定时间窗口算法）</h2><p>使用一个计数器代表请求数，设置每秒请求限制数为 10（图片为 100） ，当请求间隔大于 1s（图片为 1 minutes） 时，请求通过，重置计数器，当前时间设为间隔开始时间；当间隔时间小于 1 s 时，计数器加 1，如果计数器大于限制数时，此时请求拒绝，小于时，请求通过。这种方式也叫固定时间窗口算法。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-124254.jpg" alt="2016-09-01_20:31:28.jpg"></p>
@@ -454,14 +454,14 @@
 <p>分析临界情况：漏桶算法没有时间窗口的概念，如果 water 还是 0，当 10ms 有 100 个请求过来后，此时 water 容量为 100，10ms 能漏掉的请求 10*0.1 = 1，water = 99。所以请求 101 次时，请求将被拒绝。</p>
 <p>分析细时间粒度的突发性请求情况：50 个请求在 899ms 的时间内已经漏完了，所以第 900ms 的 100 个请求可以容纳。</p>
 <h2 id="4、令牌桶算法（Token-bucket）"><a href="#4、令牌桶算法（Token-bucket）" class="headerlink" title="4、令牌桶算法（Token bucket）"></a>4、令牌桶算法（<a href="https://en.wikipedia.org/wiki/Token_bucket" target="_blank" rel="noopener">Token bucket</a>）</h2><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-105409.jpg" alt="image"></p>
-<p>上面漏桶算法是往里面塞，这个令牌桶是从里面取。以一个固定的速率从桶中取 token（令牌），每次请求均需要一个令牌，没有令牌将不能访问，</p>
-<p>每 1 秒最多取走 100 个 token，桶的容量 100，令牌放入的速度 100 token/s，0.1 token/ms。</p>
+<p>上面漏桶算法是往里面塞，这个令牌桶是从里面取。以一个固定的速率从桶中取 token（令牌），每次请求均需要一个令牌，没有令牌将不能访问。添加也无需使用额外线程控制，根据时间间隔和速率来添加。</p>
+<p>假设限制每秒请求数限制为 100，那么每 1 秒最多取走 100 个 token，桶的容量 100，令牌放入的速度 100 token/s，0.1 token/ms。</p>
 <p>伪代码如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenBucketDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timeStamp = getNowTime();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity = <span class="number">100</span>; <span class="comment">// 桶的容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> rate = <span class="number">0.1f</span>; <span class="comment">// 令牌放入速度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tokens = <span class="number">100</span>; <span class="comment">// 当前令牌数量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">grant</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> now = getNowTime();</span><br><span class="line">        <span class="comment">// 先添加令牌</span></span><br><span class="line">        tokens = min(capacity, tokens + (now - timeStamp) * rate); </span><br><span class="line">        timeStamp = now;</span><br><span class="line">        <span class="keyword">if</span> (tokens &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 若不到 1 个令牌,则拒绝</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 还有令牌，领取令牌</span></span><br><span class="line">            tokens -= <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>令牌桶算法，当桶满了，可以一下拿走 100 个令牌。漏桶算法，漏完了，一次可以加 100 个请求，所有都可以应对突发性请求。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果限制请求很低，可以直接使用计数器（固定时间窗口算法）。</p>
-<p>滑动时间窗口算法可以需要更多的内存</p>
+<p>滑动时间窗口算法需要更多的内存。</p>
 <p>令牌桶和漏桶算法相比固定时间窗口算法整形效果更好（有速度控制），相比滑动时间窗口算法可应对突发性请求。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-155606.jpg" alt="2016-09-02_14:40:58.jpg"></p>
 <!--所以令牌桶和漏桶算法比较适合阻塞式限流。-->
