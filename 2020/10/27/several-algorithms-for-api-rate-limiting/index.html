@@ -102,10 +102,10 @@
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-124254.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-073522.png">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-123937.png">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2016/11/29/f78f52a51de6278c4449ba15b4a533b3">
+<meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-29-145111.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-105409.jpg">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-27-155606.jpg">
-<meta property="og:updated_time" content="2020-10-28T15:19:11.175Z">
+<meta property="og:updated_time" content="2020-10-29T14:52:53.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="接口限流的几种算法">
 <meta name="twitter:description" content="今天面试遇到一个关于接口限流的问题：设计一个方案，保证每秒只有 10 个请求可以访问接口。不得不说，此问题可以很好的考察面试高级工程师岗位的候选人的过往经验。不过很遗憾，我原来并没有做过这方面的工作。">
@@ -443,7 +443,7 @@
 
 <p>在滑动窗口中，在时间窗口间隔处，如果时间窗口的后 200 毫秒有了 100 次访问，下一个时间窗口前 800 毫秒的请求将被拒绝。</p>
 <p>每个时间窗口（1s）list 最多 100 个。</p>
-<h2 id="3、漏桶算法（Leaky-Bucket"><a href="#3、漏桶算法（Leaky-Bucket" class="headerlink" title="3、漏桶算法（Leaky Bucket)"></a>3、漏桶算法（<a href="https://en.wikipedia.org/wiki/Leaky_bucket" target="_blank" rel="noopener">Leaky Bucket</a>)</h2><p><img src="https://user-gold-cdn.xitu.io/2016/11/29/f78f52a51de6278c4449ba15b4a533b3" alt="img"></p>
+<h2 id="3、漏桶算法（Leaky-Bucket"><a href="#3、漏桶算法（Leaky-Bucket" class="headerlink" title="3、漏桶算法（Leaky Bucket)"></a>3、漏桶算法（<a href="https://en.wikipedia.org/wiki/Leaky_bucket" target="_blank" rel="noopener">Leaky Bucket</a>)</h2><p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-29-145111.jpg" alt="img"></p>
 <p>滑动时间窗口无法应对细时间粒度（某个时间）的突发性请求，示例：当 t_1 = 1ms，来了 50 个请求，窗口有 50 个时间点了，中间没有请求，t_3 = 900 ms，又来了 100 个请求，只能加入 50 个。</p>
 <p>漏桶算法在此方面有更好的表现，它以指定速度漏出请求（水），如果可以往桶里加请求，代表请求可以访问。漏出量无需使用额外线程控制，根据时间间隔和速率减少。</p>
 <p>假设限制每秒请求数限制为 100，那么设置桶的容量为 100，1 秒漏完，流速为 100 request/s（0.1 request/ms），默认容量为 0。</p>
