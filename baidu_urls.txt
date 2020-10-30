@@ -1,4 +1,4 @@
-https://depp.wang/2020/10/30/logback-summary/
+https://depp.wang/2020/10/30/logback-use-summary/
 https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/
 https://depp.wang/2020/10/26/java-implements-a-custom-distributed-session/
 https://depp.wang/2020/08/20/hashmap-9-question/

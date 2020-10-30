@@ -94,16 +94,16 @@
 <meta name="description" content="最近打在打印日志这块栽了个跟头，发现日志这块掌握得还不太好，所以大概梳理一下。  其实 SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现。">
 <meta name="keywords" content="日志">
 <meta property="og:type" content="article">
-<meta property="og:title" content="日志总结">
-<meta property="og:url" content="https://depp.wang/2020/10/30/logback-summary/index.html">
+<meta property="og:title" content="日志使用总结">
+<meta property="og:url" content="https://depp.wang/2020/10/30/logback-use-summary/index.html">
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
 <meta property="og:description" content="最近打在打印日志这块栽了个跟头，发现日志这块掌握得还不太好，所以大概梳理一下。  其实 SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-30-083249.png">
 <meta property="og:image" content="https://developer.ibm.com/developer/default/articles/build-elk-and-use-it-for-springboot-and-nginx/images/image001.png">
-<meta property="og:updated_time" content="2020-10-30T14:53:16.031Z">
+<meta property="og:updated_time" content="2020-10-30T14:54:57.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="日志总结">
+<meta name="twitter:title" content="日志使用总结">
 <meta name="twitter:description" content="最近打在打印日志这块栽了个跟头，发现日志这块掌握得还不太好，所以大概梳理一下。  其实 SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现。">
 <meta name="twitter:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-10-30-083249.png">
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://depp.wang/2020/10/30/logback-summary/">
+  <link rel="canonical" href="https://depp.wang/2020/10/30/logback-use-summary/">
 
 
 
 
 
-  <title>日志总结 | Depp Wang's Blog</title>
+  <title>日志使用总结 | Depp Wang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/10/30/logback-summary/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/10/30/logback-use-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Depp Wang">
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">日志总结</h1>
+          <h1 class="post-title" itemprop="name headline">日志使用总结</h1>
         
 
         <div class="post-meta">
@@ -356,8 +356,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring-Boot/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring-Boot</span>
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
                   </a>
                 </span>
 
@@ -374,8 +374,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/10/30/logback-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/30/logback-summary/" itemprop="commentCount"></span>
+                <a href="/2020/10/30/logback-use-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/30/logback-use-summary/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,7 +383,7 @@
 
           
           
-             <span id="/2020/10/30/logback-summary/" class="leancloud_visitors" data-flag-title="日志总结">
+             <span id="/2020/10/30/logback-use-summary/" class="leancloud_visitors" data-flag-title="日志使用总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -499,7 +499,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2020/10/30/logback-summary/" title="日志总结">https://depp.wang/2020/10/30/logback-summary/</a>
+      <a href="https://depp.wang/2020/10/30/logback-use-summary/" title="日志使用总结">https://depp.wang/2020/10/30/logback-use-summary/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -630,7 +630,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -896,9 +896,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://depp.wang/2020/10/30/logback-summary/';
-          this.page.identifier = '2020/10/30/logback-summary/';
-          this.page.title = '日志总结';
+          this.page.url = 'https://depp.wang/2020/10/30/logback-use-summary/';
+          this.page.identifier = '2020/10/30/logback-use-summary/';
+          this.page.title = '日志使用总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://deppwang-1.disqus.com/embed.js';
