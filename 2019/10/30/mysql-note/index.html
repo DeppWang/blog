@@ -100,7 +100,7 @@
 <meta property="og:description" content="主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGINT自增类型则可以最多约 922 亿亿条记录">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2019-12-19-135809.jpg">
-<meta property="og:updated_time" content="2020-10-31T07:45:57.844Z">
+<meta property="og:updated_time" content="2020-11-01T14:48:09.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 的 SQL 笔记">
 <meta name="twitter:description" content="主键选取主键的一个基本原则是：不使用任何业务相关的字段（id）作为主键。修改了主键，会造成一系列的影响 类型：  自增整数类型（id）：BIGINT NOT NULL AUTO_INCREMENT。 全局唯一 GUID 类型  注意：如果使用 INT 自增类型，那么当一张表的记录数超过 2147483647（约21亿）时，会达到上限而出错。使用 BIGINT自增类型则可以最多约 922 亿亿条记录">
@@ -524,7 +524,7 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASES</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> <span class="keyword">test</span>;</span><br></pre></td></tr></table></figure>
 
 <p><strong>表</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`students`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">"ID"</span>,</span><br><span class="line">  <span class="string">`class_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> <span class="string">"班级 ID"</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">"姓名"</span>,</span><br><span class="line">  <span class="string">`gender`</span> <span class="built_in">varchar</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="string">'男'</span> <span class="keyword">COMMENT</span> <span class="string">"性别"</span>,</span><br><span class="line">  <span class="string">`score`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> DEAFULT <span class="number">100</span> <span class="keyword">COMMENT</span> <span class="string">"分数"</span>,</span><br><span class="line">  <span class="string">`created_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">  <span class="string">`updated_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span> <span class="string">"学生表"</span>;</span><br><span class="line"></span><br><span class="line">DESC students; // <span class="keyword">describe</span>，查看表结构</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students; // 查看创建表的语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> students; // 删除表</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`students`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">"ID"</span>,</span><br><span class="line">  <span class="string">`class_id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> <span class="string">"班级 ID"</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">"姓名"</span>,</span><br><span class="line">  <span class="string">`gender`</span> <span class="built_in">varchar</span>(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'男'</span> <span class="keyword">COMMENT</span> <span class="string">"性别"</span>,</span><br><span class="line">  <span class="string">`score`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">100</span> <span class="keyword">COMMENT</span> <span class="string">"分数"</span>,</span><br><span class="line">  <span class="string">`created_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">  <span class="string">`updated_time`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span> <span class="string">"学生表"</span>;</span><br><span class="line"></span><br><span class="line">DESC students; // <span class="keyword">describe</span>，查看表结构</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students; // 查看创建表的语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> students; // 删除表</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>bigint(20) 后面的 20 指的是字段最长长度，只是起提示作用。bigint 8 字节，最长不超过 20 位（922亿亿）</li>
@@ -569,7 +569,13 @@
 
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> accounts <span class="keyword">SET</span> balance = balance - <span class="number">100</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> accounts <span class="keyword">SET</span> balance = balance + <span class="number">100</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">ROLLBACK</span>; // 回滚前面执行的 sql</span><br></pre></td></tr></table></figure>
 
-<p>事务有四大特性：原子性：不可分割，要么成功，要么失败；一致性：事务完成后，所有数据的状态是一致的。隔离性：并发执行的事务，对数据的操作要具有隔离性；持久性：事务完成后，数据就持久化到数据库中</p>
+<p>事务有四大特性：</p>
+<ul>
+<li>原子性（Atomicity）：不可分割，要么成功，要么失败；</li>
+<li>一致性（Consistency）：事务完成后，所有数据的状态是一致的；</li>
+<li>隔离性（Isolation）：并发执行的事务，对数据的操作要具有隔离性；</li>
+<li>持久性（Durability）：事务完成后，数据就持久化到数据库中</li>
+</ul>
 <p>事务有隔离性有级别，共 4 种，隔离级别由低到高</p>
 <table>
 <thead>
@@ -605,9 +611,12 @@
 <td align="left">-</td>
 </tr>
 </tbody></table>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql&gt; select * from students;</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">| id | name  |</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">|  1 | Alice |</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>默认测试数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql&gt; select * from students;</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">| id | name  |</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">|  1 | Alice |</span><br><span class="line">+<span class="comment">----+-------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students(<span class="keyword">id</span>, <span class="keyword">name</span>) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'Alice'</span>);</span><br></pre></td></tr></table></figure>
 
-<h3 id="Read-Uncommitted（可读到未提交）"><a href="#Read-Uncommitted（可读到未提交）" class="headerlink" title="Read Uncommitted（可读到未提交）"></a>Read Uncommitted（可读到未提交）</h3><p>一个事务可以读到另一个事务更新，但未提交的数据。如果另一个事务回滚，当前读取的值就是脏数据，称为脏读。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> @@session.transaction_isolation <span class="comment"># 查看隔离级别</span></span><br><span class="line"><span class="keyword">SET</span> @@session.transaction_isolation = <span class="string">'READ-UNCOMMITTED'</span>; <span class="comment"># 切换隔离级别读为提交</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Read-Uncommitted（读未提交）"><a href="#Read-Uncommitted（读未提交）" class="headerlink" title="Read Uncommitted（读未提交）"></a>Read Uncommitted（读未提交）</h3><p>一个事务可以读到另一个事务更新，但未提交的数据。如果另一个事务回滚，当前读取的值就是脏数据，称为脏读。</p>
 <table>
 <thead>
 <tr>
@@ -652,7 +661,7 @@
 <td align="left">COMMIT;</td>
 </tr>
 </tbody></table>
-<h3 id="Read-Commited（可读到已提交）"><a href="#Read-Commited（可读到已提交）" class="headerlink" title="Read Commited（可读到已提交）"></a>Read Commited（可读到已提交）</h3><p>存在不可重复读的问题，事务重复读时，可能数据不一致。</p>
+<h3 id="Read-Commited（读已提交）"><a href="#Read-Commited（读已提交）" class="headerlink" title="Read Commited（读已提交）"></a>Read Commited（读已提交）</h3><p>存在不可重复读的问题，事务重复读时，可能数据不一致。</p>
 <table>
 <thead>
 <tr>
@@ -698,9 +707,9 @@
 </tr>
 </tbody></table>
 <ul>
-<li>第一种情况：两次读取都是 Alice</li>
+<li>读已提交隔离级别使用读未提交的测试用例的结果：两次读取都是 Alice</li>
 </ul>
-<h3 id="Repeatable-Commited（可重复读）"><a href="#Repeatable-Commited（可重复读）" class="headerlink" title="Repeatable Commited（可重复读）"></a>Repeatable Commited（可重复读）</h3><p>存在幻读的问题，幻读就是没有读取的记录，以为不存在，但可以更新成功，再次读取时，就出现了。</p>
+<h3 id="Repeatable-Commited（可重复读）"><a href="#Repeatable-Commited（可重复读）" class="headerlink" title="Repeatable Commited（可重复读）"></a>Repeatable Commited（可重复读）</h3><p>存在幻读的问题，幻读就是没有读取到的记录，以为不存在，但<a href="https://www.zhihu.com/question/47007926/answer/222348887" target="_blank" rel="noopener">插入</a>时将失败，再次读取时又能读取到数据。</p>
 <table>
 <thead>
 <tr>
@@ -742,7 +751,7 @@
 <tr>
 <td align="left">7</td>
 <td align="left"></td>
-<td align="left">UPDATE students SET name = ‘Alice’ WHERE id = 99;</td>
+<td align="left">INSERT INTO students(id, name) values(99, Alice) // 失败</td>
 </tr>
 <tr>
 <td align="left">8</td>
@@ -757,10 +766,10 @@
 </tbody></table>
 <p>其实幻读影响不大，没有脏读和不可重复读的问题，Mysql 默认隔离级别就是 Repeatable Commited。</p>
 <ul>
-<li>第一种情况：两次读取都是 Alice</li>
-<li>第二种情况：两次读取都是 Alice</li>
+<li>可重复读隔离级别使用读未提交的测试用例的结果：两次读取都是 Alice</li>
+<li>可重复读隔离级别使用读已提交的测试用例的结果：两次读取都是 Alice</li>
 </ul>
-<h3 id="Serializable"><a href="#Serializable" class="headerlink" title="Serializable"></a>Serializable</h3><p>串行操作，没有并发。</p>
+<h3 id="Serializable（串行化）"><a href="#Serializable（串行化）" class="headerlink" title="Serializable（串行化）"></a>Serializable（串行化）</h3><p>串行操作，没有并发。</p>
 <table>
 <thead>
 <tr>
@@ -776,6 +785,8 @@
 </tr>
 </tbody></table>
 <p>上面三种情况均会报错。</p>
+<h3 id="设置隔离级别"><a href="#设置隔离级别" class="headerlink" title="设置隔离级别"></a>设置隔离级别</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <hr>
 <p>数据库语句顺序</p>
 <ul>
@@ -1057,7 +1068,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">1.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询数据"><span class="nav-number">3.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改数据"><span class="nav-number">4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库-表-列-SQL"><span class="nav-number">5.</span> <span class="nav-text">库/表/列 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用-SQL"><span class="nav-number">6.</span> <span class="nav-text">实用 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">7.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Uncommitted（可读到未提交）"><span class="nav-number">7.1.</span> <span class="nav-text">Read Uncommitted（可读到未提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Commited（可读到已提交）"><span class="nav-number">7.2.</span> <span class="nav-text">Read Commited（可读到已提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeatable-Commited（可重复读）"><span class="nav-number">7.3.</span> <span class="nav-text">Repeatable Commited（可重复读）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializable"><span class="nav-number">7.4.</span> <span class="nav-text">Serializable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">8.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主键"><span class="nav-number">1.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询数据"><span class="nav-number">3.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改数据"><span class="nav-number">4.</span> <span class="nav-text">修改数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库-表-列-SQL"><span class="nav-number">5.</span> <span class="nav-text">库/表/列 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用-SQL"><span class="nav-number">6.</span> <span class="nav-text">实用 SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">7.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Uncommitted（读未提交）"><span class="nav-number">7.1.</span> <span class="nav-text">Read Uncommitted（读未提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Commited（读已提交）"><span class="nav-number">7.2.</span> <span class="nav-text">Read Commited（读已提交）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeatable-Commited（可重复读）"><span class="nav-number">7.3.</span> <span class="nav-text">Repeatable Commited（可重复读）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializable（串行化）"><span class="nav-number">7.4.</span> <span class="nav-text">Serializable（串行化）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置隔离级别"><span class="nav-number">7.5.</span> <span class="nav-text">设置隔离级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">8.</span> <span class="nav-text">延伸阅读</span></a></li></ol></div>
             
 
           </div>
