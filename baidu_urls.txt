@@ -1,3 +1,4 @@
+https://depp.wang/2020/11/02/github-open-feign-use-summary/
 https://depp.wang/2020/11/02/build-a-maven-repository/
 https://depp.wang/2020/10/30/logback-use-summary/
 https://depp.wang/2020/10/27/several-algorithms-for-api-rate-limiting/

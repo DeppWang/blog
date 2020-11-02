@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Logical Question,Interview,">
+  <meta name="keywords" content="Logback,">
 
 
 
@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="几道 “脑筋急转弯”（逻辑题）。 五顶帽子问：有五顶帽子，三红两蓝，给 A、B、C 三人每人戴一个，各自不准看自己帽子的颜色，可以看到另外两人帽子颜色。问 A 戴的什么颜色的帽子，他说不知道。然后又问 B 戴的什么颜色的帽子，他想了一会儿，同样说不知道。又问 C 戴的是什么颜色的帽子，他说虽然我不知道我的帽子是什么颜色的，但听你们这样一说，我知道了。问 C 戴的是什么颜色帽子？ 答案是：">
-<meta name="keywords" content="Logical Question,Interview">
+<meta name="description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
+<meta name="keywords" content="Logback">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于帽子的逻辑题">
-<meta property="og:url" content="https://depp.wang/2017/07/04/two-logical-question-about-hat/index.html">
+<meta property="og:title" content="GitHub Open Feign  使用总结">
+<meta property="og:url" content="https://depp.wang/2020/11/02/github-open-feign-use-summary/index.html">
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
-<meta property="og:description" content="几道 “脑筋急转弯”（逻辑题）。 五顶帽子问：有五顶帽子，三红两蓝，给 A、B、C 三人每人戴一个，各自不准看自己帽子的颜色，可以看到另外两人帽子颜色。问 A 戴的什么颜色的帽子，他说不知道。然后又问 B 戴的什么颜色的帽子，他想了一会儿，同样说不知道。又问 C 戴的是什么颜色的帽子，他说虽然我不知道我的帽子是什么颜色的，但听你们这样一说，我知道了。问 C 戴的是什么颜色帽子？ 答案是：">
+<meta property="og:description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-02T15:46:47.267Z">
+<meta property="og:updated_time" content="2020-11-02T15:46:47.263Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于帽子的逻辑题">
-<meta name="twitter:description" content="几道 “脑筋急转弯”（逻辑题）。 五顶帽子问：有五顶帽子，三红两蓝，给 A、B、C 三人每人戴一个，各自不准看自己帽子的颜色，可以看到另外两人帽子颜色。问 A 戴的什么颜色的帽子，他说不知道。然后又问 B 戴的什么颜色的帽子，他想了一会儿，同样说不知道。又问 C 戴的是什么颜色的帽子，他说虽然我不知道我的帽子是什么颜色的，但听你们这样一说，我知道了。问 C 戴的是什么颜色帽子？ 答案是：">
+<meta name="twitter:title" content="GitHub Open Feign  使用总结">
+<meta name="twitter:description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://depp.wang/2017/07/04/two-logical-question-about-hat/">
+  <link rel="canonical" href="https://depp.wang/2020/11/02/github-open-feign-use-summary/">
 
 
 
 
 
-  <title>关于帽子的逻辑题 | Depp Wang's Blog</title>
+  <title>GitHub Open Feign  使用总结 | Depp Wang's Blog</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -301,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://depp.wang/2017/07/04/two-logical-question-about-hat/">
+    <link itemprop="mainEntityOfPage" href="https://depp.wang/2020/11/02/github-open-feign-use-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Depp Wang">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于帽子的逻辑题</h1>
+          <h1 class="post-title" itemprop="name headline">GitHub Open Feign  使用总结</h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T00:30:01+00:00">
-                2017-07-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-02T20:48:37+00:00">
+                2020-11-02
               </time>
             
 
@@ -353,8 +353,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
+                  <a href="/categories/Note/" itemprop="url" rel="index">
+                    <span itemprop="name">Note</span>
                   </a>
                 </span>
 
@@ -371,8 +371,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/04/two-logical-question-about-hat/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/04/two-logical-question-about-hat/" itemprop="commentCount"></span>
+                <a href="/2020/11/02/github-open-feign-use-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/02/github-open-feign-use-summary/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2017/07/04/two-logical-question-about-hat/" class="leancloud_visitors" data-flag-title="关于帽子的逻辑题">
+             <span id="/2020/11/02/github-open-feign-use-summary/" class="leancloud_visitors" data-flag-title="GitHub Open Feign  使用总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,28 +408,42 @@
       
 
       
-        <p>几道 “脑筋急转弯”（逻辑题）。</p>
-<h2 id="五顶帽子"><a href="#五顶帽子" class="headerlink" title="五顶帽子"></a>五顶帽子</h2><p>问：有五顶帽子，三红两蓝，给 A、B、C 三人每人戴一个，各自不准看自己帽子的颜色，可以看到另外两人帽子颜色。问 A 戴的什么颜色的帽子，他说不知道。然后又问 B 戴的什么颜色的帽子，他想了一会儿，同样说不知道。又问 C 戴的是什么颜色的帽子，他说虽然我不知道我的帽子是什么颜色的，但听你们这样一说，我知道了。问 C 戴的是什么颜色帽子？</p>
-<p>答案是：</p>
+        <p>公司项目目前使用 SOA 架构（<a href="https://en.wikipedia.org/wiki/Service-oriented_architecture" target="_blank" rel="noopener">Service-oriented architecture</a>：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 <a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">GitHub OpenFeign</a>  调用接口。</p>
+<p>服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关<a href="https://github.com/DeppWang/springboot-demos/tree/master/springboot-openfeign" target="_blank" rel="noopener">代码示例</a></p>
 <a id="more"></a>
 
-<p>红色。解题如下：</p>
+<h2 id="Provider-Api"><a href="#Provider-Api" class="headerlink" title="Provider Api"></a>Provider Api</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/signin"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">doSignin</span><span class="params">(@RequestParam(<span class="string">"username"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"password"</span>)</span> String password) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (username.equals(<span class="string">""</span>) &amp;&amp; password.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ApiResponse.fail(<span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ApiResponse.success();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Provider-Client"><a href="#Provider-Client" class="headerlink" title="Provider Client"></a>Provider Client</h2><p>ProviderClientBuilder</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderClientBuilder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.service&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> String providerService;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.socketTimeout:60000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> socketTimeout;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.connectTimeout:10000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> connectTimeout;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserApi <span class="title">buildProviderApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Preconditions.checkArgument(StringUtils.isNotBlank(providerService));</span><br><span class="line">        <span class="keyword">return</span> Feign.builder()</span><br><span class="line">                .decoder(<span class="keyword">new</span> GsonDecoder())</span><br><span class="line">                .encoder(<span class="keyword">new</span> FormEncoder())</span><br><span class="line">                .logger(<span class="keyword">new</span> Slf4jLogger(UserApi.class))</span><br><span class="line">                .retryer(Retryer.NEVER_RETRY)</span><br><span class="line">                .logLevel(Logger.Level.FULL)</span><br><span class="line">                .client(<span class="keyword">new</span> AccessTraceHttpClient(httpClient(), requestConfig()))</span><br><span class="line">                .target(UserApi.class, providerService);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>UserApi</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Headers</span>(<span class="string">"Content-Type: application/x-www-form-urlencoded"</span>) <span class="comment">// 请求的编码格式为 application/x-www-form-urlencoded</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserApi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"POST /signin"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">signin</span><span class="params">(@Param(<span class="string">"username"</span>)</span> String username, @<span class="title">Param</span><span class="params">(<span class="string">"password"</span>)</span> String password)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"GET /status/version"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;String&gt; <span class="title">statusVersion</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Consumer-Api"><a href="#Consumer-Api" class="headerlink" title="Consumer Api"></a>Consumer Api</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserApi userApi;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/signin"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">signin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userApi.signin(<span class="string">"admin"</span>,<span class="string">"admin"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"wang.depp"</span>)</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerApiApplication</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(ConsumerApiApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ProviderClientBuilder 为配置类，当 Provider 和 Consumer package 路径不同时，需要指定包扫描路径，使引入包配置类在容器启动时就加载到容器。</p>
+<p>application.properties</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8888</span></span><br><span class="line"><span class="meta">provider.demain</span>=<span class="string">http://localhost:8080/ # 完整书写</span></span><br><span class="line"><span class="meta">provider.socketTimeout</span>=<span class="string">60000</span></span><br><span class="line"><span class="meta">provider.connectTimeout</span>=<span class="string">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>wang.depp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>provider-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h2><p>1、java.lang.IllegalArgumentException: target values must be absolute.</p>
 <ul>
-<li>A、B、C 均不会看见其他两人都戴蓝帽子。但 A、B、C 均不知有几顶蓝帽子。</li>
-<li>A 只能看见两红或 1 蓝 1 红。但 C 不能是蓝帽子，因为如果 C 是蓝帽子，B 肯定是红帽子，B 看见 C 是蓝帽子，根据 A 只能看见 1 蓝 1 红，可以推断出自己是红帽子，因为 B 不知，所以 C 是红帽子。</li>
-<li>同理，B 也只能看见两红或 1 蓝 1 红。如果 B 看见 A 是蓝帽子，C 是红帽子，自己可红可蓝，猜不到自己什么颜色。对于 C 来说，看见 A 是蓝帽子 B 是红帽子，而 B 不知，自己不能是蓝帽子，可知道自己是红帽子。</li>
-<li>如果 B 看见 A 是红帽子，C 是红帽子，自己可红可蓝，猜不到自己什么颜色。对于 C 来说，看见 A 是红帽子 B 是红帽子，可以猜出自己是红色。因为如果 C 是蓝帽子，B 可猜出自己为红帽子。所以 C 是红帽子。</li>
-<li>综上所述，有 A、B、C 帽子两种情况：1. 蓝红红；2. 红红红。</li>
+<li>provider-api 的 domain 要写全；Service 参数问题，没有获取到具体数据，还为 <code>${*}</code></li>
 </ul>
-<p>注：此问题有很多种问法，以上问题和答案可能跟网上不一样。</p>
-<h2 id="多少人戴着黑帽子？"><a href="#多少人戴着黑帽子？" class="headerlink" title="多少人戴着黑帽子？"></a>多少人戴着黑帽子？</h2><p>问：一群人开舞会，每人头上都戴着一顶帽子。帽子只有黑白两种，黑的至少有一顶。每个人都能看到其它人帽子的颜色，却看不到自己的。主持人先让大家看看别人头上戴的是什幺帽子，然后关灯，如果有人认为自己戴的是黑帽子，就拍手。第一次关灯，没有声音。于是再开灯，大家再看一遍，关灯时仍然鸦雀无声。一直到第三次关灯，才有劈劈啪啪拍手的声音响起。问有多少人戴着黑帽子？</p>
-<p>答：3 个。解题如下：</p>
+<p>2、Caused by: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was STRING at line 1 column 1 path $</p>
 <ul>
-<li>第 1 次关灯没人拍手说明不是黑帽子不止 1 个，如果只有 1 个，那戴黑帽子就会拍手，因为他看到的都是戴白帽子的。所以戴黑帽子 &gt;=2 顶。</li>
-<li>如果是 2 个，那么第 2 次关灯的时候，就应该拍手了。因为戴黑帽子 A 只会看到戴黑帽子 B 一个人戴黑帽子，这戴黑帽子 A 确定自己也是戴黑帽子。没有拍手，所以戴黑帽子 &gt;=3 顶。</li>
-<li>第 2 次关灯没有拍手，黑帽子至少 3 顶，第 3 次关灯有人拍手，戴黑帽子的看到 2 个人戴黑帽子。所以答案是有 3 个人戴黑帽子。</li>
+<li>**Api 和 Controller 方法的返回值类型对不上，比如：Api 站拦截器包装了一层 ApiResponse</li>
 </ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虽然面试中 “脑筋急转弯” 可能短时间没有想出来，也不能灰心，有时候解题需要一点灵感，他不能完全体现出你的真实水平。如果你认为题学会了对你有帮助，可以自己抽时间研究，努力比天赋重要。</p>
+<p>3、接收参数不能为 Date</p>
+<ul>
+<li>因为使用 <code>application/x-www-form-urlencoded</code>传输时将参数链接到 URL，将转换为 String</li>
+</ul>
+<p>可通过为不同环境配置不同的服务提供者 domain</p>
 
       
     </div>
@@ -463,7 +477,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://depp.wang/2017/07/04/two-logical-question-about-hat/" title="关于帽子的逻辑题">https://depp.wang/2017/07/04/two-logical-question-about-hat/</a>
+      <a href="https://depp.wang/2020/11/02/github-open-feign-use-summary/" title="GitHub Open Feign  使用总结">https://depp.wang/2020/11/02/github-open-feign-use-summary/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -479,9 +493,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Logical-Question/" rel="tag"># Logical Question</a>
-          
-            <a href="/tags/Interview/" rel="tag"># Interview</a>
+            <a href="/tags/Logback/" rel="tag"># Logback</a>
           
         </div>
       
@@ -494,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/26/introduction-to-computer/" rel="next" title="计算机名词解释">
-                <i class="fa fa-chevron-left"></i> 计算机名词解释
+              <a href="/2020/11/02/build-a-maven-repository/" rel="next" title="搭建 Maven 仓库">
+                <i class="fa fa-chevron-left"></i> 搭建 Maven 仓库
               </a>
             
           </div>
@@ -503,10 +515,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/05/Eliminate-Expired-Object-References/" rel="prev" title="Effective Java（二）：如何消除过期的对象引用">
-                Effective Java（二）：如何消除过期的对象引用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -699,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#五顶帽子"><span class="nav-number">1.</span> <span class="nav-text">五顶帽子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多少人戴着黑帽子？"><span class="nav-number">2.</span> <span class="nav-text">多少人戴着黑帽子？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Provider-Api"><span class="nav-number">1.</span> <span class="nav-text">Provider Api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provider-Client"><span class="nav-number">2.</span> <span class="nav-text">Provider Client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consumer-Api"><span class="nav-number">3.</span> <span class="nav-text">Consumer Api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#踩过的坑"><span class="nav-number">4.</span> <span class="nav-text">踩过的坑</span></a></li></ol></div>
             
 
           </div>
@@ -866,9 +874,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://depp.wang/2017/07/04/two-logical-question-about-hat/';
-          this.page.identifier = '2017/07/04/two-logical-question-about-hat/';
-          this.page.title = '关于帽子的逻辑题';
+          this.page.url = 'https://depp.wang/2020/11/02/github-open-feign-use-summary/';
+          this.page.identifier = '2020/11/02/github-open-feign-use-summary/';
+          this.page.title = 'GitHub Open Feign  使用总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://deppwang-1.disqus.com/embed.js';
