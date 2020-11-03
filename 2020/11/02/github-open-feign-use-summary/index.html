@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Logback,">
+  <meta name="keywords" content="GitHub Open Feign,">
 
 
 
@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
-<meta name="keywords" content="Logback">
+<meta name="description" content="原文地址 公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
+<meta name="keywords" content="GitHub Open Feign">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub Open Feign  使用总结">
 <meta property="og:url" content="https://depp.wang/2020/11/02/github-open-feign-use-summary/index.html">
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
-<meta property="og:description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
+<meta property="og:description" content="原文地址 公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-02T15:46:47.263Z">
+<meta property="og:updated_time" content="2020-11-03T01:21:02.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Open Feign  使用总结">
-<meta name="twitter:description" content="公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
+<meta name="twitter:description" content="原文地址 公司项目目前使用 SOA 架构（Service-oriented architecture：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 GitHub OpenFeign  调用接口。 服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关代码示例">
 
 
 
@@ -408,14 +408,15 @@
       
 
       
-        <p>公司项目目前使用 SOA 架构（<a href="https://en.wikipedia.org/wiki/Service-oriented_architecture" target="_blank" rel="noopener">Service-oriented architecture</a>：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 <a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">GitHub OpenFeign</a>  调用接口。</p>
+        <p><a href="https://depp.wang/2020/11/02/github-open-feign-use-summary/">原文地址</a></p>
+<p>公司项目目前使用 SOA 架构（<a href="https://en.wikipedia.org/wiki/Service-oriented_architecture" target="_blank" rel="noopener">Service-oriented architecture</a>：服务导向架构），每个服务作为一个单体对外提供接口，服务之间使用 <a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">GitHub OpenFeign</a>  调用接口。</p>
 <p>服务提供者正常提供接口，把需要暴露的接口封装为一个 client jar 包，服务调用者正常引入 jar 包，直接调用 jar 方法即可调用服务提供者接口。此文相关<a href="https://github.com/DeppWang/springboot-demos/tree/master/springboot-openfeign" target="_blank" rel="noopener">代码示例</a></p>
 <a id="more"></a>
 
 <h2 id="Provider-Api"><a href="#Provider-Api" class="headerlink" title="Provider Api"></a>Provider Api</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/signin"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">doSignin</span><span class="params">(@RequestParam(<span class="string">"username"</span>)</span> String username, @<span class="title">RequestParam</span><span class="params">(<span class="string">"password"</span>)</span> String password) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (username.equals(<span class="string">""</span>) &amp;&amp; password.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> ApiResponse.fail(<span class="number">500</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ApiResponse.success();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Provider-Client"><a href="#Provider-Client" class="headerlink" title="Provider Client"></a>Provider Client</h2><p>ProviderClientBuilder</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderClientBuilder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.service&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> String providerService;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.socketTimeout:60000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> socketTimeout;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.connectTimeout:10000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> connectTimeout;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserApi <span class="title">buildProviderApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Preconditions.checkArgument(StringUtils.isNotBlank(providerService));</span><br><span class="line">        <span class="keyword">return</span> Feign.builder()</span><br><span class="line">                .decoder(<span class="keyword">new</span> GsonDecoder())</span><br><span class="line">                .encoder(<span class="keyword">new</span> FormEncoder())</span><br><span class="line">                .logger(<span class="keyword">new</span> Slf4jLogger(UserApi.class))</span><br><span class="line">                .retryer(Retryer.NEVER_RETRY)</span><br><span class="line">                .logLevel(Logger.Level.FULL)</span><br><span class="line">                .client(<span class="keyword">new</span> AccessTraceHttpClient(httpClient(), requestConfig()))</span><br><span class="line">                .target(UserApi.class, providerService);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderClientBuilder</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.domain&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> String providerDomain;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.socketTimeout:60000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> socketTimeout;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;provider.connectTimeout:10000&#125;"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> connectTimeout;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserApi <span class="title">buildProviderApi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Preconditions.checkArgument(StringUtils.isNotBlank(providerDomain));</span><br><span class="line">        <span class="keyword">return</span> Feign.builder()</span><br><span class="line">                .decoder(<span class="keyword">new</span> GsonDecoder())</span><br><span class="line">                .encoder(<span class="keyword">new</span> FormEncoder())</span><br><span class="line">                .logger(<span class="keyword">new</span> Slf4jLogger(UserApi.class))</span><br><span class="line">                .retryer(Retryer.NEVER_RETRY)</span><br><span class="line">                .logLevel(Logger.Level.FULL)</span><br><span class="line">                .client(<span class="keyword">new</span> AccessTraceHttpClient(httpClient(), requestConfig()))</span><br><span class="line">                .target(UserApi.class, providerDomain);</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>UserApi</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Headers</span>(<span class="string">"Content-Type: application/x-www-form-urlencoded"</span>) <span class="comment">// 请求的编码格式为 application/x-www-form-urlencoded</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserApi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"POST /signin"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">signin</span><span class="params">(@Param(<span class="string">"username"</span>)</span> String username, @<span class="title">Param</span><span class="params">(<span class="string">"password"</span>)</span> String password)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"GET /status/version"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiResponse&lt;String&gt; <span class="title">statusVersion</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -493,7 +494,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Logback/" rel="tag"># Logback</a>
+            <a href="/tags/GitHub-Open-Feign/" rel="tag"># GitHub Open Feign</a>
           
         </div>
       
@@ -619,7 +620,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">91</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
