@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="Depp Wang&#39;s Blog">
 <meta property="og:description" content="正常业务系统中，当前后端分离时，系统即使有未知异常，也要保证接口能返回错误提示，也需要根据业务规则制定相应的异常状态码和异常提示。所以需要一个全局异常处理器。相关代码：GitHub">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-06T15:38:11.860Z">
+<meta property="og:updated_time" content="2020-11-06T15:42:40.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义全局异常处理器（Java）">
 <meta name="twitter:description" content="正常业务系统中，当前后端分离时，系统即使有未知异常，也要保证接口能返回错误提示，也需要根据业务规则制定相应的异常状态码和异常提示。所以需要一个全局异常处理器。相关代码：GitHub">
@@ -408,7 +408,7 @@
       
 
       
-        <p>正常业务系统中，当前后端分离时，系统即使有未知异常，也要保证接口能返回错误提示，也需要根据业务规则制定相应的异常状态码和异常提示。所以需要一个全局异常处理器。相关代码：<a href="">GitHub</a></p>
+        <p>正常业务系统中，当前后端分离时，系统即使有未知异常，也要保证接口能返回错误提示，也需要根据业务规则制定相应的异常状态码和异常提示。所以需要一个全局异常处理器。相关代码：<a href="https://github.com/DeppWang/springboot-demos/tree/master/springboot-exception" target="_blank" rel="noopener">GitHub</a></p>
 <a id="more"></a>
 
 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>下面是 Java 异常继承图：</p>
@@ -427,12 +427,12 @@
 <p>不必须捕获的异常：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/testThrowRuntimeException"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">testThrowRuntimeException</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    throwRuntimeException(); <span class="comment">// 不报错</span></span><br><span class="line">    <span class="keyword">return</span> ApiResponse.success();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwRuntimeException</span><span class="params">()</span> </span>&#123; <span class="comment">// 无需 throws</span></span><br><span class="line">    System.out.println(<span class="string">"testThrowRuntimeException"</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>不过在运行时，任何异常都应该进行处理，可直接抛出</p>
+<p>不过在运行时，任何异常都可以进行捕获处理，避免接口没有返回值的情况。</p>
 <h3 id="抛异常"><a href="#抛异常" class="headerlink" title="抛异常"></a>抛异常</h3><p>常见异常处理方式有两种，1、捕获后处理，2、抛出。抛出也分为捕获后抛出和直接抛出。</p>
 <p>当本身没有异常，却使用 throws 抛出异常时，此时相当于没有抛异常（将拦截不到异常）。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/testThrowIOException2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ApiResponse&lt;Void&gt; <span class="title">testThrowIOException2</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">    throwIOException2();</span><br><span class="line">    <span class="keyword">return</span> ApiResponse.success();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwIOException2</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"testThrowIOException"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="打印异常"><a href="#打印异常" class="headerlink" title="打印异常"></a>打印异常</h3><p>打印异常可以使用 <a href="https://depp.wang/2020/10/30/logback-use-summary/">Logback</a> 打印，其相关方法的使用 <code>log.error(e.getMessage(), e);</code> 相当于下面这两条语句：</p>
+<h3 id="打印异常"><a href="#打印异常" class="headerlink" title="打印异常"></a>打印异常</h3><p>打印异常可以使用 <a href="https://depp.wang/2020/10/30/logback-use-summary/">Logback</a> 打印，其相关方法的使用： <code>log.error(e.getMessage(), e);</code> 相当于下面这两条语句：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(e.getMessage()); <span class="comment">// 打印异常信息</span></span><br><span class="line">e.printStackTrace(); <span class="comment">// 打印异常调用栈</span></span><br></pre></td></tr></table></figure>
 
 <p>减少 NullPointException 的方式是设置默认值。</p>
