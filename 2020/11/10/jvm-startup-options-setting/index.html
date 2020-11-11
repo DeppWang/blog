@@ -100,7 +100,7 @@
 <meta property="og:description" content="公司项目 jdk 版本为 1.8， JVM 参数是自定义设置的，gradle 中 JVM 配置如下（默认内存为 8 G）： applicationDefaultJvmArgs = [&quot;-Xms1G&quot;, &quot;-Xmx2G&quot;, &quot;-Xss256k&quot;, &quot;-Djava.awt.headless=true&quot;, &quot;-Dfile.encoding=UTF-8&quot;,">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-11-10-072145.jpg">
-<meta property="og:updated_time" content="2020-11-10T13:27:48.934Z">
+<meta property="og:updated_time" content="2020-11-11T11:25:26.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM 启动参数设置">
 <meta name="twitter:description" content="公司项目 jdk 版本为 1.8， JVM 参数是自定义设置的，gradle 中 JVM 配置如下（默认内存为 8 G）： applicationDefaultJvmArgs = [&quot;-Xms1G&quot;, &quot;-Xmx2G&quot;, &quot;-Xss256k&quot;, &quot;-Djava.awt.headless=true&quot;, &quot;-Dfile.encoding=UTF-8&quot;,">
@@ -419,7 +419,7 @@
 <ul>
 <li>-Xms1G：堆的初始内存容量为 1G</li>
 <li>-Xmx2G：堆的最大内存容量为 2G</li>
-<li>-Xss256k：Java 栈的容量为 256K（不区分虚拟机栈和本地方法栈），经测试，栈的高度可以达到 1693</li>
+<li>-Xss256k：Java 栈的容量为 256K（不区分虚拟机栈和本地方法栈），<a href="https://depp.wang/2020/11/06/customize-global-exception-handler-java/#%E6%B5%8B%E8%AF%95-Error">经测试</a>，此时栈的高度可以达到 1500+</li>
 <li>-Djava.awt.headless=true：java.awt 下的类使用无头模式，<a href="https://stackoverflow.com/questions/41067235/what-is-the-benefit-of-setting-java-awt-headless-true" target="_blank" rel="noopener">跟 GUI 相关</a></li>
 <li>-Dfile.encoding=UTF-8：文件编码为 UTF-8，<a href="https://stackoverflow.com/questions/1006276/what-is-the-default-encoding-of-the-jvm" target="_blank" rel="noopener">不指定时默认使用系统的文件编码</a></li>
 <li>MetaspaceSize=256M：元数据区容量为 256M，默认是-1，即不限制，或者说只受限于本地内存大小</li>
@@ -459,15 +459,9 @@
 <p>根据 <a href="https://www.zhihu.com/question/56344485" target="_blank" rel="noopener">RednaxelaFX</a> 的回答，虽然 jconsole 显示使用 <code>-XX:+UseParallelGC</code> 时，但 jdk 1.8 默认会开启 <code>XX:+UseParallelOldGC</code>。  此时收集器使用 <code>Parallel Scavenge + Parallel Old</code> 组合。</p>
 <p>此种组合适用于注重吞吐量或者处理器资源较为稀缺的场合。</p>
 <p><img src="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-11-10-072145.jpg" alt="img"></p>
-<p>G1（Garbage First）是 JDK 9 服务端模式默认的垃圾收集器。</p>
-<blockquote>
-<p>在 G1 收集器出现之前的所有其他收集器，包括 CMS 在内，垃圾收集的目标范围要么是整个新生代（Minor GC），要么就是整个老年代（Major GC），再要么就是整个 Java 堆（Full GC）。而 G1 跳出了这个樊笼，它可以面向堆内存任何部分来组成回收集（Collection Set，一般简称 CSet）进行回收，衡量标准不再是它属于哪个分代，而是哪块内存中存放的垃圾数量最多，回收收益最大，这就是 G1 收集器的 MixedGC 模式。</p>
-<p>G1 开创的基于 Region 的堆内存布局是它能够实现这个目标的关键。虽然 G1 也仍是遵循分代收集理论设计的，但其堆内存的布局与其他收集器有非常明显的差异：G1 不再坚持固定大小以及固定数量的分代区域划分，而是把连续的 Java 堆划分为多个大小相等的独立区域（Region），每一个 Region 都可以根据需要，扮演新生代的 Eden 空间、Survivor 空间，或者老年代空间。收集器能够对扮演不同角色的 Region 采用不同的策略去处理，这样无论是新创建的对象还是已经存活了一段时间、熬过多次收集的旧对象都能获取很好的收集效果。</p>
-<p>虽然 G1 仍然保留新生代和老年代的概念，但新生代和老年代不再是固定的了，它们都是一系列区域（不需要连续）的动态集合。G1 收集器之所以能建立可预测的停顿时间模型，是因为它将 Region 作为单次回收的最小单元，即每次收集到的内存空间都是 Region 大小的整数倍，这样可以有计划地避免在整个 Java 堆中进行全区域的垃圾收集。更具体的处理思路是让 G1 收集器去跟踪各个 Region 里面的垃圾堆积的 “价值” 大小，价值即回收所获得的空间大小以及回收所需时间的经验值，然后在后台维护一个优先级列表，每次根据用户设定允许的收集停顿时间（使用参数 - XX：MaxGCPauseMillis 指定，默认值是 200 毫秒），优先处理回收价值收益最大的那些 Region，这也就是 “Garbage First” 名字的由来。</p>
-<p>从 G1 开始，最先进的垃圾收集器的设计导向都不约而同地变为追求能够应付应用的内存分配速率（Allocation Rate），而不追求一次把整个 Java 堆全部清理干净。这样，应用在分配，同时收集器在收集，只要收集的速度能跟得上对象分配的速度，那一切就能运作得很完美。</p>
-<p>来源：深入理解 Java 虚拟机：JVM 高级特性与最佳实践（第 3 版） </p>
-</blockquote>
-<p>G1相比 <code>Parallel Scavenge + Parallel Old</code> 组合的优点：可以指定最大停顿时间、分 Region 的内存布局、按收益动态确定回收集。</p>
+<p>jdk1.8 可以使用更为先进的收集器 G1（Garbage First），它是 JDK 9 服务端模式默认的垃圾收集器。G1 也是遵循分代收集理论设计，它将内存分为大小相等的独立区域（Region），每个 Region 都可以根据需要，扮演新生代的 Eden 空间、Survivor 空间，或者老年代空间。回收时，不像其他收集器，只针对某个区域，Major GC（新生代）或 Full GC（老年代）或 Full GC（整个堆），而是将多个 Region 组成回收集（Collection Set）进行回收（MixedGC）。</p>
+<p>G1 收集器跟踪每个 Region 里面的垃圾堆积的「价值」大小，价值即回收所获得的空间大小以及回收所需时间的经验值，然后在后台维护一个优先列表，再根据用户设定允许的收集停顿时间（MaxGCPauseMillis），优先处理回收价值收益最大的那些 Region，这也就是 「Garbage First」名字的由来。回收时，不追求一次把 Java 堆全部清理干净，而是追求能够应付应用的内存分配速率（Allocation Rate），只要收集的速度能跟得上对象分配的速度就行。</p>
+<p>G1 相比 <code>Parallel Scavenge + Parallel Old</code> 组合的最大优点：可以指定最大收集停顿时间来调节。</p>
 <h2 id="Maven-项目如何使用这些参数"><a href="#Maven-项目如何使用这些参数" class="headerlink" title="Maven 项目如何使用这些参数"></a>Maven 项目如何使用这些参数</h2><p>利用 Maven Wrapper，在 <code>.mvn/jvm.config</code> 中配置：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">-Xms1G -Xmx2G -Xss256k -Djava.awt.<span class="attribute">headless</span>=<span class="literal">true</span> -Dfile.<span class="attribute">encoding</span>=UTF-8 -XX:<span class="attribute">MetaspaceSize</span>=256M -XX:+UseG1GC -XX:<span class="attribute">MaxGCPauseMillis</span>=200 <span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
 
