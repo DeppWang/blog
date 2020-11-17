@@ -100,7 +100,7 @@
 <meta property="og:description" content="WSGIWSGI：（Web Server Gateway Interface We，Web 服务端网关接口）。在不借助框架的情况下，直接使用 WSGI 来开发简易服务端。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-11-16-133323.png">
-<meta property="og:updated_time" content="2020-11-17T07:08:29.085Z">
+<meta property="og:updated_time" content="2020-11-17T07:14:51.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django 入门笔记">
 <meta name="twitter:description" content="WSGIWSGI：（Web Server Gateway Interface We，Web 服务端网关接口）。在不借助框架的情况下，直接使用 WSGI 来开发简易服务端。">
@@ -426,10 +426,10 @@
 <li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017806472608512" target="_blank" rel="noopener">WSGI 接口</a></li>
 <li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017806472608512" target="_blank" rel="noopener">使用 Web 框架</a></li>
 </ul>
-<h2 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h2><blockquote>
-<p><a href="https://docs.djangoproject.com/zh-hans/3.1/intro/overview/" target="_blank" rel="noopener">官方中文教程 3.1</a>、<a href="https://docs.djangoproject.com/en/1.11/" target="_blank" rel="noopener">英文教程 1.11</a></p>
-</blockquote>
-<h2 id="macOS-安装-Django"><a href="#macOS-安装-Django" class="headerlink" title="macOS 安装 Django"></a>macOS 安装 Django</h2><p>Python 版本与 Django 版本的<a href="https://docs.djangoproject.com/zh-hans/3.1/faq/install/#faq-python-version-support" target="_blank" rel="noopener">关系</a></p>
+<h2 id="macOS-安装-Django"><a href="#macOS-安装-Django" class="headerlink" title="macOS 安装 Django"></a>macOS 安装 Django</h2><ul>
+<li><a href="https://docs.djangoproject.com/zh-hans/3.1/intro/overview/" target="_blank" rel="noopener">官方中文教程 3.1</a>、<a href="https://docs.djangoproject.com/en/1.11/" target="_blank" rel="noopener">英文教程 1.11</a></li>
+</ul>
+<p>Python 版本与 Django 版本的<a href="https://docs.djangoproject.com/zh-hans/3.1/faq/install/#faq-python-version-support" target="_blank" rel="noopener">关系</a></p>
 <p>安装 Django 1.11，对应 Python2：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo python -m pip install Django</span></span><br></pre></td></tr></table></figure>
 
@@ -527,9 +527,8 @@
 <p>执行迁移文件，相当于执行对应 sql，将更新数据库</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python3 manage.py migrate</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py migrate</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>需要首先执行一下：<code>python3 manage.py migrate</code> ?</li>
-</ul>
+<!--需要首先执行一下：`python3 manage.py migrate` ?-->
+
 <h2 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h2><p>因为 Django 自带应用，在启动时也将启动，如 admin</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># settings.py</span></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,  </span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,    <span class="comment"># 管理员站点， 你很快就会使用它。</span></span><br><span class="line">	...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
@@ -833,7 +832,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WSGI"><span class="nav-number">1.</span> <span class="nav-text">WSGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django"><span class="nav-number">2.</span> <span class="nav-text">Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#macOS-安装-Django"><span class="nav-number">3.</span> <span class="nav-text">macOS 安装 Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Django-项目"><span class="nav-number">4.</span> <span class="nav-text">创建 Django 项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建投票应用"><span class="nav-number">5.</span> <span class="nav-text">创建投票应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图层"><span class="nav-number">6.</span> <span class="nav-text">视图层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型层"><span class="nav-number">7.</span> <span class="nav-text">模型层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Admin"><span class="nav-number">8.</span> <span class="nav-text">Admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Shell"><span class="nav-number">9.</span> <span class="nav-text">API / Shell</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WSGI"><span class="nav-number">1.</span> <span class="nav-text">WSGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#macOS-安装-Django"><span class="nav-number">2.</span> <span class="nav-text">macOS 安装 Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Django-项目"><span class="nav-number">3.</span> <span class="nav-text">创建 Django 项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建投票应用"><span class="nav-number">4.</span> <span class="nav-text">创建投票应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图层"><span class="nav-number">5.</span> <span class="nav-text">视图层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型层"><span class="nav-number">6.</span> <span class="nav-text">模型层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Admin"><span class="nav-number">7.</span> <span class="nav-text">Admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Shell"><span class="nav-number">8.</span> <span class="nav-text">API / Shell</span></a></li></ol></div>
             
 
           </div>
