@@ -100,7 +100,7 @@
 <meta property="og:description" content="WSGIWSGI：（Web Server Gateway Interface We，Web 服务端网关接口）。在不借助框架的情况下，直接使用 WSGI 来开发简易服务端。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://deppwang.oss-cn-beijing.aliyuncs.com/blog/2020-11-16-133323.png">
-<meta property="og:updated_time" content="2020-11-17T07:14:51.384Z">
+<meta property="og:updated_time" content="2020-11-17T07:17:29.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django 入门笔记">
 <meta name="twitter:description" content="WSGIWSGI：（Web Server Gateway Interface We，Web 服务端网关接口）。在不借助框架的情况下，直接使用 WSGI 来开发简易服务端。">
@@ -355,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithms</span>
+                  <a href="/categories/Note/" itemprop="url" rel="index">
+                    <span itemprop="name">Note</span>
                   </a>
                 </span>
 
@@ -529,8 +529,8 @@
 
 <!--需要首先执行一下：`python3 manage.py migrate` ?-->
 
-<h2 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h2><p>因为 Django 自带应用，在启动时也将启动，如 admin</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># settings.py</span></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,  </span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,    <span class="comment"># 管理员站点， 你很快就会使用它。</span></span><br><span class="line">	...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h2><p>Admin 为 Django 自带应用，默认在启动时也将启动</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># settings.py</span></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,  </span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,   </span><br><span class="line">	...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite/urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
@@ -553,7 +553,7 @@
 <figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">What<span class="symbol">'s</span> up</span><br></pre></td></tr></table></figure>
 
 <h2 id="API-Shell"><a href="#API-Shell" class="headerlink" title="API / Shell"></a>API / Shell</h2><ul>
-<li><a href="https://docs.djangoproject.com/zh-hans/3.1/intro/tutorial02/#playing-with-the-api" target="_blank" rel="noopener">https://docs.djangoproject.com/zh-hans/3.1/intro/tutorial02/#playing-with-the-api</a></li>
+<li><a href="https://docs.djangoproject.com/zh-hans/3.1/intro/tutorial02/#playing-with-the-api" target="_blank" rel="noopener">初试 API</a></li>
 </ul>
 <p>进入 shell</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python3 manage.py shell</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> python manage.py shell</span></span><br></pre></td></tr></table></figure>
@@ -564,7 +564,7 @@
 <p>为模型添加自定义方法</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># models.py</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.question_text</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>) <span class="comment"># 时间小于一天</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.choice_text</span><br></pre></td></tr></table></figure>
 
-<p>shell 命令：查、增、外键</p>
+<p>使用自定义方法，shell 命令：查、增、外键</p>
 <figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;</span>&gt; from polls.models import Choice, Question</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.all()</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.filter(id=<span class="number">1</span>)  <span class="comment"># 根据 id 过滤</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.filter(question_text__startswith=<span class="string">'What'</span>)  <span class="comment"># question_text 匹配开始字符</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; from django.utils import timezone</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; current_year = timezone.now().year</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.get(pub_date__year=current_year) <span class="comment"># 匹配年限</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.get(id=<span class="number">2</span>) <span class="comment"># DoesNotExist</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; Question.objects.get(pk=<span class="number">1</span>) <span class="comment"># primary-key 为 1</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; q = Question.objects.get(pk=<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; q.was_published_recently() <span class="comment"># 间隔年限小于 1 年，True</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; q.choice_set.all()         <span class="comment"># 跟 q 相关的 Choice 集合</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; q.choice_set.create(choice_text=<span class="string">'Not much'</span>, votes=<span class="number">0</span>)</span><br><span class="line">&lt;<span class="symbol">Choice:</span> Not much&gt;</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; q.choice_set.create(choice_text=<span class="string">'The sky'</span>, votes=<span class="number">0</span>)</span><br><span class="line">&lt;<span class="symbol">Choice:</span> The sky&gt;</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; c = q.choice_set.create(choice_text=<span class="string">'Just hacking again'</span>, votes=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt; c.question </span><br><span class="line">&lt;<span class="symbol">Question:</span> What<span class="string">'s up?&gt;         # 3 个 choice 都关联 question</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; Choice.objects.all()</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; q.choice_set.all()</span></span><br><span class="line"><span class="string">&lt;QuerySet [&lt;Choice: Not much&gt;, &lt;Choice: The sky&gt;, &lt;Choice: Just hacking again&gt;]&gt;  # 关联 q 的有 3 个 choice</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; q.choice_set.count()</span></span><br><span class="line"><span class="string">3</span></span><br></pre></td></tr></table></figure>
 
 <!--1、First Steps；2、The Model Layer；3、The View Layer；4、The Admin-->
