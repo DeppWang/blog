@@ -1,3 +1,4 @@
+https://depp.wang/2020/11/17/django-beginners-notes/
 https://depp.wang/2020/11/10/jvm-startup-options-setting/
 https://depp.wang/2020/11/07/treeset-in-java/
 https://depp.wang/2020/11/06/customize-global-exception-handler-java/

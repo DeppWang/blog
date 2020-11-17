@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
-    
-    <lastmod>2017-06-11</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://depp.wang/2017/06/13/hexo4/</loc>
     
     <lastmod>2017-06-13</lastmod>
@@ -151,7 +144,7 @@
   <url>
     <loc>https://depp.wang/googlec27ee4754ff2e800.html</loc>
     
-    <lastmod>2020-11-11</lastmod>
+    <lastmod>2020-11-17</lastmod>
     
   </url>
   
@@ -179,7 +172,21 @@
   <url>
     <loc>https://depp.wang/tools/index.html</loc>
     
-    <lastmod>2020-11-11</lastmod>
+    <lastmod>2020-11-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/06/15/hexo-disqus/</loc>
+    
+    <lastmod>2017-06-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/06/14/hexo-statistical/</loc>
+    
+    <lastmod>2017-06-14</lastmod>
     
   </url>
   
@@ -240,9 +247,9 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
+    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
     
-    <lastmod>2017-08-15</lastmod>
+    <lastmod>2019-07-06</lastmod>
     
   </url>
   
@@ -471,9 +478,16 @@
   </url>
   
   <url>
-    <loc>https://depp.wang/2019/07/06/why-do-the-leetcode-alogrithm-problem/</loc>
+    <loc>https://depp.wang/2017/06/11/hexo-install-and-set-next-theme/</loc>
     
-    <lastmod>2019-07-06</lastmod>
+    <lastmod>2017-06-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://depp.wang/2017/08/15/hashmap-put-method-source-code/</loc>
+    
+    <lastmod>2017-08-15</lastmod>
     
   </url>
   
@@ -548,6 +562,13 @@
   </url>
   
   <url>
+    <loc>https://depp.wang/2020/11/17/django-beginners-notes/</loc>
+    
+    <lastmod>2020-11-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://depp.wang/2018/10/09/how-to-use-dubbo-directlink-and-group/</loc>
     
     <lastmod>2018-10-09</lastmod>
@@ -572,20 +593,6 @@
     <loc>https://depp.wang/2020/02/17/use-github-actions-to-achieve-hexo-blog-auto-deploy/</loc>
     
     <lastmod>2020-02-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/06/15/hexo-disqus/</loc>
-    
-    <lastmod>2017-06-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://depp.wang/2017/06/14/hexo-statistical/</loc>
-    
-    <lastmod>2017-06-14</lastmod>
     
   </url>
   
